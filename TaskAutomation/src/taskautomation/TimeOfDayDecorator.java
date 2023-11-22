@@ -1,0 +1,39 @@
+package taskautomation;
+
+import java.time.LocalTime;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author alessandro
+ */
+public class TimeOfDayDecorator extends TriggerDecorator{
+    
+    private LocalTime timeOfDay;
+
+    public TimeOfDayDecorator(Trigger decoratedTrigger, LocalTime timeOfDay) {
+        super(decoratedTrigger);
+        this.timeOfDay = timeOfDay;
+    }
+
+    public LocalTime getTimeOfDay() {
+        return timeOfDay;
+    }
+
+    public void setTimeOfDay(LocalTime timeOfDay) {
+        this.timeOfDay = timeOfDay;
+    }
+
+    @Override
+    public boolean verifyTrigger() {
+        
+        LocalTime currentTime = LocalTime.now();
+        // Confronta solo ora e minuti
+        return currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute();
+    }
+    
+}
