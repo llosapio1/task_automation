@@ -8,6 +8,11 @@ package taskautomation;
  *
  * @author alessandro
  */
-public class BasicTrigger {
+public class BasicTrigger implements Trigger{
+
+    @Override
+    public boolean verifyTrigger() {
+        return this.verifyTrigger();
+    }
     
 }

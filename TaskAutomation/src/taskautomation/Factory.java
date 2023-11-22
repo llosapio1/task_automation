@@ -10,7 +10,7 @@ package taskautomation;
  */
 public interface Factory {
     
-    Object create();
+    Object create(String selectedType);
     
     int selected();
     
