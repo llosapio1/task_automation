@@ -19,6 +19,7 @@ import javafx.scene.control.ListView;
  */
 public class FXMLDocumentController implements Initializable {
     
+    @FXML
     private Label title;
     @FXML
     private ListView<?> ruleListView;
