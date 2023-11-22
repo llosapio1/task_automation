@@ -10,12 +10,15 @@ package taskautomation;
  */
 public abstract class TriggerDecorator implements Trigger {
     
-    private Trigger trigger;
-    
-    
+    private Trigger decoratedTrigger;
+
+    public TriggerDecorator(Trigger decoratedTrigger) {
+        this.decoratedTrigger = decoratedTrigger;
+    }
+
     @Override
     public boolean verifyTrigger() {
-        return trigger.verifyTrigger();
+        return decoratedTrigger.verifyTrigger();
     }
     
 }
