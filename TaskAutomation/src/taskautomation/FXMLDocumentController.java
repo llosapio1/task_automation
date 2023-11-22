@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tooltip;
 
 /**
  *
@@ -28,7 +29,8 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        addRuleButton.setTooltip(new Tooltip("add new rule"));
     }    
 
     @FXML
