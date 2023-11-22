@@ -8,10 +8,9 @@ package taskautomation;
  *
  * @author alessandro
  */
-public class TriggerFactory implements Factory{
+public class TriggerFactory {
 
-    @Override
-    public Trigger create(String triggerType) {
+    public static Trigger create(String triggerType) {
         
         Trigger trigger = new BasicTrigger();
         
@@ -25,7 +24,6 @@ public class TriggerFactory implements Factory{
         return trigger;
     }
 
-    @Override
     public int selected() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
