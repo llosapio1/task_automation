@@ -1,0 +1,43 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package taskautomation;
+
+/**
+ *
+ * @author alessandro
+ */
+public class Rule {
+    
+    private String name;
+    private Trigger trigger;
+    //private Action action;
+
+    public Rule(String name, String triggerType, String actionType) {
+        this.name = name;
+        this.trigger = TriggerFactory.create(triggerType);
+        //this.action = ActionFactory.create(actionType);
+    }
+
+    public Trigger getTrigger() {
+        return trigger;
+    }
+
+    public void setTrigger(Trigger trigger) {
+        this.trigger = trigger;
+    }
+
+    /*public Action getAction() {
+        return action;
+    }
+
+    public void setAction(Action action) {
+        this.action = action;
+    }*/
+    
+    public void checkRule(){
+        
+    }
+    
+}

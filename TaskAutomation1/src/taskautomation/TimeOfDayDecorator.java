@@ -25,6 +25,9 @@ public class TimeOfDayDecorator extends TriggerDecorator{
     }
 
     public void setTimeOfDay(LocalTime timeOfDay) {
+        if (timeOfDay == null) {
+            throw new IllegalArgumentException("timeOfDay cannot be null");
+        }
         this.timeOfDay = timeOfDay;
     }
 
