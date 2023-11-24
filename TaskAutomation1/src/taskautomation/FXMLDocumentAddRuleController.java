@@ -45,8 +45,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
         triggerChoiceBox.setItems(triggerListChoiceBox);
         actionChoiceBox.setItems(actionListChoiceBox);
         
-    }    
-
+    }
+    
     @FXML
     private void createRuleButtonAction(ActionEvent event) {
     }

@@ -4,6 +4,10 @@
  */
 package taskautomation;
 
+import taskautomation.rule.Rule;
+import taskautomation.trigger.BasicTrigger;
+import taskautomation.trigger.TimeOfDayDecorator;
+import taskautomation.trigger.Trigger;
 import static junit.framework.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;

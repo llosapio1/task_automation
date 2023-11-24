@@ -4,6 +4,8 @@
  */
 package taskautomation;
 
+import taskautomation.rule.RuleList;
+import taskautomation.rule.Rule;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -4,6 +4,7 @@
  */
 package taskautomation;
 
+import taskautomation.rule.Rule;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +29,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label title;
     @FXML
-    private ListView<?> ruleListView;
+    private ListView<Rule> ruleListView;
     @FXML
     private Button addRuleButton;
     
@@ -49,5 +50,5 @@ public class FXMLDocumentController implements Initializable {
         
         stage.showAndWait();
     }
-    
+     
 }

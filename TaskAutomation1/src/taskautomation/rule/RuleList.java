@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package taskautomation;
+package taskautomation.rule;
 
 import java.util.LinkedList;
 
@@ -26,6 +26,10 @@ public class RuleList {
         for (Rule rule : ruleList){
             rule.checkRule();
         }
+    }
+    
+    public LinkedList<Rule> getRuleList() {
+        return ruleList;
     }
     
 }

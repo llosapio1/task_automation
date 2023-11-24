@@ -4,6 +4,10 @@
  */
 package taskautomation;
 
+import taskautomation.trigger.BasicTrigger;
+import taskautomation.trigger.TimeOfDayDecorator;
+import taskautomation.trigger.TriggerFactory;
+import taskautomation.trigger.Trigger;
 import static junit.framework.Assert.*;
 import org.junit.Test;
 

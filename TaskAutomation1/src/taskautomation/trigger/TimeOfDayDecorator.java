@@ -1,4 +1,4 @@
-package taskautomation;
+package taskautomation.trigger;
 
 import java.time.LocalTime;
 
