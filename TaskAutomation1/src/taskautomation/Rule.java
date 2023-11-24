@@ -4,6 +4,8 @@
  */
 package taskautomation;
 
+import taskautomation.azioni.Action;
+
 /**
  *
  * @author alessandro
@@ -12,12 +14,12 @@ public class Rule {
     
     private String name;
     private Trigger trigger;
-    //private Action action;
+    private Action action;
 
     public Rule(String name, String triggerType, String actionType) {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
-        //this.action = ActionFactory.create(actionType);
+        this.action = ActionFactory.create(actionType);     //Il metodo create deve essere statico
     }
 
     public Trigger getTrigger() {
@@ -28,17 +30,17 @@ public class Rule {
         this.trigger = trigger;
     }
 
-    /*public Action getAction() {
+    public Action getAction() {
         return action;
     }
 
     public void setAction(Action action) {
         this.action = action;
-    }*/
+    }
     
     public void checkRule(){
         if (this.trigger.verifyTrigger()){
-            //this.action.executeAction();
+            this.action.executedAction();
         }
     }
     
