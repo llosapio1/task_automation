@@ -45,7 +45,7 @@ public class Rule {
     
     public void checkRule(){
         if (this.trigger.verifyTrigger()){
-            this.action.executedAction();
+            this.action.executeAction();
         }
     }
     

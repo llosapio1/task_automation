@@ -19,12 +19,12 @@ public class ActionFactory implements Factory{
 
     @Override
     public Action create(String selectedType) {
-        if(selectedType.equalsIgnoreCase("1")){
+        if(selectedType.equalsIgnoreCase("DisplayMessageAction")){
             String messagge = JOptionPane.showInputDialog("Type your messagge please");
             return new DisplayMessageAction(messagge, action);
         }
         
-        else{
+        else if(selectedType.equalsIgnoreCase("PlayAudioAction")){
              JFileChooser fileChooser = new JFileChooser();
              FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV files(*.wav)", "wav");
              fileChooser.setFileFilter(filter);
@@ -39,6 +39,10 @@ public class ActionFactory implements Factory{
                 return null;
             }
         }
+        else{
+            return null;
+        }
+            
     }
 
 
