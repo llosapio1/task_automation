@@ -42,13 +42,8 @@ public class TriggerFactory{
 
             return controller.showDialog();
         } catch (IOException e) {
-            e.printStackTrace();
             return null;
         }
     }
-    
-    public int selected() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
+
 }

@@ -12,6 +12,4 @@ public interface Factory {
     
     Object create(String selectedType);
     
-    int selected();
-    
 }

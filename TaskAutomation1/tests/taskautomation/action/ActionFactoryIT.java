@@ -28,9 +28,8 @@ public class ActionFactoryIT{
      */
     @Test
     public void testCreateWithValidType() {  
-        String ActionType = "DisplayMessageAction";
-        new ActionFactory().create(ActionType);
-        Action result = new ActionFactory().create(ActionType);
+        String actionType = "DisplayMessageAction";
+        Action result = ActionFactory.create(actionType);
         assertTrue(result instanceof DisplayMessageDecorator);
         
     }
@@ -38,14 +37,14 @@ public class ActionFactoryIT{
     @Test
     public void testCreateWithInvalidType() {
         String ActionType = "InvalidType";
-        Action result = new ActionFactory().create(ActionType);
+        Action result = ActionFactory.create(ActionType);
         assertTrue(result == null);
         
     }
     
     @Test
     public void testCreateWithNullType() {
-        Action result = new ActionFactory().create(null);
+        Action result = ActionFactory.create(null);
         assertTrue(result == null);
         
     }

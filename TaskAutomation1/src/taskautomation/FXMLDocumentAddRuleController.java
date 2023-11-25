@@ -19,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import taskautomation.rule.Rule;
 
 /**
  * FXML Controller class
@@ -49,6 +50,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     
     @FXML
     private void createRuleButtonAction(ActionEvent event) {
+                Rule prova = new Rule("Prova", triggerChoiceBox.getValue(), actionChoiceBox.getValue());
     }
     
     /*
