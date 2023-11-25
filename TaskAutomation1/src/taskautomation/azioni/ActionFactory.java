@@ -19,7 +19,7 @@ public class ActionFactory{
         Action action = new BasicAction();
         if(selectedType.equalsIgnoreCase("DisplayMessageAction")){
             String messagge = JOptionPane.showInputDialog("Type your messagge please");
-            return new DisplayMessageAction(messagge, action);
+            return new DisplayMessageDecorator(messagge, action);
         }
         
         else if(selectedType.equalsIgnoreCase("PlayAudioAction")){
@@ -31,7 +31,7 @@ public class ActionFactory{
 
             if (result == JFileChooser.APPROVE_OPTION) {
                 File selectFile = fileChooser.getSelectedFile();
-                return new PlayAudioAction(selectFile, action);
+                return new PlayAudioDecorator(selectFile, action);
              } 
             else {
                 return null;

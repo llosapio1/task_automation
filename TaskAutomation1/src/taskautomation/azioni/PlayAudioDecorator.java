@@ -20,10 +20,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Alejandro
  */
-public class PlayAudioAction extends ActionDecorator{
+public class PlayAudioDecorator extends ActionDecorator{
     private Clip clip;
     
-    public PlayAudioAction(File file, Action actionDecorated) {
+    public PlayAudioDecorator(File file, Action actionDecorated) {
         super(actionDecorated); 
         try {      
             clip=AudioSystem.getClip();

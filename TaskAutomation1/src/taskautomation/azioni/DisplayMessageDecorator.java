@@ -10,10 +10,10 @@ import javax.swing.JOptionPane;
  *
  * @author Alejandro
  */
-public class DisplayMessageAction extends ActionDecorator{
+public class DisplayMessageDecorator extends ActionDecorator{
     private String messagge;
 
-    public DisplayMessageAction(String messagge, Action actionDecorated) {
+    public DisplayMessageDecorator(String messagge, Action actionDecorated) {
         super(actionDecorated);
         this.messagge = messagge;
     }
