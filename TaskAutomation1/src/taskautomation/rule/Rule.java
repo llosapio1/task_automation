@@ -4,6 +4,7 @@
  */
 package taskautomation.rule;
 
+import taskautomation.ActionFactory;
 import taskautomation.trigger.TriggerFactory;
 import taskautomation.trigger.Trigger;
 import taskautomation.azioni.Action;
