@@ -8,7 +8,7 @@ import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
 import taskautomation.azioni.ActionFactory;
 import taskautomation.azioni.Action;
-import taskautomation.azioni.DisplayMessageAction;
+import taskautomation.azioni.DisplayMessageDecorator;
 
 
 /**
@@ -31,7 +31,7 @@ public class ActionFactoryIT{
         String ActionType = "DisplayMessageAction";
         new ActionFactory().create(ActionType);
         Action result = new ActionFactory().create(ActionType);
-        assertTrue(result instanceof DisplayMessageAction);
+        assertTrue(result instanceof DisplayMessageDecorator);
         
     }
     
