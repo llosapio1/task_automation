@@ -2,23 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package taskautomation;
+package taskautomation.azioni;
 
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import taskautomation.azioni.*;
 
 /**
  *
  * @author Alejandro
  */
-public class ActionFactory implements Factory{
-    Action action = new BasicAction();
+public class ActionFactory{
 
-    @Override
-    public Action create(String selectedType) {
+    public static Action create(String selectedType) {
+        Action action = new BasicAction();
         if(selectedType.equalsIgnoreCase("DisplayMessageAction")){
             String messagge = JOptionPane.showInputDialog("Type your messagge please");
             return new DisplayMessageAction(messagge, action);
@@ -45,10 +43,4 @@ public class ActionFactory implements Factory{
             
     }
 
-
-    @Override
-    public int selected() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

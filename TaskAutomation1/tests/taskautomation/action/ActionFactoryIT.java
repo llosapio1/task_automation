@@ -6,7 +6,7 @@ package taskautomation.action;
  */
 import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
-import taskautomation.ActionFactory;
+import taskautomation.azioni.ActionFactory;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.DisplayMessageAction;
 

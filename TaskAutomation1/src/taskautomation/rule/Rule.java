@@ -4,6 +4,7 @@
  */
 package taskautomation.rule;
 
+import taskautomation.azioni.ActionFactory;
 import taskautomation.trigger.TriggerFactory;
 import taskautomation.trigger.Trigger;
 import taskautomation.azioni.Action;
@@ -17,13 +18,12 @@ public class Rule {
     private String name;
     private Trigger trigger;
     private Action action;
-    private static RuleList ruleList = new RuleList();
 
     public Rule(String name, String triggerType, String actionType) {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
-        //this.action = ActionFactory.create(actionType);     //Il metodo create deve essere statico
-        ruleList.addRule(this);
+        this.action = ActionFactory.create(actionType);
+        RuleList.addRule(this);
 
     }
 
