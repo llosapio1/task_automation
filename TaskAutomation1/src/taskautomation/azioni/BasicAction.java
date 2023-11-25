@@ -14,7 +14,7 @@ public class BasicAction implements Action{
     }
 
     @Override
-    public void executedAction() {
+    public void executeAction() {
         
     }
     

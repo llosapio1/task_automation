@@ -12,7 +12,7 @@ public class BasicTrigger implements Trigger{
 
     @Override
     public boolean verifyTrigger() {
-        return this.verifyTrigger();
+        return true;
     }
     
 }

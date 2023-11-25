@@ -4,6 +4,10 @@
  */
 package taskautomation;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import taskautomation.azioni.*;
 
 /**
@@ -11,17 +15,32 @@ import taskautomation.azioni.*;
  * @author Alejandro
  */
 public class ActionFactory implements Factory{
+    Action action = new BasicAction();
 
     @Override
-    public Object create(String selectedType) {
+    public Action create(String selectedType) {
         if(selectedType.equalsIgnoreCase("1")){
-            return new DisplayMessageAction(messagge, new BasicAction());
+            String messagge = JOptionPane.showInputDialog("Type your messagge please");
+            return new DisplayMessageAction(messagge, action);
         }
         
         else{
-            return new PlayAudioAction(file, new BasicAction());
+             JFileChooser fileChooser = new JFileChooser();
+             FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV files(*.wav)", "wav");
+             fileChooser.setFileFilter(filter);
+
+            int result = fileChooser.showOpenDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File selectFile = fileChooser.getSelectedFile();
+                return new PlayAudioAction(selectFile, action);
+             } 
+            else {
+                return null;
+            }
         }
     }
+
 
     @Override
     public int selected() {

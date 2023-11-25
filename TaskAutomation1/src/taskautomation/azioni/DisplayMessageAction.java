@@ -11,16 +11,24 @@ import javax.swing.JOptionPane;
  * @author Alejandro
  */
 public class DisplayMessageAction extends ActionDecorator{
-    private final String messagge;
+    private String messagge;
 
     public DisplayMessageAction(String messagge, Action actionDecorated) {
         super(actionDecorated);
         this.messagge = messagge;
     }
 
+    public String getMessage() {
+        return messagge;
+    }
+    
+    public void setMessage(String newMessage) {
+        this.messagge = newMessage;
+    }
+    
     @Override
-    public void executedAction() {
+    public void executeAction() {
         JOptionPane.showMessageDialog(null, messagge, "Notificazione", JOptionPane.INFORMATION_MESSAGE);
-        super.executedAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.executeAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 }

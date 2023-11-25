@@ -46,9 +46,9 @@ public class PlayAudioAction extends ActionDecorator{
     }
 
     @Override
-    public void executedAction() {
+    public void executeAction() {
         clip.start();
-        super.executedAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        super.executeAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
     
 }

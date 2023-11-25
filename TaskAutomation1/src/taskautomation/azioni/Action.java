@@ -10,6 +10,6 @@ package taskautomation.azioni;
  */
 public interface Action {
     
-    public void executedAction();
+    public void executeAction();
     
 }

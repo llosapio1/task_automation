@@ -16,8 +16,8 @@ public abstract class ActionDecorator implements Action{
     }
     
     @Override
-    public void executedAction(){
-        decoratedAction.executedAction();
+    public void executeAction(){
+        decoratedAction.executeAction();
     }
     
 }
