@@ -2,12 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package taskautomation;
+package taskautomation.trigger;
 
-import taskautomation.trigger.BasicTrigger;
-import taskautomation.trigger.TimeOfDayDecorator;
-import taskautomation.trigger.TriggerFactory;
-import taskautomation.trigger.Trigger;
 import static junit.framework.Assert.*;
 import org.junit.Test;
 
