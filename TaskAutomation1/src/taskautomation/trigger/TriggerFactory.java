@@ -15,8 +15,7 @@ import javafx.stage.Stage;
  *
  * @author alessandro
  */
-// Questa classe non può implementare l'interfacci factory perché il metodo 
-// create deve essere statico e un'interfaccia non può contenere metodi statici
+
 public class TriggerFactory{
 
     public static Trigger create(String triggerType) {
@@ -44,7 +43,7 @@ public class TriggerFactory{
             return controller.showDialog();
         } catch (IOException e) {
             e.printStackTrace();
-            return null; // o gestisci l'errore in modo appropriato per il tuo caso
+            return null;
         }
     }
     
