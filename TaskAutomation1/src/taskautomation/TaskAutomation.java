@@ -31,24 +31,23 @@ public class TaskAutomation extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
         // Creazione e avvio del thread
-        Thread thread = new Thread(() -> {
+        Thread thread;
+        thread = new Thread(() -> {
             while (true) {
-                // Chiamare il tuo metodo per controllare la regola
+                // Chiamare il metodo per controllare le regole
                 RuleList.checkRules();
-
                 // Attendi 5 secondi
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(5000);    
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             }
         });
 
         // Avvio del thread
         thread.start();
+        launch(args);
     }
     
 }
