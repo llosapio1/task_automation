@@ -4,25 +4,26 @@
  */
 package taskautomation.trigger;
 
-import static org.junit.Assert.*;
+import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
-
 /**
  *
  * @author alessandro
  */
+
 public class TriggerFactoryIT {
 
     /**
      * Test of create method, of class TriggerFactory.
      */
+    
+
     @Test
     public void testCreateWithValidType() {
         
         String triggerType = "TimeOfDay";
         Trigger result = TriggerFactory.create(triggerType);
         assertTrue(result instanceof TimeOfDayDecorator);
-        
     }
     
     @Test

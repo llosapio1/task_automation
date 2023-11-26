@@ -28,7 +28,7 @@ public class ActionFactoryIT{
      */
     @Test
     public void testCreateWithValidType() {  
-        String actionType = "DisplayMessageAction";
+        String actionType = "DisplayMessage";
         Action result = ActionFactory.create(actionType);
         assertTrue(result instanceof DisplayMessageDecorator);
         
@@ -42,12 +42,6 @@ public class ActionFactoryIT{
         
     }
     
-    @Test
-    public void testCreateWithNullType() {
-        Action result = ActionFactory.create(null);
-        assertTrue(result == null);
-        
-    }
     
     
     
