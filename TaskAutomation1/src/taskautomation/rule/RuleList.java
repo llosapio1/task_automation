@@ -12,11 +12,7 @@ import java.util.LinkedList;
  */
 public class RuleList {
     
-    private static LinkedList<Rule> ruleList;
-
-    public RuleList() {
-        this.ruleList = new LinkedList<>();
-    }
+    private static LinkedList<Rule> ruleList = new LinkedList<>();
     
     public static boolean addRule(Rule rule){
         return ruleList.add(rule);

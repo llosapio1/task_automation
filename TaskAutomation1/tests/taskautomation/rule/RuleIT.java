@@ -11,6 +11,9 @@ import taskautomation.trigger.BasicTrigger;
 import taskautomation.trigger.TimeOfDayDecorator;
 import taskautomation.trigger.Trigger;
 import static org.junit.Assert.*;
+import taskautomation.azioni.Action;
+import taskautomation.azioni.BasicAction;
+import taskautomation.azioni.DisplayMessageDecorator;
 
 /**
  *
@@ -18,6 +21,7 @@ import static org.junit.Assert.*;
  */
 public class RuleIT {
     
+    Action action;
     Trigger trigger;
     String triggerType;
     String actionType;
@@ -25,6 +29,7 @@ public class RuleIT {
     
     @Before
     public void setUp() {
+        action = new BasicAction();
         trigger = new BasicTrigger();
         triggerType = "TimeOfDay";
         actionType = "DisplayMessage";
@@ -54,4 +59,23 @@ public class RuleIT {
         assertEquals(trigger, instance.getTrigger());
     }
     
+    
+    @Test
+    public void testGetAction() {
+        
+        Action result = instance.getAction();
+        assertNotNull(result);
+        assertTrue(result instanceof DisplayMessageDecorator);
+    }
+
+    /**
+     * Test of setTrigger method, of class Rule.
+     */
+    
+    @Test
+    public void testSetAction() {
+        
+        instance.setAction(action);
+        assertEquals(action, instance.getAction());
+    }
 }

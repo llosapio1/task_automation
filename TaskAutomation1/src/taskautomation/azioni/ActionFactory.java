@@ -17,12 +17,12 @@ public class ActionFactory{
 
     public static Action create(String selectedType) {
         Action action = new BasicAction();
-        if(selectedType.equalsIgnoreCase("DisplayMessageAction")){
+        if(selectedType.equalsIgnoreCase("DisplayMessage")){
             String messagge = JOptionPane.showInputDialog("Type your messagge please");
             return new DisplayMessageDecorator(messagge, action);
         }
         
-        else if(selectedType.equalsIgnoreCase("PlayAudioAction")){
+        else if(selectedType.equalsIgnoreCase("PlayAudio")){
              JFileChooser fileChooser = new JFileChooser();
              FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV files(*.wav)", "wav");
              fileChooser.setFileFilter(filter);

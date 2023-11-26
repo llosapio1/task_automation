@@ -23,7 +23,10 @@ public class Rule {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
         this.action = ActionFactory.create(actionType);
-        RuleList.addRule(this);
+        if (!RuleList.addRule(this)){
+            // L'aggiunta della regola non è riuscita
+            throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
+        }
 
     }
 
