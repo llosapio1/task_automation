@@ -8,6 +8,7 @@ import taskautomation.rule.Rule;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
+import taskautomation.rule.RuleList;
 
 /**
  *
@@ -49,6 +51,9 @@ public class FXMLDocumentController implements Initializable {
         stage.setScene(new Scene(root));
         
         stage.showAndWait();
+        
+        // Dopo che la finestra di aggiunta regola è chiusa, aggiorna la ruleListView
+        ruleListView.setItems(FXCollections.observableArrayList(RuleList.getRuleList().get()));
     }
      
 }
