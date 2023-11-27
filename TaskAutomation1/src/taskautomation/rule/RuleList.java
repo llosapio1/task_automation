@@ -19,11 +19,11 @@ public class RuleList {
         ruleList = new LinkedList<>();
     }
     
-    public static boolean addRule(Rule rule){
+    public boolean addRule(Rule rule){
         return ruleList.add(rule);
     }
     
-    public static void checkRules(){
+    public void checkRules(){
         for (Rule rule : ruleList){
             rule.checkRule();
         }
@@ -38,6 +38,10 @@ public class RuleList {
     
     public LinkedList<Rule> get(){
         return ruleList;
+    }
+    
+    public boolean removeRule(Rule rule){
+        return ruleList.remove(rule);
     }
     
 }

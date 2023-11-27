@@ -36,7 +36,7 @@ public class TaskAutomation extends Application {
         thread = new Thread(() -> {
             while (true) {
                 // Chiamare il metodo per controllare le regole
-                RuleList.checkRules();
+                RuleList.getRuleList().checkRules();
                 // Attendi 5 secondi
                 try {
                     Thread.sleep(5000);    
@@ -44,7 +44,7 @@ public class TaskAutomation extends Application {
                 }
             }
         });
-
+        
         // Avvio del thread
         thread.start();
         launch(args);

@@ -4,9 +4,13 @@
  */
 package taskautomation.rule;
 
+import java.util.LinkedList;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -14,13 +18,13 @@ import static org.junit.Assert.*;
  */
 public class RuleListIT {
     
-    Rule validRule;
-    RuleList ruleList;
+    static Rule validRule;
+    static RuleList ruleList;
     
-    @Before
-    public void setUp() {
+    @BeforeClass
+    public static void setUp() {
         validRule = new Rule("Regola", "TimeOfDay", "DisplayMessage");
-        ruleList = new RuleList();
+        ruleList = RuleList.getRuleList();
     }
 
     /**
@@ -29,10 +33,33 @@ public class RuleListIT {
     
     @Test
     public void testAddRule() {
-        
-        boolean result = ruleList.addRule(validRule);
-        
-        assertTrue(result);
+        assertTrue(ruleList.addRule(validRule));
+    }
+
+    /**
+     * Test of getRuleList method, of class RuleList.
+     */
+    @Test
+    public void testGetRuleList() {
+        RuleList instance = RuleList.getRuleList();
+        assertNotNull(instance);
+        assertTrue(instance instanceof RuleList);
+    }
+
+    /**
+     * Test of get method, of class RuleList.
+     */
+    @Test
+    public void testGet() {
+        assertTrue(ruleList.get() instanceof LinkedList);
+    }
+
+    /**
+     * Test of removeRule method, of class RuleList.
+     */
+    @Test
+    public void testRemoveRule() {
+        assertTrue(ruleList.removeRule(validRule));
     }
     
 }
