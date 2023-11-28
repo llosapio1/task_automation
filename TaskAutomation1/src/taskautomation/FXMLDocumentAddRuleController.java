@@ -18,9 +18,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import taskautomation.rule.Rule;
 
 /**
@@ -54,7 +56,10 @@ public class FXMLDocumentAddRuleController implements Initializable {
     
     @FXML
     private void createRuleButtonAction(ActionEvent event) {
-                Rule prova = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue());
-                Platform.exit();
+                Rule newRule = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue());
+                Stage stage = (Stage) createRuleButton.getScene().getWindow();
+                stage.close();
+                
+                
     } 
 }

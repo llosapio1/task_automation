@@ -54,7 +54,7 @@ public class FXMLDocumentController implements Initializable {
         
         nomeColumn.setCellValueFactory(new PropertyValueFactory("name"));
         triggerColumn.setCellValueFactory(new PropertyValueFactory("trigger"));
-        azioneColumn.setCellValueFactory(new PropertyValueFactory("azione"));
+        azioneColumn.setCellValueFactory(new PropertyValueFactory("action"));
         tableView.setItems(ruleListView);
         
     }    
