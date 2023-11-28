@@ -15,4 +15,9 @@ public class BasicTrigger implements Trigger{
         return true;
     }
     
+    @Override
+    public String toString() {
+        return "";
+    }
+    
 }

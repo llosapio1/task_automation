@@ -39,4 +39,9 @@ public class TimeOfDayDecorator extends TriggerDecorator{
         return currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute();
     }
     
+    @Override
+    public String toString() {
+        return "time Of Day: " + timeOfDay + " ";
+    }
+    
 }

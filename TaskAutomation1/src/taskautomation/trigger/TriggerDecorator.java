@@ -21,4 +21,9 @@ public abstract class TriggerDecorator implements Trigger {
         return decoratedTrigger.verifyTrigger();
     }
     
+    @Override
+    public String toString() {
+        return "";
+    }
+    
 }

@@ -22,10 +22,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class PlayAudioDecorator extends ActionDecorator{
     private Clip clip;
+    private File file;
     
-    public PlayAudioDecorator(File file, Action actionDecorated) {
+    public PlayAudioDecorator(File newfile, Action actionDecorated) {
         super(actionDecorated); 
-        try {      
+        try {
+            file = newfile;
             clip=AudioSystem.getClip();
             InputStream is=new FileInputStream(file);
             AudioFileFormat aff=AudioSystem.getAudioFileFormat(file);
@@ -49,6 +51,11 @@ public class PlayAudioDecorator extends ActionDecorator{
     public void executeAction() {
         clip.start();
         super.executeAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    @Override
+    public String toString() {
+        return "Play Audio: " + file.toString() + " ";
     }
     
 }
