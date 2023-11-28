@@ -18,16 +18,22 @@ public class Rule {
     private String name;
     private Trigger trigger;
     private Action action;
-
+    private boolean active;
+    
+    // Costruttore che imposta active a true per impostazione predefinita
     public Rule(String name, String triggerType, String actionType) {
+        this(name, triggerType, actionType, true);
+    }
+    
+    public Rule(String name, String triggerType, String actionType, boolean active) {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
         this.action = ActionFactory.create(actionType);
+        this.active = active;
         if (!RuleList.getRuleList().addRule(this)){
             // L'aggiunta della regola non è riuscita
             throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
         }
-
     }
 
     public Trigger getTrigger() {
@@ -47,9 +53,23 @@ public class Rule {
     }
     
     public void checkRule(){
-        if (this.trigger.verifyTrigger()){
+        if (this.active){
+            if (this.trigger.verifyTrigger()){
             this.action.executeAction();
+            }
         }
     }
     
+    public void toggleActive(){
+        this.active = !this.active;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+     
 }

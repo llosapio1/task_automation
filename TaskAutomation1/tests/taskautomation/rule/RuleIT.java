@@ -5,12 +5,12 @@
 package taskautomation.rule;
 
 import static junit.framework.Assert.assertTrue;
-import org.junit.Before;
 import org.junit.Test;
 import taskautomation.trigger.BasicTrigger;
 import taskautomation.trigger.TimeOfDayDecorator;
 import taskautomation.trigger.Trigger;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.BasicAction;
 import taskautomation.azioni.DisplayMessageDecorator;
@@ -25,7 +25,8 @@ public class RuleIT {
     Trigger trigger;
     String triggerType;
     String actionType;
-    Rule instance;
+    Rule instanceActive;
+    Rule instanceInactive;
     
     @Before
     public void setUp() {
@@ -33,7 +34,8 @@ public class RuleIT {
         trigger = new BasicTrigger();
         triggerType = "TimeOfDay";
         actionType = "DisplayMessage";
-        instance = new Rule("Regola", triggerType, actionType);
+        instanceActive = new Rule("Regola1", triggerType, actionType, true);
+        instanceInactive = new Rule("Regola2", triggerType, actionType, false);
     }
 
     /**
@@ -42,8 +44,7 @@ public class RuleIT {
     
     @Test
     public void testGetTrigger() {
-        
-        Trigger result = instance.getTrigger();
+        Trigger result = instanceActive.getTrigger();
         assertNotNull(result);
         assertTrue(result instanceof TimeOfDayDecorator);
     }
@@ -55,15 +56,15 @@ public class RuleIT {
     @Test
     public void testSetTrigger() {
         
-        instance.setTrigger(trigger);
-        assertEquals(trigger, instance.getTrigger());
+        instanceActive.setTrigger(trigger);
+        assertEquals(trigger, instanceActive.getTrigger());
     }
     
     
     @Test
     public void testGetAction() {
         
-        Action result = instance.getAction();
+        Action result = instanceActive.getAction();
         assertNotNull(result);
         assertTrue(result instanceof DisplayMessageDecorator);
     }
@@ -74,8 +75,39 @@ public class RuleIT {
     
     @Test
     public void testSetAction() {
-        
-        instance.setAction(action);
-        assertEquals(action, instance.getAction());
+        instanceActive.setAction(action);
+        assertEquals(action, instanceActive.getAction());
+    }
+
+    /**
+     * Test of isActive method, of class Rule.
+     */
+    @Test
+    public void testIsActive() {
+        assertTrue(instanceActive.isActive());
+        assertFalse(instanceInactive.isActive());
+    }
+
+    /**
+     * Test of setActive method, of class Rule.
+     */
+    @Test
+    public void testSetActive() {
+        instanceInactive.setActive(true);
+        assertTrue(instanceInactive.isActive());
+        instanceInactive.setActive(false);
+        assertFalse(instanceInactive.isActive());
+    }
+    
+        /**
+     * Test of toggleActive method, of class Rule.
+     */
+    @Test
+    public void testToggleActive() {
+        assertTrue(instanceActive.isActive());
+        instanceActive.toggleActive();
+        assertFalse(instanceActive.isActive());
+        instanceActive.toggleActive();
+        assertTrue(instanceActive.isActive());
     }
 }
