@@ -17,5 +17,12 @@ public class BasicAction implements Action{
     public void executeAction() {
         
     }
+
+    @Override
+    public String toString() {
+        return "";
+    }
+    
+    
     
 }

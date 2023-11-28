@@ -31,4 +31,9 @@ public class DisplayMessageDecorator extends ActionDecorator{
         JOptionPane.showMessageDialog(null, messagge, "Notificazione", JOptionPane.INFORMATION_MESSAGE);
         super.executeAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
+    
+     @Override
+    public String toString() {
+        return "Display messagge: " + messagge + " ";
+    }
 }

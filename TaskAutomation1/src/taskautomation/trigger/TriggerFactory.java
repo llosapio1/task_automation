@@ -27,6 +27,7 @@ public class TriggerFactory{
             trigger = new TimeOfDayDecorator(trigger, time);
         }
         
+        
         return trigger;
     }
     

@@ -20,4 +20,9 @@ public abstract class ActionDecorator implements Action{
         decoratedAction.executeAction();
     }
     
+    @Override
+    public String toString() {
+        return "";
+    }
+    
 }
