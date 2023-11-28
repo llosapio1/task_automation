@@ -24,6 +24,7 @@ public class TriggerFactory{
 
         if ("TimeOfDay".equals(triggerType)) {
             LocalTime time = getTimeFromDialog();
+            trigger = new TimeOfDayDecorator(trigger, time);
         }
         
         return trigger;
