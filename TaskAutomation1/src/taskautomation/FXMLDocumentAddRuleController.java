@@ -12,6 +12,7 @@ package taskautomation;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import taskautomation.rule.Rule;
 
 /**
@@ -31,13 +33,15 @@ public class FXMLDocumentAddRuleController implements Initializable {
     @FXML
     private Button createRuleButton;
     @FXML
-    private ChoiceBox<String> triggerChoiceBox;
+    private TextField textFielName;
     @FXML
     private ChoiceBox<String> actionChoiceBox;
+    @FXML
+    private ChoiceBox<String> triggerChoiceBox;
     
     ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio");
-
+    
     /**
      * Initializes the controller class.
      */
@@ -50,18 +54,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     
     @FXML
     private void createRuleButtonAction(ActionEvent event) {
-                Rule prova = new Rule("Prova", triggerChoiceBox.getValue(), actionChoiceBox.getValue());
-    }
-    
-    /*
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("FXMLDocumentAddRule.fxml"));
-        
-        Parent root = (Parent) fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle("addRuleWindow");
-        stage.setScene(new Scene(root));
-        
-        stage.showAndWait();
-    */
-    
+                Rule prova = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue());
+                Platform.exit();
+    } 
 }
