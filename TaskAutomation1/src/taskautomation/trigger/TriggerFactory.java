@@ -6,13 +6,10 @@ package taskautomation.trigger;
 
 import java.io.IOException;
 import java.time.LocalTime;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,22 +23,12 @@ public class TriggerFactory{
         Trigger trigger = new BasicTrigger();
 
         if ("TimeOfDay".equals(triggerType)) {
-            String time;
-            do {
-                time = JOptionPane.showInputDialog("Inserisci l'orario nel formato hh:mm");
-
-            if (!isValidTimeFormat(time)) {
-                JOptionPane.showMessageDialog(null, "Formato dell'orario non valido. Riprova.");
-            }
-            } while (!isValidTimeFormat(time));
-            LocalTime selectedTime = LocalTime.parse(time);
-            //LocalTime selectedTime = getTimeFromDialog();
-            trigger = new TimeOfDayDecorator(trigger, selectedTime);
+            LocalTime time = getTimeFromDialog();
         }
         
         return trigger;
     }
-    /*
+    
     private static LocalTime getTimeFromDialog() {
         FXMLLoader fxmlLoader = new FXMLLoader(TriggerFactory.class.getResource("TimeInputDialog.fxml"));
         try {
@@ -56,17 +43,6 @@ public class TriggerFactory{
         } catch (IOException e) {
             return null;
         }
-    }
-    */
-    private static boolean isValidTimeFormat(String time) {
-        // Definisco il pattern della regex per l'orario nel formato hh:mm
-        String regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
-        
-        Pattern pattern = Pattern.compile(regex);
-        
-        Matcher matcher = pattern.matcher(time);
-        
-        return matcher.matches();
     }
 
 }
