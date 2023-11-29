@@ -4,11 +4,13 @@
  */
 package taskautomation.trigger;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alessandro
  */
-public class BasicTrigger implements Trigger{
+public class BasicTrigger implements Trigger, Serializable{
 
     @Override
     public boolean verifyTrigger() {

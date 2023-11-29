@@ -1,5 +1,6 @@
 package taskautomation.trigger;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 
 /*
@@ -11,10 +12,14 @@ import java.time.LocalTime;
  *
  * @author alessandro
  */
-public class TimeOfDayDecorator extends TriggerDecorator{
+public class TimeOfDayDecorator extends TriggerDecorator implements Serializable{
     
     private LocalTime timeOfDay;
 
+    
+    public TimeOfDayDecorator() {
+    }
+    
     public TimeOfDayDecorator(Trigger decoratedTrigger, LocalTime timeOfDay) {
         super(decoratedTrigger);
         this.timeOfDay = timeOfDay;

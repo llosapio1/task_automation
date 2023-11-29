@@ -4,11 +4,13 @@
  */
 package taskautomation.azioni;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Alejandro
  */
-public class BasicAction implements Action{
+public class BasicAction implements Action, Serializable{
 
     public BasicAction() {
     }

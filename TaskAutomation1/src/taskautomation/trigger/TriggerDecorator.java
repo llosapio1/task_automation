@@ -11,6 +11,9 @@ package taskautomation.trigger;
 public abstract class TriggerDecorator implements Trigger {
     
     private Trigger decoratedTrigger;
+    
+    public TriggerDecorator() {
+    }
 
     public TriggerDecorator(Trigger decoratedTrigger) {
         this.decoratedTrigger = decoratedTrigger;

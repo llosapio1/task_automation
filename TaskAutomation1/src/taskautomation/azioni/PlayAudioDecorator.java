@@ -24,6 +24,9 @@ public class PlayAudioDecorator extends ActionDecorator{
     private Clip clip;
     private File file;
     
+    public PlayAudioDecorator(){
+    }
+    
     public PlayAudioDecorator(File newfile, Action actionDecorated) {
         super(actionDecorated); 
         try {

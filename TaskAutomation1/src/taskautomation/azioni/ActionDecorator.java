@@ -11,6 +11,9 @@ package taskautomation.azioni;
 public abstract class ActionDecorator implements Action{
     private Action decoratedAction;
     
+    protected ActionDecorator() {
+    }
+    
     protected ActionDecorator(Action BasicAction) {
         this.decoratedAction=BasicAction;
     }

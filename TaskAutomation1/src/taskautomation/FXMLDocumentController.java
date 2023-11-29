@@ -62,6 +62,7 @@ public class FXMLDocumentController implements Initializable {
         azioneColumn.setCellValueFactory(new PropertyValueFactory("action"));
         statusRuleColumn.setCellValueFactory(new PropertyValueFactory("active"));
         tableView.setItems(ruleListView);
+        ruleListView.setAll(FXCollections.observableArrayList(RuleList.getRuleList().get()));
         
     }    
 

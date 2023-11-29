@@ -1,16 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package taskautomation.rule;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,9 +21,13 @@ public class RuleList implements Serializable{
     private static LinkedList<Rule> ruleList;
 
     private RuleList() {
-        ruleList = new LinkedList<>();
-        // Carica le regole dal file all'avvio dell'applicazione
-        loadRulesFromFile();
+        try {
+            ruleList = loadRulesFromFile();
+            if (ruleList == null)
+                ruleList = new LinkedList<>();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(RuleList.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public boolean addRule(Rule rule){
@@ -58,20 +61,23 @@ public class RuleList implements Serializable{
         return result;
     }
     
-    private void loadRulesFromFile() {
+    private LinkedList<Rule> loadRulesFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("rules.ser"))) {
-            Object obj = ois.readObject();
-            if (obj instanceof LinkedList) {
-                ruleList = (LinkedList<Rule>) obj;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            // Se il file non esiste o si verifica un problema nel caricamento, ignora
+            LinkedList<Rule> loadedRules = (LinkedList<Rule>) ois.readObject();
+            return loadedRules;
+        } catch (FileNotFoundException e) {
+            // Se il file non esiste, restituisci null
+            return null;
         }
+
     }
     
     private void saveRulesToFile() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("rules.ser"))) {
-            oos.writeObject(this);
+            oos.writeObject(ruleList);
+            System.out.println("Scrivo la classe su file. Nel momento in cui scrivo ruleList contiene:");
+            for (Rule rule : ruleList)
+                System.out.println("Regola: " + rule.getName() + ", " + rule.getTrigger());
         } catch (IOException e) {
             e.printStackTrace();
         }

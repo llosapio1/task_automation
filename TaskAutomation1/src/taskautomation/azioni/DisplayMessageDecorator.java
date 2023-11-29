@@ -4,14 +4,18 @@
  */
 package taskautomation.azioni;
 
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Alejandro
  */
-public class DisplayMessageDecorator extends ActionDecorator{
+public class DisplayMessageDecorator extends ActionDecorator implements Serializable{
     private String messagge;
+    
+    public DisplayMessageDecorator() {
+    }
 
     public DisplayMessageDecorator(String messagge, Action actionDecorated) {
         super(actionDecorated);

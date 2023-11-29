@@ -4,6 +4,7 @@
  */
 package taskautomation.rule;
 
+import java.io.Serializable;
 import taskautomation.azioni.ActionFactory;
 import taskautomation.trigger.TriggerFactory;
 import taskautomation.trigger.Trigger;
@@ -13,7 +14,7 @@ import taskautomation.azioni.Action;
  *
  * @author alessandro
  */
-public class Rule {
+public class Rule implements Serializable{
     
     private String name;
     private Trigger trigger;
