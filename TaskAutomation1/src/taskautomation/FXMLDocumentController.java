@@ -43,8 +43,13 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Rule, String> triggerColumn;
     @FXML
     private TableColumn<Rule, String> azioneColumn;
+    @FXML
+    private TableColumn<Rule, String> statusRuleColumn;
     
     private ObservableList<Rule> ruleListView;
+    @FXML
+    private Label title;
+    
     
  
     @Override
@@ -55,6 +60,7 @@ public class FXMLDocumentController implements Initializable {
         nomeColumn.setCellValueFactory(new PropertyValueFactory("name"));
         triggerColumn.setCellValueFactory(new PropertyValueFactory("trigger"));
         azioneColumn.setCellValueFactory(new PropertyValueFactory("action"));
+        statusRuleColumn.setCellValueFactory(new PropertyValueFactory("active"));
         tableView.setItems(ruleListView);
         
     }    

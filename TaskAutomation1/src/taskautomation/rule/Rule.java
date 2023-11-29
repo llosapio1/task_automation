@@ -71,6 +71,13 @@ public class Rule {
     public void toggleActive(){
         this.active = !this.active;
     }
+    
+    public String getActive() {
+        if(this.isActive())
+            return "Enable";
+        else
+            return "Disable";
+    }
 
     public boolean isActive() {
         return active;
