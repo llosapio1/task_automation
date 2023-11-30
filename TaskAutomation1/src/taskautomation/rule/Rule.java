@@ -5,6 +5,8 @@
 package taskautomation.rule;
 
 import java.io.Serializable;
+import java.time.LocalTime;
+import java.time.temporal.TemporalAmount;
 import taskautomation.azioni.ActionFactory;
 import taskautomation.trigger.TriggerFactory;
 import taskautomation.trigger.Trigger;
@@ -20,16 +22,29 @@ public class Rule implements Serializable{
     private Trigger trigger;
     private Action action;
     private boolean active;
-    private boolean firedOnlyOnce;
-    private boolean alreadyFired;
+    private boolean fireOnlyOnce;
+    private LocalTime alreadyFired;
+    private TemporalAmount sleepingPeriod;
     
-    public Rule(String name, String triggerType, String actionType, boolean active, boolean firedOnlyOnce) {
+    // Costruttore con fireOnlyOnce
+    public Rule(String name, String triggerType, String actionType, boolean active,  boolean fireOnlyOnce) {
+        this(name, triggerType, actionType, active, fireOnlyOnce, null);
+    }
+    
+    // Costruttore con sleepingPeriod
+    public Rule(String name, String triggerType, String actionType, boolean active, TemporalAmount sleepingPeriod) {
+        this(name, triggerType, actionType, true, false, sleepingPeriod);
+    }
+    
+    //Costruttore con tutti i parametri
+    public Rule(String name, String triggerType, String actionType, boolean active, boolean fireOnlyOnce, TemporalAmount sleepingPeriod) {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
         this.action = ActionFactory.create(actionType);
         this.active = active;
-        this.firedOnlyOnce = firedOnlyOnce;
-        this.alreadyFired = false;
+        this.fireOnlyOnce = fireOnlyOnce;
+        this.alreadyFired = null;
+        this.sleepingPeriod = sleepingPeriod;
         if (!RuleList.getRuleList().addRule(this)){
             // L'aggiunta della regola non è riuscita
             throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
@@ -61,21 +76,28 @@ public class Rule implements Serializable{
     }
 
     public boolean isFiredOnlyOnce() {
-        return firedOnlyOnce;
+        return fireOnlyOnce;
     }
 
     public void setFiredOnlyOnce(boolean firedOnlyOnce) {
-        this.firedOnlyOnce = firedOnlyOnce;
+        this.fireOnlyOnce = firedOnlyOnce;
     }
     
     public void checkRule(){
-        if (this.active && ((this.firedOnlyOnce && !this.alreadyFired) || (!this.firedOnlyOnce))){
+        if (this.active && this.fireOnlyOnce && this.alreadyFired.equals(null) ){
             if (this.trigger.verifyTrigger()){
                 this.action.executeAction();
-                if (this.firedOnlyOnce)
-                    this.alreadyFired = true;
+                this.alreadyFired = LocalTime.now();
+            }
+        } else if (this.active && !this.fireOnlyOnce){
+            if(LocalTime.now().isAfter(this.alreadyFired.plus(sleepingPeriod))){
+                if (this.trigger.verifyTrigger()){
+                    this.action.executeAction();
+                    this.alreadyFired = LocalTime.now();
+                }
             }
         }
+            
     }
     
     public void toggleActive(){

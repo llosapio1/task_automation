@@ -52,7 +52,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     
     @FXML
     private void createRuleButtonAction(ActionEvent event) {
-                Rule newRule = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue(), true, false);
+                Rule newRule = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue(), true, true);
                 Stage stage = (Stage) createRuleButton.getScene().getWindow();
                 stage.close();
                 
