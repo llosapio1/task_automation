@@ -21,5 +21,8 @@ public class DeleteFileDecorator extends ActionDecorator{
     public void executeAction(){
         selectedFile.delete();
     }
-    
+     @Override
+    public String toString(){
+        return "Delete file: " + selectedFile.toString();
+    }
 }
