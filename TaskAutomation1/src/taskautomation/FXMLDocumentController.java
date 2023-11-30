@@ -29,7 +29,7 @@ import taskautomation.rule.RuleList;
 
 /**
  *
- * @author Leonardo
+ * @author Leonardo & Alejandro
  */
 public class FXMLDocumentController implements Initializable {
     
@@ -64,7 +64,10 @@ public class FXMLDocumentController implements Initializable {
         tableView.setItems(ruleListView);
         ruleListView.setAll(FXCollections.observableArrayList(RuleList.getRuleList().get()));
         
-    }    
+    }
+    private void aggiornaTableView(){
+        ruleListView.setAll(FXCollections.observableArrayList(RuleList.getRuleList().get()));
+    }
 
     @FXML
     private void addRuleButtonAction(ActionEvent event) throws IOException {
@@ -74,16 +77,36 @@ public class FXMLDocumentController implements Initializable {
         Stage stage = new Stage();
         stage.setTitle("addRuleWindow");
         stage.setScene(new Scene(root));
-        
         stage.showAndWait();
         
         // Dopo che la finestra di aggiunta regola è chiusa, aggiorna la ruleListView
-        ruleListView.setAll(FXCollections.observableArrayList(RuleList.getRuleList().get()));
+        aggiornaTableView();
     }
 
     @FXML
     private void closeAction(ActionEvent event) {
         Platform.exit();
+    }
+
+    @FXML
+    private void cancellaRegola(ActionEvent event) {
+        //Prende la regola selezionata dal utente
+        Rule selecRule = tableView.getSelectionModel().getSelectedItem();
+        
+        //Cancella la regola e aggiorna la tabella
+        RuleList.getRuleList().removeRule(selecRule);
+        aggiornaTableView();
+    }
+
+
+    @FXML
+    private void changeStatusRule(ActionEvent event) {
+        //Prende la regola selezionata dal utente
+        Rule selecRule = tableView.getSelectionModel().getSelectedItem();
+        
+        //Il metodo cambia lo stato della regola al suo complememento
+        selecRule.toggleActive();
+        aggiornaTableView();
     }
      
 }
