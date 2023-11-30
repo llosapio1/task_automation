@@ -35,6 +35,17 @@ public class Rule implements Serializable{
             throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
         }
     }
+    
+    public Rule(String name, Trigger trigger, Action action, boolean active) {
+        this.name = name;
+        this.trigger = trigger;
+        this.action = action;
+        this.active = active;
+        if (!RuleList.getRuleList().addRule(this)){
+            // L'aggiunta della regola non è riuscita
+            throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
+        }
+    }
 
     public String getName() {
         return name;

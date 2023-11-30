@@ -1,23 +1,30 @@
+package taskautomation;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package taskautomation;
 
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import taskautomation.azioni.Action;
+import taskautomation.azioni.ActionFactory;
 import taskautomation.rule.Rule;
+import taskautomation.trigger.Trigger;
+import taskautomation.trigger.TriggerFactory;
 
 /**
  * FXML Controller class
@@ -29,33 +36,119 @@ public class FXMLDocumentAddRuleController implements Initializable {
     @FXML
     private Button createRuleButton;
     @FXML
-    private TextField textFielName;
+    private ListView<Trigger> triggerView;
     @FXML
-    private ChoiceBox<String> actionChoiceBox;
+    private ListView<Action> actionView;
+    @FXML
+    private TextField textFieldName;
+    @FXML
+    private CheckBox checkActive;
+    
+    private ObservableList<Trigger> triggerList;
+    private ObservableList<Action> actionList;
+    
+    @FXML
+    private VBox contentBase;
+    @FXML
+    private VBox triggerSelect;
+    @FXML
+    private VBox ActionSelect;
     @FXML
     private ChoiceBox<String> triggerChoiceBox;
+    @FXML
+    private ChoiceBox<String> actionChoiceBox;
     
     ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileBetweenDirs", "CopyFileToDir", "DeleteFile");
- 
+    
+    private Trigger trigger;
+    private Action action;
+    private Rule newRule;
+    
+
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        triggerSelect.setVisible(false);
+        triggerSelect.setDisable(true);
+        
         triggerChoiceBox.setItems(triggerListChoiceBox);
         actionChoiceBox.setItems(actionListChoiceBox);
         
+        triggerList = FXCollections.observableArrayList();
+        actionList = FXCollections.observableArrayList();
+
+       
+        triggerView.setItems(triggerList);
+        actionView.setItems(actionList);
     }
     
     @FXML
     private void createRuleButtonAction(ActionEvent event) {
-                Rule newRule = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue(), true, false);
-                Stage stage = (Stage) createRuleButton.getScene().getWindow();
-                stage.close();
-                
-                
+        newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected());
+        Stage stage = (Stage) createRuleButton.getScene().getWindow();
+        stage.close();    
     } 
+
+    @FXML
+    private void addTrigger(ActionEvent event) throws IOException {
+        contentBase.setVisible(false);
+        contentBase.setDisable(true);
+        
+        triggerSelect.setVisible(true);
+        triggerSelect.setDisable(false);
+
+        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
+        stage.setHeight(300);
+        stage.setWidth(400);*/
+    }
+
+    @FXML
+    private void addAction(ActionEvent event) {
+        contentBase.setVisible(false);
+        contentBase.setDisable(true);
+        
+        ActionSelect.setVisible(true);
+        ActionSelect.setDisable(false);
+
+        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
+        stage.setHeight(300);
+        stage.setWidth(400);*/
+    }
+
+    @FXML
+    private void createTrigger(ActionEvent event) {
+        trigger = TriggerFactory.create(triggerChoiceBox.getValue());
+        triggerList.add(trigger);
+        triggerView.setItems(triggerList);
+        
+        contentBase.setVisible(true);
+        contentBase.setDisable(false);
+        
+        triggerSelect.setVisible(false);
+        triggerSelect.setDisable(true);
+        
+        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
+        stage.setHeight(560);
+        stage.setWidth(750);*/
+    }
+
+    @FXML
+    private void createAction(ActionEvent event) {
+        action = ActionFactory.create(actionChoiceBox.getValue());
+        actionList.add(action);
+        actionView.setItems(actionList);
+        
+        contentBase.setVisible(true);
+        contentBase.setDisable(false);
+        
+        ActionSelect.setVisible(false);
+        ActionSelect.setDisable(true);
+        
+        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
+        stage.setHeight(560);
+        stage.setWidth(750);*/
+    }
 }
