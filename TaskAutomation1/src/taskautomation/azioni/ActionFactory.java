@@ -38,7 +38,7 @@ public class ActionFactory{
             }
         }
         else{
-            return null;
+            return action;
         }
             
     }
