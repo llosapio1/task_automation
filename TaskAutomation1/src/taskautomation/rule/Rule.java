@@ -26,7 +26,7 @@ public class Rule implements Serializable{
     public Rule(String name, String triggerType, String actionType, boolean active, boolean firedOnlyOnce) {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
-        //this.action = ActionFactory.create(actionType);
+        this.action = ActionFactory.create(actionType);
         this.active = active;
         this.firedOnlyOnce = firedOnlyOnce;
         this.alreadyFired = false;
