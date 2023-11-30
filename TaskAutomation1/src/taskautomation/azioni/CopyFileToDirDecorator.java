@@ -6,6 +6,7 @@ package taskautomation.azioni;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -16,14 +17,15 @@ import java.util.logging.Logger;
  *
  * @author Leonardo
  */
-public class CopyFileToDirDecorator extends ActionDecorator{
+public class CopyFileToDirDecorator extends ActionDecorator implements Serializable{
    File selectedFile;
-   Path destPath;
+   
    File destinationDir;
+   
     public CopyFileToDirDecorator(File selectedFile, File destinationDir, Action BasicAction) {
         super(BasicAction);
         this.selectedFile = selectedFile;
-        destPath = destinationDir.toPath();
+        
         this.destinationDir = destinationDir;
     }
     
@@ -31,7 +33,7 @@ public class CopyFileToDirDecorator extends ActionDecorator{
     public void executeAction(){
        try {
            Files.copy(selectedFile.toPath(),
-                   (new File(destPath + File.separator+ selectedFile.getName())).toPath(),
+                   (new File(destinationDir.toPath() + File.separator+ selectedFile.getName())).toPath(),
                    StandardCopyOption.REPLACE_EXISTING);
        } catch (IOException ex) {
            Logger.getLogger(CopyFileToDirDecorator.class.getName()).log(Level.SEVERE, null, ex);
