@@ -19,10 +19,12 @@ import java.util.logging.Logger;
 public class CopyFileToDirDecorator extends ActionDecorator{
    File selectedFile;
    Path destPath;
+   File destinationDir;
     public CopyFileToDirDecorator(File selectedFile, File destinationDir, Action BasicAction) {
         super(BasicAction);
         this.selectedFile = selectedFile;
         destPath = destinationDir.toPath();
+        this.destinationDir = destinationDir;
     }
     
     @Override
@@ -34,6 +36,10 @@ public class CopyFileToDirDecorator extends ActionDecorator{
        } catch (IOException ex) {
            Logger.getLogger(CopyFileToDirDecorator.class.getName()).log(Level.SEVERE, null, ex);
        }
+    }
+    @Override
+    public String toString(){
+        return "Copy file: " + selectedFile.toString() + " to directory: " + destinationDir.toString() + " ";
     }
     
 }

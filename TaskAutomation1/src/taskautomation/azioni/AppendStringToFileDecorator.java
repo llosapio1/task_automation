@@ -40,5 +40,8 @@ public class AppendStringToFileDecorator extends ActionDecorator{
             Logger.getLogger(AppendStringToFileDecorator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+     @Override
+    public String toString(){
+        return "Append string: " + string + " to file: " + file.toString() +" ";
+    }
 }
