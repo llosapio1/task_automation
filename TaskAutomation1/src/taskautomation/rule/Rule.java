@@ -51,11 +51,26 @@ public class Rule implements Serializable{
         }
     }
     
+    //--- utilizzati nella interfaccia---
+    
+    // Costruttore con fireOnlyOnce
     public Rule(String name, Trigger trigger, Action action, boolean active) {
+        this(name, trigger, action, active, true, null);
+    }
+    
+    // Costruttore con sleepingPeriod
+    public Rule(String name, Trigger trigger, Action action, boolean active, TemporalAmount sleepingPeriod) {
+        this(name, trigger, action, active, false, sleepingPeriod);
+    }
+    
+    public Rule(String name, Trigger trigger, Action action, boolean active, boolean fireOnlyOnce, TemporalAmount sleepingPeriod) {
         this.name = name;
         this.trigger = trigger;
         this.action = action;
         this.active = active;
+        this.fireOnlyOnce = fireOnlyOnce;
+        this.alreadyFired = null;
+        this.sleepingPeriod = sleepingPeriod;
         if (!RuleList.getRuleList().addRule(this)){
             // L'aggiunta della regola non è riuscita
             throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
