@@ -20,11 +20,13 @@ public class MoveFileBetweenDirsDecorator extends ActionDecorator{
     
     File selectedFile;
     String destDirPath;
+    File destDir;
     
     public MoveFileBetweenDirsDecorator(File selectedFile, File destinationDir, Action BasicAction) {
         super(BasicAction);
        
         this.selectedFile = selectedFile;
+        this.destDir = destinationDir;
         destDirPath = destinationDir.getAbsolutePath();
     }
     
@@ -35,8 +37,12 @@ public class MoveFileBetweenDirsDecorator extends ActionDecorator{
            Files.move(selectedFile.toPath(),
                    Paths.get(destDirPath + File.separator+selectedFile.getName()));
        } catch (IOException ex) {
-           Logger.getLogger(CopyFileToDirDecorator.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(MoveFileBetweenDirsDecorator.class.getName()).log(Level.SEVERE, null, ex);
        }
         }
+    }
+    @Override
+    public String toString(){
+        return "Move file: " + selectedFile.toString() + " to directory: " + destDir.toString() + " ";
     }
 }
