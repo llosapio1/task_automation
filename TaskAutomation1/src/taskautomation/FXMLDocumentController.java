@@ -62,7 +62,8 @@ public class FXMLDocumentController implements Initializable {
         azioneColumn.setCellValueFactory(new PropertyValueFactory("action"));
         statusRuleColumn.setCellValueFactory(new PropertyValueFactory("active"));
         tableView.setItems(ruleListView);
-        ruleListView.setAll(FXCollections.observableArrayList(RuleList.getRuleList().get()));
+        // All'avvio dell'applicazione aggiorna la ruleListView
+        aggiornaTableView();
         
     }
     private void aggiornaTableView(){
@@ -90,7 +91,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cancellaRegola(ActionEvent event) {
-        //Prende la regola selezionata dal utente
+        //Prende la regola selezionata dall'utente
         Rule selecRule = tableView.getSelectionModel().getSelectedItem();
         
         //Cancella la regola e aggiorna la tabella

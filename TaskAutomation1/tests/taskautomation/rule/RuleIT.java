@@ -7,13 +7,13 @@ package taskautomation.rule;
 import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
 import taskautomation.trigger.BasicTrigger;
-import taskautomation.trigger.TimeOfDayDecorator;
 import taskautomation.trigger.Trigger;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.BasicAction;
 import taskautomation.azioni.DisplayMessageDecorator;
+import taskautomation.trigger.TimeOfDayDecorator;
 
 /**
  *
@@ -27,15 +27,17 @@ public class RuleIT {
     String actionType;
     Rule instanceActive;
     Rule instanceInactive;
-    
+    Trigger timeOfDay = new TimeOfDayDecorator();
+    Action displayMessage = new DisplayMessageDecorator();
+
     @Before
     public void setUp() {
         action = new BasicAction();
         trigger = new BasicTrigger();
-        triggerType = "TimeOfDay";
-        actionType = "DisplayMessage";
-        instanceActive = new Rule("Regola1", triggerType, actionType, true);
-        instanceInactive = new Rule("Regola2", triggerType, actionType, false);
+        triggerType = "BasicTrigger";
+        actionType = "BasicAction";
+        instanceActive = new Rule("Regola1", triggerType, actionType, true, true);
+        instanceInactive = new Rule("Regola2", triggerType, actionType, false, false);
     }
 
     /**
@@ -46,7 +48,7 @@ public class RuleIT {
     public void testGetTrigger() {
         Trigger result = instanceActive.getTrigger();
         assertNotNull(result);
-        assertTrue(result instanceof TimeOfDayDecorator);
+        assertTrue(result instanceof BasicTrigger);
     }
 
     /**
@@ -55,9 +57,8 @@ public class RuleIT {
     
     @Test
     public void testSetTrigger() {
-        
-        instanceActive.setTrigger(trigger);
-        assertEquals(trigger, instanceActive.getTrigger());
+        instanceActive.setTrigger(timeOfDay);
+        assertEquals(timeOfDay, instanceActive.getTrigger());
     }
     
     
@@ -66,7 +67,7 @@ public class RuleIT {
         
         Action result = instanceActive.getAction();
         assertNotNull(result);
-        assertTrue(result instanceof DisplayMessageDecorator);
+        assertTrue(result instanceof BasicAction);
     }
 
     /**
@@ -75,8 +76,8 @@ public class RuleIT {
     
     @Test
     public void testSetAction() {
-        instanceActive.setAction(action);
-        assertEquals(action, instanceActive.getAction());
+        instanceActive.setAction(displayMessage);
+        assertEquals(displayMessage, instanceActive.getAction());
     }
 
     /**
@@ -110,4 +111,54 @@ public class RuleIT {
         instanceActive.toggleActive();
         assertTrue(instanceActive.isActive());
     }
+
+    /**
+     * Test of getName method, of class Rule.
+     */
+    @Test
+    public void testGetName() {
+        assertEquals("Regola1", instanceActive.getName());
+        assertEquals("Regola2", instanceInactive.getName());
+    }
+
+    /**
+     * Test of setName method, of class Rule.
+     */
+    @Test
+    public void testSetName() {
+        String newName = "NewRule";
+        instanceActive.setName(newName);
+        assertEquals(newName, instanceActive.getName());
+    }
+
+    /**
+     * Test of getActive method, of class Rule.
+     */
+    @Test
+    public void testGetActive() {
+        assertEquals("Enable", instanceActive.getActive());
+        assertEquals("Disable", instanceInactive.getActive());
+    }
+
+    /**
+     * Test of isFiredOnlyOnce method, of class Rule.
+     */
+    @Test
+    public void testIsFiredOnlyOnce() {
+        assertTrue(instanceActive.isFiredOnlyOnce());
+        assertFalse(instanceInactive.isFiredOnlyOnce());
+    }
+
+    /**
+     * Test of setFiredOnlyOnce method, of class Rule.
+     */
+    @Test
+    public void testSetFiredOnlyOnce() {
+        assertTrue(instanceActive.isFiredOnlyOnce());
+        instanceActive.setFiredOnlyOnce(false);
+        assertFalse(instanceActive.isFiredOnlyOnce());
+        instanceActive.setFiredOnlyOnce(true);
+        assertTrue(instanceActive.isFiredOnlyOnce());
+    }
+
 }

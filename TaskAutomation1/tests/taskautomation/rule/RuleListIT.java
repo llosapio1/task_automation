@@ -5,9 +5,6 @@
 package taskautomation.rule;
 
 import java.util.LinkedList;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
@@ -23,7 +20,7 @@ public class RuleListIT {
     
     @BeforeClass
     public static void setUp() {
-        validRule = new Rule("Regola", "TimeOfDay", "DisplayMessage");
+        validRule = new Rule("Regola", "TimeOfDay", "DisplayMessage", true, false);
         ruleList = RuleList.getRuleList();
     }
 

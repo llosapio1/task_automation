@@ -20,17 +20,16 @@ public class Rule implements Serializable{
     private Trigger trigger;
     private Action action;
     private boolean active;
+    private boolean firedOnlyOnce;
+    private boolean alreadyFired;
     
-    // Costruttore che imposta active a true per impostazione predefinita
-    public Rule(String name, String triggerType, String actionType) {
-        this(name, triggerType, actionType, true);
-    }
-    
-    public Rule(String name, String triggerType, String actionType, boolean active) {
+    public Rule(String name, String triggerType, String actionType, boolean active, boolean firedOnlyOnce) {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
-        this.action = ActionFactory.create(actionType);
+        //this.action = ActionFactory.create(actionType);
         this.active = active;
+        this.firedOnlyOnce = firedOnlyOnce;
+        this.alreadyFired = false;
         if (!RuleList.getRuleList().addRule(this)){
             // L'aggiunta della regola non è riuscita
             throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
@@ -60,11 +59,21 @@ public class Rule implements Serializable{
     public void setAction(Action action) {
         this.action = action;
     }
+
+    public boolean isFiredOnlyOnce() {
+        return firedOnlyOnce;
+    }
+
+    public void setFiredOnlyOnce(boolean firedOnlyOnce) {
+        this.firedOnlyOnce = firedOnlyOnce;
+    }
     
     public void checkRule(){
-        if (this.active){
+        if (this.active && ((this.firedOnlyOnce && !this.alreadyFired) || (!this.firedOnlyOnce))){
             if (this.trigger.verifyTrigger()){
-            this.action.executeAction();
+                this.action.executeAction();
+                if (this.firedOnlyOnce)
+                    this.alreadyFired = true;
             }
         }
     }

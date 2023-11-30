@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -65,19 +66,16 @@ public class RuleList implements Serializable{
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("rules.ser"))) {
             LinkedList<Rule> loadedRules = (LinkedList<Rule>) ois.readObject();
             return loadedRules;
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | InvalidClassException e) {
             // Se il file non esiste, restituisci null
             return null;
         }
-
+        
     }
     
     private void saveRulesToFile() {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("rules.ser"))) {
             oos.writeObject(ruleList);
-            System.out.println("Scrivo la classe su file. Nel momento in cui scrivo ruleList contiene:");
-            for (Rule rule : ruleList)
-                System.out.println("Regola: " + rule.getName() + ", " + rule.getTrigger());
         } catch (IOException e) {
             e.printStackTrace();
         }
