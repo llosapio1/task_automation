@@ -1,14 +1,8 @@
-package taskautomation;
-
-
-
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-
+package taskautomation;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,6 +40,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
     
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,7 +52,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     
     @FXML
     private void createRuleButtonAction(ActionEvent event) {
-                Rule newRule = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue());
+                Rule newRule = new Rule(textFielName.getText(), triggerChoiceBox.getValue(), actionChoiceBox.getValue(), true, false);
                 Stage stage = (Stage) createRuleButton.getScene().getWindow();
                 stage.close();
                 
