@@ -7,6 +7,7 @@ package taskautomation.rule;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAmount;
+import java.util.Objects;
 import taskautomation.azioni.ActionFactory;
 import taskautomation.trigger.TriggerFactory;
 import taskautomation.trigger.Trigger;
@@ -27,17 +28,17 @@ public class Rule implements Serializable{
     private TemporalAmount sleepingPeriod;
     
     // Costruttore con fireOnlyOnce
-    public Rule(String name, String triggerType, String actionType, boolean active,  boolean fireOnlyOnce) {
+    /*public Rule(String name, String triggerType, String actionType, boolean active,  boolean fireOnlyOnce) {
         this(name, triggerType, actionType, active, fireOnlyOnce, null);
-    }
+    }*/
     
     // Costruttore con sleepingPeriod
-    public Rule(String name, String triggerType, String actionType, boolean active, TemporalAmount sleepingPeriod) {
+    /*public Rule(String name, String triggerType, String actionType, boolean active, TemporalAmount sleepingPeriod) {
         this(name, triggerType, actionType, true, false, sleepingPeriod);
-    }
+    }*/
     
     //Costruttore con tutti i parametri
-    public Rule(String name, String triggerType, String actionType, boolean active, boolean fireOnlyOnce, TemporalAmount sleepingPeriod) {
+    /*public Rule(String name, String triggerType, String actionType, boolean active, boolean fireOnlyOnce, TemporalAmount sleepingPeriod) {
         this.name = name;
         this.trigger = TriggerFactory.create(triggerType);
         this.action = ActionFactory.create(actionType);
@@ -49,13 +50,16 @@ public class Rule implements Serializable{
             // L'aggiunta della regola non è riuscita
             throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
         }
-    }
+    }*/
     
     //--- utilizzati nella interfaccia---
     
     // Costruttore con fireOnlyOnce
-    public Rule(String name, Trigger trigger, Action action, boolean active) {
+    public Rule(String name, Trigger trigger, Action action, boolean active/*, boolean fireOnlyOnce*/) {
         this(name, trigger, action, active, true, null);
+    }
+    public Rule(String name, Trigger trigger, Action action, boolean active, boolean fireOnlyOnce) {
+        this(name, trigger, action, active, fireOnlyOnce, null);
     }
     
     // Costruttore con sleepingPeriod
@@ -63,6 +67,7 @@ public class Rule implements Serializable{
         this(name, trigger, action, active, false, sleepingPeriod);
     }
     
+    //Costruttore con tutti i parametri
     public Rule(String name, Trigger trigger, Action action, boolean active, boolean fireOnlyOnce, TemporalAmount sleepingPeriod) {
         this.name = name;
         this.trigger = trigger;
@@ -110,13 +115,13 @@ public class Rule implements Serializable{
     }
     
     public void checkRule(){
-        if (this.active && this.fireOnlyOnce && this.alreadyFired == null ){
+        if (this.active && Objects.equals(this.alreadyFired, null) && this.fireOnlyOnce){
             if (this.trigger.verifyTrigger()){
                 this.action.executeAction();
                 this.alreadyFired = LocalTime.now();
             }
         } else if (this.active && !this.fireOnlyOnce){
-            if (this.alreadyFired == null){
+            if (Objects.equals(this.alreadyFired, null)){
                 if (this.trigger.verifyTrigger()){
                     this.action.executeAction();
                     this.alreadyFired = LocalTime.now();

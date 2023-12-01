@@ -6,26 +6,32 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskautomation.trigger.TimeInputDialogController">
 
-    <Label fx:id="label" text="Inserisci l'orario:" />
-   <HBox alignment="CENTER" prefHeight="0.0" prefWidth="200.0">
+    <Label fx:id="label" text="Inserisci l'orario:">
+      <font>
+         <Font name="Helvetica" size="18.0" />
+      </font></Label>
+   <HBox alignment="BASELINE_CENTER" spacing="10.0">
       <children>
-         <ComboBox fx:id="hoursBox" prefWidth="150.0">
+         <ComboBox fx:id="hoursBox">
             <HBox.margin>
-               <Insets right="10.0" />
+               <Insets />
             </HBox.margin>
          </ComboBox>
-         <ComboBox fx:id="minutesBox" prefWidth="150.0">
+         <Label fx:id="label1" text=":">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+         <ComboBox fx:id="minutesBox">
             <HBox.margin>
-               <Insets left="10.0" />
+               <Insets />
             </HBox.margin>
          </ComboBox>
       </children>
-      <padding>
-         <Insets bottom="10.0" top="10.0" />
-      </padding>
    </HBox>
    <HBox alignment="CENTER" prefHeight="0.0" prefWidth="161.0">
       <children>
