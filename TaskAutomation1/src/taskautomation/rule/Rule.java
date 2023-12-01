@@ -110,17 +110,22 @@ public class Rule implements Serializable{
     }
     
     public void checkRule(){
-        if (this.active && this.fireOnlyOnce && this.alreadyFired.equals(null) ){
+        if (this.active && this.fireOnlyOnce && this.alreadyFired == null ){
             if (this.trigger.verifyTrigger()){
                 this.action.executeAction();
                 this.alreadyFired = LocalTime.now();
             }
         } else if (this.active && !this.fireOnlyOnce){
-            if(LocalTime.now().isAfter(this.alreadyFired.plus(sleepingPeriod))){
+            if (this.alreadyFired == null){
+                if (this.trigger.verifyTrigger()){
+                    this.action.executeAction();
+                    this.alreadyFired = LocalTime.now();
+            } else if (LocalTime.now().isAfter(this.alreadyFired.plus(sleepingPeriod))){
                 if (this.trigger.verifyTrigger()){
                     this.action.executeAction();
                     this.alreadyFired = LocalTime.now();
                 }
+            }
             }
         }
             
