@@ -2,27 +2,81 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskautomation.FXMLDocumentAddRuleController">
+<StackPane alignment="TOP_CENTER" prefHeight="520.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskautomation.FXMLDocumentAddRuleController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <bottom>
-            <Button fx:id="createRuleButton" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createRuleButtonAction" text="create rule" textFill="#07941c" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
-               </BorderPane.margin>
-            </Button>
-         </bottom>
-         <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="602.0" text="Add a new Rule" BorderPane.alignment="CENTER">
+      <VBox fx:id="contentBase" prefHeight="780.0" prefWidth="750.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="9.0" prefWidth="710.0" text="Add a new Rule">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="42.0" prefWidth="736.0" spacing="10.0">
+               <children>
+                  <Label />
+                  <TextField fx:id="textFieldName" prefHeight="25.0" prefWidth="194.0" promptText="Nome della Regola" />
+                  <CheckBox fx:id="checkActive" mnemonicParsing="false" selected="true" text="Attiva regola" />
+                  <CheckBox fx:id="CooldownSelected" mnemonicParsing="false" onAction="#changeStatusTimeSelector" text="Sleeping" />
+                  <HBox fx:id="timeSelector" alignment="CENTER" disable="true" prefHeight="42.0" prefWidth="303.0" spacing="5.0">
+                     <children>
+                        <Label text="Giorni:" />
+                        <Spinner fx:id="selectDays" prefWidth="60.0" />
+                        <Label text="Ore:" />
+                        <Spinner fx:id="selectHours" prefWidth="60.0" />
+                        <Label text="Minuti:" />
+                        <Spinner fx:id="selectMinutes" prefWidth="60.0" />
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <SplitPane dividerPositions="0.5" prefHeight="384.0" prefWidth="710.0">
+              <items>
+                  <ScrollPane prefHeight="382.0" prefWidth="335.0">
+                     <content>
+                        <ListView fx:id="triggerView" prefHeight="381.0" prefWidth="351.0" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <ListView fx:id="actionView" prefHeight="381.0" prefWidth="351.0" />
+                     </content>
+                  </ScrollPane>
+              </items>
+            </SplitPane>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="726.0" spacing="125.0">
+               <children>
+                  <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addTrigger" text="Add Trigger" textFill="#07941c" />
+                  <Button fx:id="createRuleButton" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createRuleButtonAction" text="Create rule" textFill="#07941c" />
+                  <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addAction" text="Add action" textFill="#07941c" />
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <StackPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </StackPane.margin>
+      </VBox>
+      <VBox fx:id="triggerSelect" alignment="TOP_CENTER" disable="true" minHeight="136.0" minWidth="210.0" prefHeight="136.0" prefWidth="693.0" spacing="30.0" visible="false">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="726.0" text="Add a new Trigger">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -30,57 +84,52 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-         </top>
-         <center>
-            <VBox prefHeight="293.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="24.0" prefWidth="726.0">
                <children>
-                  <HBox prefHeight="64.0" prefWidth="560.0">
-                     <children>
-                        <Label prefHeight="25.0" prefWidth="128.0" text="Insert name: ">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="textFielName" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="70.0" prefWidth="560.0">
-                     <children>
-                        <Label text="Select action:">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="actionChoiceBox" prefWidth="150.0">
-                           <HBox.margin>
-                              <Insets left="34.0" />
-                           </HBox.margin>
-                        </ChoiceBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="64.0" prefWidth="560.0">
-                     <children>
-                        <Label text="Select trigger:">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <ChoiceBox fx:id="triggerChoiceBox" prefWidth="150.0">
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
-                        </ChoiceBox>
-                     </children>
-                  </HBox>
+                  <Label text="Select trigger:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="triggerChoiceBox" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
                </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <BorderPane.margin>
-                  <Insets left="20.0" right="20.0" top="20.0" />
-               </BorderPane.margin>
-            </VBox>
-         </center>
-      </BorderPane>
+            </HBox>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#createTrigger" text="Create Trigger" />
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </VBox>
+      <VBox fx:id="ActionSelect" alignment="TOP_CENTER" disable="true" minHeight="136.0" minWidth="210.0" prefHeight="136.0" prefWidth="693.0" spacing="30.0" visible="false">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="726.0" text="Add a new Action">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="24.0" prefWidth="726.0">
+               <children>
+                  <Label text="Select action:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ChoiceBox fx:id="actionChoiceBox" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+               </children>
+            </HBox>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#createAction" text="Create action" />
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</StackPane>

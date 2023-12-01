@@ -1,5 +1,6 @@
 package taskautomation.rule;
 
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -66,9 +67,9 @@ public class RuleList implements Serializable{
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("rules.ser"))) {
             LinkedList<Rule> loadedRules = (LinkedList<Rule>) ois.readObject();
             return loadedRules;
-        } catch (FileNotFoundException | InvalidClassException e) {
-            // Se il file non esiste, restituisci null
-            return null;
+        } catch (FileNotFoundException | InvalidClassException | EOFException e) {
+            // Se il file non esiste o è vuoto, restituisci una lista vuota
+            return new LinkedList<Rule>();
         }
         
     }
