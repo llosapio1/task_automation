@@ -22,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -76,8 +77,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
     ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileBetweenDirs", "CopyFileToDir", "DeleteFile");
     
-    private Trigger trigger;
-    private Action action;
+    private Trigger trigger = null;
+    private Action action = null;
     private Rule newRule;
 
     /**
@@ -115,9 +116,10 @@ public class FXMLDocumentAddRuleController implements Initializable {
         else{
             newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected());
         }
-        
         Stage stage = (Stage) createRuleButton.getScene().getWindow();
-        stage.close();    
+        stage.close();
+        
+            
     } 
 
     @FXML
@@ -158,6 +160,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
         triggerSelect.setVisible(false);
         triggerSelect.setDisable(true);
         
+        controlTriggerAndAction();
+        
         /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
         stage.setHeight(560);
         stage.setWidth(750);*/
@@ -175,6 +179,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
         ActionSelect.setVisible(false);
         ActionSelect.setDisable(true);
         
+        controlTriggerAndAction();
+        
         /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
         stage.setHeight(560);
         stage.setWidth(750);*/
@@ -184,4 +190,14 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private void changeStatusTimeSelector(ActionEvent event) {
         timeSelector.setDisable(!timeSelector.disableProperty().get());
     }
+
+    @FXML
+    private void controlTriggerAndAction() {
+        if(trigger != null & action != null){
+            createRuleButton.setDisable(false);
+        }
+            
+        
+    }
+
 }
