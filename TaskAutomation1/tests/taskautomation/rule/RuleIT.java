@@ -23,8 +23,6 @@ public class RuleIT {
     
     Action action;
     Trigger trigger;
-    String triggerType;
-    String actionType;
     Rule instanceActive;
     Rule instanceInactive;
     Trigger timeOfDay = new TimeOfDayDecorator();
@@ -34,10 +32,8 @@ public class RuleIT {
     public void setUp() {
         action = new BasicAction();
         trigger = new BasicTrigger();
-        triggerType = "BasicTrigger";
-        actionType = "BasicAction";
-        instanceActive = new Rule("Regola1", triggerType, actionType, true, true);
-        instanceInactive = new Rule("Regola2", triggerType, actionType, false, false);
+        instanceActive = new Rule("Regola1", trigger, action, true, true);
+        instanceInactive = new Rule("Regola2", trigger, action, false, false);
     }
 
     /**

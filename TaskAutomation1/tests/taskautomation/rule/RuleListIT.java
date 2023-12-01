@@ -8,6 +8,10 @@ import java.util.LinkedList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
+import taskautomation.azioni.Action;
+import taskautomation.azioni.BasicAction;
+import taskautomation.trigger.BasicTrigger;
+import taskautomation.trigger.Trigger;
 
 /**
  *
@@ -17,10 +21,14 @@ public class RuleListIT {
     
     static Rule validRule;
     static RuleList ruleList;
+    static Action action;
+    static Trigger trigger;
     
     @BeforeClass
     public static void setUp() {
-        validRule = new Rule("Regola", "TimeOfDay", "DisplayMessage", true, false);
+        action = new BasicAction();
+        trigger = new BasicTrigger();
+        validRule = new Rule("Regola", trigger, action, true, false);
         ruleList = RuleList.getRuleList();
     }
 
