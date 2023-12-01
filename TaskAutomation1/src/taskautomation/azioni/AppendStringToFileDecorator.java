@@ -7,6 +7,7 @@ package taskautomation.azioni;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author Leonardo
  */
-public class AppendStringToFileDecorator extends ActionDecorator{
+public class AppendStringToFileDecorator extends ActionDecorator implements Serializable{
     private File file;
     private String string;
    
