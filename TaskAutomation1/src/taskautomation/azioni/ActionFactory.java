@@ -64,7 +64,7 @@ public class ActionFactory{
            if(res1 == JFileChooser.APPROVE_OPTION && res2 == JFileChooser.APPROVE_OPTION){
                File selectedFile = fileChooser1.getSelectedFile();  
                File selectedDir = fileChooser2.getSelectedFile();
-               return new MoveFileBetweenDirsDecorator(selectedFile, selectedDir, action);
+               return new MoveFileToDirDecorator(selectedFile, selectedDir, action);
            } 
             return null;
         } else if (selectedType.equalsIgnoreCase("CopyFileToDir")){
