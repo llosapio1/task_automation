@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -20,17 +23,27 @@ public class AppendStringToFileDecorator extends ActionDecorator implements Seri
     private String string;
    
 
-    public AppendStringToFileDecorator(File file, String string, Action BasicAction) {
-        super(BasicAction);
+    public AppendStringToFileDecorator(File file, String string, Action basicAction) {
+        super(basicAction);
         this.file = file;
         this.string = string;
         
     }
-
-    /**
-     *
-     * @throws IOException
-     */
+    
+    public AppendStringToFileDecorator(Action basicAction){
+       super(basicAction);
+       this.string = JOptionPane.showInputDialog("Type the string to append.");
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("select file to append string to");
+           FileNameExtensionFilter filter = new FileNameExtensionFilter("text files(*.txt)", "txt");
+           fileChooser.setFileFilter(filter);
+            int res = fileChooser.showOpenDialog(null);
+           if(res == JFileChooser.APPROVE_OPTION){
+               this.file = fileChooser.getSelectedFile();
+              
+           }
+    }
+    
     @Override
     public void executeAction(){
        
