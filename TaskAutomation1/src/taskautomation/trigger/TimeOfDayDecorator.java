@@ -41,7 +41,7 @@ public class TimeOfDayDecorator extends TriggerDecorator implements Serializable
         
         LocalTime currentTime = LocalTime.now();
         // Confronta solo ora e minuti
-        return currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute();
+        return currentTime.getHour() >= timeOfDay.getHour() && currentTime.getMinute() >= timeOfDay.getMinute();
     }
     
     @Override
