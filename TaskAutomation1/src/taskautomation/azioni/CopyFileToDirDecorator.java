@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -22,11 +23,29 @@ public class CopyFileToDirDecorator extends ActionDecorator implements Serializa
    
    File destinationDir;
    
-    public CopyFileToDirDecorator(File selectedFile, File destinationDir, Action BasicAction) {
-        super(BasicAction);
+    public CopyFileToDirDecorator(File selectedFile, File destinationDir, Action basicAction) {
+        super(basicAction);
         this.selectedFile = selectedFile;
         
         this.destinationDir = destinationDir;
+    }
+    public CopyFileToDirDecorator(Action basicAction){
+        super(basicAction);
+            JFileChooser fileChooser1 = new JFileChooser();
+            fileChooser1.setDialogTitle("choose file to copy");
+            int res1 = fileChooser1.showOpenDialog(null);
+            
+            
+            JFileChooser fileChooser2 = new JFileChooser();
+            fileChooser2.setDialogTitle("choose destination folder");
+            fileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int res2= fileChooser2.showOpenDialog(null);
+            
+           if(res1 == JFileChooser.APPROVE_OPTION && res2 == JFileChooser.APPROVE_OPTION){
+               this.selectedFile = fileChooser1.getSelectedFile();  
+               this.destinationDir = fileChooser2.getSelectedFile();
+               
+           } 
     }
     
     @Override
