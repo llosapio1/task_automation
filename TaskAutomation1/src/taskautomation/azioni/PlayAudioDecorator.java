@@ -9,6 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -20,17 +21,22 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Alejandro
  */
-public class PlayAudioDecorator extends ActionDecorator{
-    private Clip clip;
+public class PlayAudioDecorator extends ActionDecorator implements Serializable{
     private File file;
     
     public PlayAudioDecorator(){
     }
     
     public PlayAudioDecorator(File newfile, Action actionDecorated) {
-        super(actionDecorated); 
+        super(actionDecorated);
+        this.file = newfile;
+        
+    }
+
+    @Override
+    public void executeAction() {
+        Clip clip;
         try {
-            file = newfile;
             clip=AudioSystem.getClip();
             InputStream is=new FileInputStream(file);
             AudioFileFormat aff=AudioSystem.getAudioFileFormat(file);
@@ -48,10 +54,7 @@ public class PlayAudioDecorator extends ActionDecorator{
         } catch (IOException exc) {
             throw new RuntimeException("IOException: "+exc);
         }
-    }
-
-    @Override
-    public void executeAction() {
+        
         clip.start();
         super.executeAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
