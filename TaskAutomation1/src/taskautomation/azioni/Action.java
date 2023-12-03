@@ -4,11 +4,13 @@
  */
 package taskautomation.azioni;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Alejandro
  */
-public interface Action {
+public interface Action extends Serializable{
     
     public void executeAction();
     

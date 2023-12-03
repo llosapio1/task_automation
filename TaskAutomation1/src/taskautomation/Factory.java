@@ -7,9 +7,10 @@ package taskautomation;
 /**
  *
  * @author alessandro
+ * @param <T>
  */
-public interface Factory {
+public interface Factory<T> {
     
     Object create(String selectedType);
-    
+    Object create(String selectedType, T object);
 }

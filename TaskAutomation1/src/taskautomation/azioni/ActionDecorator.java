@@ -4,18 +4,20 @@
  */
 package taskautomation.azioni;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Alejandro
  */
-public abstract class ActionDecorator implements Action{
+public abstract class ActionDecorator implements Action, Serializable{
     private Action decoratedAction;
     
     protected ActionDecorator() {
     }
     
     protected ActionDecorator(Action BasicAction) {
-        this.decoratedAction=BasicAction;
+        this.decoratedAction = BasicAction;
     }
     
     @Override
@@ -25,7 +27,7 @@ public abstract class ActionDecorator implements Action{
     
     @Override
     public String toString() {
-        return "";
+        return "" + decoratedAction.toString();
     }
     
 }

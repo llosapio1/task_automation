@@ -29,7 +29,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.ActionFactory;
+import taskautomation.azioni.BasicAction;
 import taskautomation.rule.Rule;
+import taskautomation.trigger.BasicTrigger;
 import taskautomation.trigger.Trigger;
 import taskautomation.trigger.TriggerFactory;
 
@@ -43,9 +45,9 @@ public class FXMLDocumentAddRuleController implements Initializable {
     @FXML
     private Button createRuleButton;
     @FXML
-    private ListView<Trigger> triggerView;
+    private ListView<String> triggerView;
     @FXML
-    private ListView<Action> actionView;
+    private ListView<String> actionView;
     @FXML
     private TextField textFieldName;
     @FXML
@@ -71,14 +73,18 @@ public class FXMLDocumentAddRuleController implements Initializable {
     @FXML
     private HBox timeSelector;
         
-    private ObservableList<Trigger> triggerList;
-    private ObservableList<Action> actionList;
+    private ObservableList<String> triggerList;
+    private ObservableList<String> actionList;
     
     ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileToDir", "CopyFileToDir", "DeleteFile");
     
-    private Trigger trigger = null;
-    private Action action = null;
+    private final TriggerFactory triggerFactory = new TriggerFactory();
+    private final ActionFactory actionFactory = new ActionFactory();
+    
+    private Trigger trigger = new BasicTrigger();
+    private Action action = new BasicAction();
+    
     private Rule newRule;
 
     /**
@@ -91,9 +97,6 @@ public class FXMLDocumentAddRuleController implements Initializable {
         selectDays.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 31, 0));
         selectHours.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 0));
         selectMinutes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
-        
-        triggerSelect.setVisible(false);
-        triggerSelect.setDisable(true);
         
         triggerChoiceBox.setItems(triggerListChoiceBox);
         actionChoiceBox.setItems(actionListChoiceBox);
@@ -110,7 +113,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private void createRuleButtonAction(ActionEvent event) {
         if(CooldownSelected.isSelected()){
             TemporalAmount sleepingPeriod = Duration.ofDays(selectDays.getValue()).plusHours(selectHours.getValue()).plusMinutes(selectMinutes.getValue());
-            newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected(), sleepingPeriod);
+            newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected(), false, sleepingPeriod);
+
         }
         
         else{
@@ -124,12 +128,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
 
     @FXML
     private void addTrigger(ActionEvent event) throws IOException {
-        contentBase.setVisible(false);
-        contentBase.setDisable(true);
-        
-        triggerSelect.setVisible(true);
-        triggerSelect.setDisable(false);
-
+        changeSceneToFrom(triggerSelect, contentBase);
         /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
         stage.setHeight(300);
         stage.setWidth(400);*/
@@ -137,12 +136,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
 
     @FXML
     private void addAction(ActionEvent event) {
-        contentBase.setVisible(false);
-        contentBase.setDisable(true);
-        
-        ActionSelect.setVisible(true);
-        ActionSelect.setDisable(false);
-
+        changeSceneToFrom(ActionSelect, contentBase);
         /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
         stage.setHeight(300);
         stage.setWidth(400);*/
@@ -150,16 +144,11 @@ public class FXMLDocumentAddRuleController implements Initializable {
 
     @FXML
     private void createTrigger(ActionEvent event) {
-        trigger = TriggerFactory.create(triggerChoiceBox.getValue());
-        triggerList.add(trigger);
+        trigger = triggerFactory.create(triggerChoiceBox.getValue(), trigger);
+        triggerList.setAll(trigger.toString().split("\n"));
         triggerView.setItems(triggerList);
         
-        contentBase.setVisible(true);
-        contentBase.setDisable(false);
-        
-        triggerSelect.setVisible(false);
-        triggerSelect.setDisable(true);
-        
+        changeSceneToFrom(contentBase, triggerSelect);
         controlTriggerAndAction();
         
         /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
@@ -169,16 +158,12 @@ public class FXMLDocumentAddRuleController implements Initializable {
 
     @FXML
     private void createAction(ActionEvent event) {
-        action = ActionFactory.create(actionChoiceBox.getValue());
-        actionList.add(action);
+        action = actionFactory.create(actionChoiceBox.getValue(), action);
+        
+        actionList.setAll(action.toString().split("\n"));
         actionView.setItems(actionList);
-        
-        contentBase.setVisible(true);
-        contentBase.setDisable(false);
-        
-        ActionSelect.setVisible(false);
-        ActionSelect.setDisable(true);
-        
+            
+        changeSceneToFrom(contentBase, ActionSelect);
         controlTriggerAndAction();
         
         /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
@@ -196,8 +181,14 @@ public class FXMLDocumentAddRuleController implements Initializable {
         if(trigger != null & action != null & !textFieldName.getText().isEmpty()){
             createRuleButton.setDisable(false);
         }
-            
+    }
+    
+    private void changeSceneToFrom(VBox to, VBox from){
+        to.setVisible(true);
+        to.setDisable(false);
         
+        from.setVisible(false);
+        from.setDisable(true);
     }
 
 }

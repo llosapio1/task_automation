@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Alejandro
  */
-public class DisplayMessageDecorator extends ActionDecorator implements Serializable{
+public class DisplayMessageDecorator extends ActionDecorator{
     private String messagge;
     
     public DisplayMessageDecorator() {
@@ -38,6 +38,6 @@ public class DisplayMessageDecorator extends ActionDecorator implements Serializ
     
      @Override
     public String toString() {
-        return "Display messagge: " + messagge + " ";
+        return "Display messagge: " + "\""+ messagge +"\"\n" + super.toString();
     }
 }

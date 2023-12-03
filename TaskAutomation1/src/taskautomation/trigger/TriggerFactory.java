@@ -10,16 +10,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import taskautomation.Factory;
 
 /**
  *
  * @author alessandro
  */
 
-public class TriggerFactory{
+public class TriggerFactory implements Factory<Trigger>{
 
-    public static Trigger create(String triggerType) {
-        
+    @Override
+    public Trigger create(String triggerType) {
         Trigger trigger = new BasicTrigger();
 
         if ("TimeOfDay".equals(triggerType)) {
@@ -29,6 +30,16 @@ public class TriggerFactory{
         
         
         return trigger;
+    }
+
+    @Override
+    public Trigger create(String triggerType, Trigger trigger) {
+        Trigger decoratedTrigger = new BasicTrigger();
+        if ("TimeOfDay".equals(triggerType)) {
+            LocalTime time = getTimeFromDialog();
+            decoratedTrigger = new TimeOfDayDecorator(trigger, time);
+        }
+        return decoratedTrigger;
     }
     
     private static LocalTime getTimeFromDialog() {
@@ -46,5 +57,6 @@ public class TriggerFactory{
             return null;
         }
     }
+
 
 }

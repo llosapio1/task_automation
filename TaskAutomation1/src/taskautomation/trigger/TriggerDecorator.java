@@ -4,11 +4,13 @@
  */
 package taskautomation.trigger;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alessandro
  */
-public abstract class TriggerDecorator implements Trigger {
+public abstract class TriggerDecorator implements Trigger, Serializable {
     
     private Trigger decoratedTrigger;
     
@@ -26,7 +28,7 @@ public abstract class TriggerDecorator implements Trigger {
     
     @Override
     public String toString() {
-        return "";
+        return "" + decoratedTrigger.toString();
     }
     
 }
