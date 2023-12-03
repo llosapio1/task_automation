@@ -8,6 +8,7 @@ import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
 import taskautomation.azioni.ActionFactory;
 import taskautomation.azioni.Action;
+import taskautomation.azioni.BasicAction;
 import taskautomation.azioni.DisplayMessageDecorator;
 
 
@@ -17,7 +18,7 @@ import taskautomation.azioni.DisplayMessageDecorator;
  */
 public class ActionFactoryIT{
     
-    private ActionFactory instance;
+    private final ActionFactory af = new ActionFactory();
     
     public ActionFactoryIT() {
 
@@ -29,7 +30,7 @@ public class ActionFactoryIT{
     @Test
     public void testCreateWithValidType() {  
         String actionType = "DisplayMessage";
-        Action result = ActionFactory.create(actionType);
+        Action result = af.create(actionType);
         assertTrue(result instanceof DisplayMessageDecorator);
         
     }
@@ -37,8 +38,8 @@ public class ActionFactoryIT{
     @Test
     public void testCreateWithInvalidType() {
         String ActionType = "InvalidType";
-        Action result = ActionFactory.create(ActionType);
-        assertTrue(result == null);
+        Action result = af.create(ActionType);
+        assertTrue(result instanceof BasicAction);
         
     }
     

@@ -29,8 +29,8 @@ public class Rule implements Serializable{
     private LocalTime lastFired; 
     
     // Costruttore con fireOnlyOnce
-    public Rule(String name, Trigger trigger, Action action, boolean active) {
-        this(name, trigger, action, active, true, null);
+    public Rule(String name, Trigger trigger, Action action, boolean active, boolean fireOnlyOnce) {
+        this(name, trigger, action, active, fireOnlyOnce, null);
     }
     
     // Costruttore con sleepingPeriod
