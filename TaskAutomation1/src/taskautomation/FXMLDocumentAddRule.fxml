@@ -61,9 +61,9 @@
             </SplitPane>
             <HBox alignment="CENTER" prefHeight="47.0" prefWidth="726.0" spacing="125.0">
                <children>
-                  <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addTrigger" text="Add Trigger" textFill="#07941c" />
-                  <Button fx:id="createRuleButton" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#createRuleButtonAction" text="Create rule" textFill="#07941c" />
-                  <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addAction" text="Add action" textFill="#07941c" />
+                  <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addTrigger" onMouseClicked="#controlTriggerAndAction" text="Add Trigger" textFill="#07941c" />
+                  <Button fx:id="createRuleButton" alignment="BOTTOM_RIGHT" contentDisplay="CENTER" disable="true" mnemonicParsing="false" onAction="#createRuleButtonAction" text="Create rule" textFill="#07941c" />
+                  <Button alignment="BOTTOM_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addAction" onMouseClicked="#controlTriggerAndAction" text="Add action" textFill="#07941c" />
                </children>
                <padding>
                   <Insets bottom="10.0" top="10.0" />

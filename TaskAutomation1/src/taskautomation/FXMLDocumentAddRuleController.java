@@ -193,7 +193,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
 
     @FXML
     private void controlTriggerAndAction() {
-        if(trigger != null & action != null){
+        if(trigger != null & action != null & !textFieldName.getText().isEmpty()){
             createRuleButton.setDisable(false);
         }
             
