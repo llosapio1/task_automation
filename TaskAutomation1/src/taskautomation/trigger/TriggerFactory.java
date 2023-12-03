@@ -20,19 +20,6 @@ import taskautomation.Factory;
 public class TriggerFactory implements Factory<Trigger>{
 
     @Override
-    public Trigger create(String triggerType) {
-        Trigger trigger = new BasicTrigger();
-
-        if ("TimeOfDay".equals(triggerType)) {
-            LocalTime time = getTimeFromDialog();
-            trigger = new TimeOfDayDecorator(trigger, time);
-        }
-        
-        
-        return trigger;
-    }
-
-    @Override
     public Trigger create(String triggerType, Trigger trigger) {
         Trigger decoratedTrigger = new BasicTrigger();
         if ("TimeOfDay".equals(triggerType)) {

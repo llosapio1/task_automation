@@ -11,6 +11,5 @@ package taskautomation;
  */
 public interface Factory<T> {
     
-    Object create(String selectedType);
     Object create(String selectedType, T object);
 }

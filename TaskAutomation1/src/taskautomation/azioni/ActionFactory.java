@@ -17,53 +17,6 @@ import taskautomation.Factory;
 public class ActionFactory implements Factory<Action>{
 
     @Override
-    public Action create(String selectedType) {
-        Action action = new BasicAction();
-        if(selectedType.equalsIgnoreCase("DisplayMessage")){
-            String messagge = JOptionPane.showInputDialog("Type your messagge please");
-            return new DisplayMessageDecorator(messagge, action);
-        }
-        
-        else if(selectedType.equalsIgnoreCase("PlayAudio")){
-             JFileChooser fileChooser = new JFileChooser();
-             FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV files(*.wav)", "wav");
-             fileChooser.setFileFilter(filter);
-
-            int result = fileChooser.showOpenDialog(null);
-
-            if (result == JFileChooser.APPROVE_OPTION) {
-                File selectFile = fileChooser.getSelectedFile();
-                return new PlayAudioDecorator(selectFile, action);
-             } 
-            else {
-                return null;
-            }
-        } else if(selectedType.equalsIgnoreCase("AppendStringToFile")){
-            
-            return new AppendStringToFileDecorator(action);
-        }
-        else if (selectedType.equalsIgnoreCase("MoveFileToDir")){
-            
-            return new MoveFileToDirDecorator(action);
-        } else if (selectedType.equalsIgnoreCase("CopyFileToDir")){
-           
-            return new CopyFileToDirDecorator(action); 
-        }
-        else if (selectedType.equalsIgnoreCase("DeleteFile")){
-           
-               return new DeleteFileDecorator(action);
-
-        }
-        else if (selectedType.equalsIgnoreCase("ExecuteProgram")){
-            return new ExecuteProgramDecorator(action);
-        }
-        else{
-            return action;
-        }
-            
-    }
-
-    @Override
     public Action create(String selectedType, Action action) {
         if(selectedType.equalsIgnoreCase("DisplayMessage")){
             String messagge = JOptionPane.showInputDialog("Type your messagge please");
@@ -97,8 +50,10 @@ public class ActionFactory implements Factory<Action>{
         }
         else if (selectedType.equalsIgnoreCase("DeleteFile")){
            
-               return new DeleteFileDecorator(action);
-
+               return new DeleteFileDecorator(action); 
+        }
+        else if (selectedType.equalsIgnoreCase("ExecuteProgram")){
+            return new ExecuteProgramDecorator(action);
         }
         else{
             return action;

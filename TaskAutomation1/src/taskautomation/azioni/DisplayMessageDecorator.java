@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Alejandro
  */
-public class DisplayMessageDecorator extends ActionDecorator{
+public class DisplayMessageDecorator extends ActionDecorator implements Serializable{
     private String messagge;
     
     public DisplayMessageDecorator() {

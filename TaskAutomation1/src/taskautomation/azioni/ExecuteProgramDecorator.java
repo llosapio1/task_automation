@@ -32,8 +32,7 @@ public class ExecuteProgramDecorator extends ActionDecorator implements Serializ
     //constructor used in application
     public ExecuteProgramDecorator(Action basicAction){
         super(basicAction);
-       
-        //get exe file to execute
+        //get exe file to execute   
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("select program to execute");
             
