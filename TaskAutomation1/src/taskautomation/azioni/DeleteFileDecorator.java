@@ -15,12 +15,17 @@ import javax.swing.JFileChooser;
 public class DeleteFileDecorator extends ActionDecorator implements Serializable{
     File selectedFile;
     
+    //constructor used in test class
     public DeleteFileDecorator(File selectedFile, Action basicAction) {
         super(basicAction);
         this.selectedFile = selectedFile;
     }
+    
+    //constructor used in application
     public DeleteFileDecorator(Action BasicAction){
         super(BasicAction);
+        
+        //get file to delete
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("select file to delete");
            
@@ -34,7 +39,7 @@ public class DeleteFileDecorator extends ActionDecorator implements Serializable
     
     @Override
     public void executeAction(){
-       
+       //delete selected file
         selectedFile.delete();
     }
      @Override
