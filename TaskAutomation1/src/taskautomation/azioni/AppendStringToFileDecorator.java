@@ -63,6 +63,6 @@ public class AppendStringToFileDecorator extends ActionDecorator implements Seri
     }
      @Override
     public String toString(){
-        return "Append string: " + string + " to file: " + file.toString() +" ";
+        return "Append string: " + string + " to file: " + file.toString() + "\n" + super.toString();
     }
 }

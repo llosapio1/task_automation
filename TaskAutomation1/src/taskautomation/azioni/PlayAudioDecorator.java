@@ -58,7 +58,7 @@ public class PlayAudioDecorator extends ActionDecorator{
     
     @Override
     public String toString() {
-        return "Play Audio: " + file.toString() + " ";
+        return "Play Audio: " + file.toString() + "\n" + super.toString();
     }
     
 }

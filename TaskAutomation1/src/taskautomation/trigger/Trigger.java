@@ -4,11 +4,13 @@
  */
 package taskautomation.trigger;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alessandro
  */
-public interface Trigger {
+public interface Trigger extends Serializable{
     
     boolean verifyTrigger();
     

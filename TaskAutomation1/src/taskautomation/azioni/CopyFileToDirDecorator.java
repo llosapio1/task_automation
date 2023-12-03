@@ -68,7 +68,7 @@ public class CopyFileToDirDecorator extends ActionDecorator implements Serializa
     }
     @Override
     public String toString(){
-        return "Copy file: " + selectedFile.toString() + " to directory: " + destinationDir.toString() + " ";
+        return "Copy file: " + selectedFile.toString() + " to directory: " + destinationDir.toString() + "\n" + super.toString();
     }
     
 }

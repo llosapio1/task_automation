@@ -22,44 +22,15 @@ public class Rule implements Serializable{
     private String name;
     private Trigger trigger;
     private Action action;
-    private boolean active;
+    private boolean active; 
     private boolean fireOnlyOnce;
-    private LocalTime alreadyFired;
+    private boolean alreadyFired; 
     private TemporalAmount sleepingPeriod;
+    private LocalTime lastFired; 
     
     // Costruttore con fireOnlyOnce
-    /*public Rule(String name, String triggerType, String actionType, boolean active,  boolean fireOnlyOnce) {
-        this(name, triggerType, actionType, active, fireOnlyOnce, null);
-    }*/
-    
-    // Costruttore con sleepingPeriod
-    /*public Rule(String name, String triggerType, String actionType, boolean active, TemporalAmount sleepingPeriod) {
-        this(name, triggerType, actionType, true, false, sleepingPeriod);
-    }*/
-    
-    //Costruttore con tutti i parametri
-    /*public Rule(String name, String triggerType, String actionType, boolean active, boolean fireOnlyOnce, TemporalAmount sleepingPeriod) {
-        this.name = name;
-        this.trigger = TriggerFactory.create(triggerType);
-        this.action = ActionFactory.create(actionType);
-        this.active = active;
-        this.fireOnlyOnce = fireOnlyOnce;
-        this.alreadyFired = null;
-        this.sleepingPeriod = sleepingPeriod;
-        if (!RuleList.getRuleList().addRule(this)){
-            // L'aggiunta della regola non è riuscita
-            throw new IllegalStateException("Impossibile aggiungere la regola alla lista.");
-        }
-    }*/
-    
-    //--- utilizzati nella interfaccia---
-    
-    // Costruttore con fireOnlyOnce
-    public Rule(String name, Trigger trigger, Action action, boolean active/*, boolean fireOnlyOnce*/) {
+    public Rule(String name, Trigger trigger, Action action, boolean active) {
         this(name, trigger, action, active, true, null);
-    }
-    public Rule(String name, Trigger trigger, Action action, boolean active, boolean fireOnlyOnce) {
-        this(name, trigger, action, active, fireOnlyOnce, null);
     }
     
     // Costruttore con sleepingPeriod
@@ -74,7 +45,8 @@ public class Rule implements Serializable{
         this.action = action;
         this.active = active;
         this.fireOnlyOnce = fireOnlyOnce;
-        this.alreadyFired = null;
+        this.alreadyFired = false;
+        this.lastFired = null;
         this.sleepingPeriod = sleepingPeriod;
         if (!RuleList.getRuleList().addRule(this)){
             // L'aggiunta della regola non è riuscita
@@ -115,25 +87,26 @@ public class Rule implements Serializable{
     }
     
     public void checkRule(){
-        if (this.active && Objects.equals(this.alreadyFired, null) && this.fireOnlyOnce){
+        if (this.active && !alreadyFired && this.fireOnlyOnce){
             if (this.trigger.verifyTrigger()){
                 this.action.executeAction();
-                this.alreadyFired = LocalTime.now();
+                this.lastFired = LocalTime.now();
+                this.alreadyFired = true;
             }
         } else if (this.active && !this.fireOnlyOnce){
-            if (Objects.equals(this.alreadyFired, null)){
+            if (!alreadyFired){
                 if (this.trigger.verifyTrigger()){
                     this.action.executeAction();
-                    this.alreadyFired = LocalTime.now();
-            } else if (LocalTime.now().isAfter(this.alreadyFired.plus(sleepingPeriod))){
-                if (this.trigger.verifyTrigger()){
+                    this.lastFired = LocalTime.now();
+                    this.alreadyFired = true;
+            } else if (alreadyFired){
+                if ((LocalTime.now().isAfter(this.lastFired.plus(sleepingPeriod)) && this.trigger.verifyTrigger())){
                     this.action.executeAction();
-                    this.alreadyFired = LocalTime.now();
+                    this.lastFired = LocalTime.now();
                 }
             }
             }
-        }
-            
+        } 
     }
     
     public void toggleActive(){

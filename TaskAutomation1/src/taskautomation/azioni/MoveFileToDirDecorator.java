@@ -74,6 +74,6 @@ public class MoveFileToDirDecorator extends ActionDecorator implements Serializa
     }
     @Override
     public String toString(){
-        return "Move file: " + selectedFile.toString() + " to directory: " + destDir.toString() + " ";
+        return "Move file: " + "\"" + selectedFile.toString()+ "\"" + " to directory: " + "\"" +destDir.toString()+ "\"" + "\n" + super.toString();
     }
 }

@@ -44,6 +44,6 @@ public class DeleteFileDecorator extends ActionDecorator implements Serializable
     }
      @Override
     public String toString(){
-        return "Delete file: " + selectedFile.toString();
+        return "Delete file: " + selectedFile.toString() + "\n" + super.toString();
     }
 }

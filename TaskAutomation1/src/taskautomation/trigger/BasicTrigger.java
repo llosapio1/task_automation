@@ -14,7 +14,7 @@ public class BasicTrigger implements Trigger, Serializable{
 
     @Override
     public boolean verifyTrigger() {
-        return true;
+        return false;
     }
     
     @Override
