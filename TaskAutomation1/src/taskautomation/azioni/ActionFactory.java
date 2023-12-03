@@ -52,6 +52,9 @@ public class ActionFactory{
                return new DeleteFileDecorator(action);
 
         }
+        else if (selectedType.equalsIgnoreCase("ExecuteProgram")){
+            return new ExecuteProgramDecorator(action);
+        }
         else{
             return action;
         }
