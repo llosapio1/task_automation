@@ -54,6 +54,9 @@ public class ActionFactory implements Factory<Action>{
                return new DeleteFileDecorator(action);
 
         }
+        else if (selectedType.equalsIgnoreCase("ExecuteProgram")){
+            return new ExecuteProgramDecorator(action);
+        }
         else{
             return action;
         }

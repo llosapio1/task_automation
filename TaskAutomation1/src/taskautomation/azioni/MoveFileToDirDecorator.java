@@ -24,6 +24,8 @@ public class MoveFileToDirDecorator extends ActionDecorator implements Serializa
     String destDirPath;
     File destDir;
     
+    
+    //constructor used in test class
     public MoveFileToDirDecorator(File selectedFile, File destinationDir, Action basicAction) {
         super(basicAction);
        
@@ -31,16 +33,23 @@ public class MoveFileToDirDecorator extends ActionDecorator implements Serializa
         this.destDir = destinationDir;
         destDirPath = destinationDir.getAbsolutePath();
     }
+    
+    //constructor used in application
     public MoveFileToDirDecorator(Action basicAction){
         super(basicAction);
+        
+        //get file to move
         JFileChooser fileChooser1 = new JFileChooser();
             fileChooser1.setDialogTitle("choose file to move");
             int res1 = fileChooser1.showOpenDialog(null);
             
-            
+            //get destination folder to move selected file into
             JFileChooser fileChooser2 = new JFileChooser();
             fileChooser2.setDialogTitle("choose destination folder");
+            
+            //allow the selection of directories only
             fileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            
             int res2= fileChooser2.showOpenDialog(null);
             
            if(res1 == JFileChooser.APPROVE_OPTION && res2 == JFileChooser.APPROVE_OPTION){
@@ -52,7 +61,8 @@ public class MoveFileToDirDecorator extends ActionDecorator implements Serializa
     }
     @Override
     public void executeAction(){
-        System.out.println("inside execute move with file " + selectedFile.toString() + " and dir " + destDir.toString());
+        
+        //if selected file exists, move file into selected destination folder
         if(selectedFile.exists()){
        try {
            Files.move(selectedFile.toPath(),

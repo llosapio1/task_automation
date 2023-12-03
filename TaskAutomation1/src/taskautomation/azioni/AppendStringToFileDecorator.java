@@ -22,7 +22,7 @@ public class AppendStringToFileDecorator extends ActionDecorator implements Seri
     private File file;
     private String string;
    
-
+    //constructor used in test class
     public AppendStringToFileDecorator(File file, String string, Action basicAction) {
         super(basicAction);
         this.file = file;
@@ -30,13 +30,20 @@ public class AppendStringToFileDecorator extends ActionDecorator implements Seri
         
     }
     
+    //constructor used in application
     public AppendStringToFileDecorator(Action basicAction){
        super(basicAction);
+       //get string to append
        this.string = JOptionPane.showInputDialog("Type the string to append.");
+       
+       //get txt file to append string to
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("select file to append string to");
+            
+            //allow the selection of txt files only
            FileNameExtensionFilter filter = new FileNameExtensionFilter("text files(*.txt)", "txt");
            fileChooser.setFileFilter(filter);
+           
             int res = fileChooser.showOpenDialog(null);
            if(res == JFileChooser.APPROVE_OPTION){
                this.file = fileChooser.getSelectedFile();
@@ -46,7 +53,7 @@ public class AppendStringToFileDecorator extends ActionDecorator implements Seri
     
     @Override
     public void executeAction(){
-       
+       //append string to file
         try (FileWriter fr = new FileWriter(file.getAbsolutePath(), true)) {
             fr.write(string);
             fr.close();
