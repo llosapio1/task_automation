@@ -19,6 +19,7 @@ import taskautomation.azioni.DisplayMessageDecorator;
 public class ActionFactoryIT{
     
     private final ActionFactory af = new ActionFactory();
+    private BasicAction ba = new BasicAction();
     
     public ActionFactoryIT() {
 
@@ -30,7 +31,7 @@ public class ActionFactoryIT{
     @Test
     public void testCreateWithValidType() {  
         String actionType = "DisplayMessage";
-        Action result = af.create(actionType);
+        Action result = af.create(actionType, ba);
         assertTrue(result instanceof DisplayMessageDecorator);
         
     }
@@ -38,7 +39,7 @@ public class ActionFactoryIT{
     @Test
     public void testCreateWithInvalidType() {
         String ActionType = "InvalidType";
-        Action result = af.create(ActionType);
+        Action result = af.create(ActionType, ba);
         assertTrue(result instanceof BasicAction);
         
     }
