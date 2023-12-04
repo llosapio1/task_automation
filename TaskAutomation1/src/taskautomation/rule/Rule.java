@@ -88,6 +88,7 @@ public class Rule implements Serializable{
     
     public void checkRule() {
         if (this.active && !alreadyFired && this.fireOnlyOnce) {
+            System.out.println("1");
             if (this.trigger.verifyTrigger()) {
                 this.action.executeAction();
                 this.lastFired = LocalTime.now();
