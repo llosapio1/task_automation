@@ -86,27 +86,27 @@ public class Rule implements Serializable{
         this.fireOnlyOnce = firedOnlyOnce;
     }
     
-    public void checkRule(){
-        if (this.active && !alreadyFired && this.fireOnlyOnce){
-            if (this.trigger.verifyTrigger()){
+    public void checkRule() {
+        if (this.active && !alreadyFired && this.fireOnlyOnce) {
+            if (this.trigger.verifyTrigger()) {
                 this.action.executeAction();
                 this.lastFired = LocalTime.now();
                 this.alreadyFired = true;
             }
-        } else if (this.active && !this.fireOnlyOnce){
-            if (!alreadyFired){
-                if (this.trigger.verifyTrigger()){
-                    this.action.executeAction();
-                    this.lastFired = LocalTime.now();
-                    this.alreadyFired = true;
-            } else if (alreadyFired){
-                if ((LocalTime.now().isAfter(this.lastFired.plus(sleepingPeriod)) && this.trigger.verifyTrigger())){
+        } else if (this.active && !this.fireOnlyOnce) {
+            if (alreadyFired) {
+                if ((LocalTime.now().isAfter(this.lastFired.plus(sleepingPeriod)) && this.trigger.verifyTrigger())) {
                     this.action.executeAction();
                     this.lastFired = LocalTime.now();
                 }
+            } else {
+                if (this.trigger.verifyTrigger()) {
+                    this.action.executeAction();
+                    this.lastFired = LocalTime.now();
+                    this.alreadyFired = true;
+                }
             }
-            }
-        } 
+        }
     }
     
     public void toggleActive(){
