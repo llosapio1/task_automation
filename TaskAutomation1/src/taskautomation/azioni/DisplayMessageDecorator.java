@@ -4,40 +4,46 @@
  */
 package taskautomation.azioni;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import java.io.Serializable;
-import javax.swing.JOptionPane;
 
 /**
- *
+ * DisplayMessageDecorator class for displaying a message.
+ * 
  * @author Alejandro
  */
-public class DisplayMessageDecorator extends ActionDecorator implements Serializable{
-    private String messagge;
-    
+public class DisplayMessageDecorator extends ActionDecorator implements Serializable {
+    private String message;
+
     public DisplayMessageDecorator() {
     }
 
-    public DisplayMessageDecorator(String messagge, Action actionDecorated) {
+    public DisplayMessageDecorator(String message, Action actionDecorated) {
         super(actionDecorated);
-        this.messagge = messagge;
+        this.message = message;
     }
 
     public String getMessage() {
-        return messagge;
+        return message;
     }
-    
+
     public void setMessage(String newMessage) {
-        this.messagge = newMessage;
+        this.message = newMessage;
     }
-    
+
     @Override
     public void executeAction() {
-        JOptionPane.showMessageDialog(null, messagge, "Notificazione", JOptionPane.INFORMATION_MESSAGE);
-        super.executeAction(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("DisplayMessage");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+        super.executeAction();
     }
-    
-     @Override
+
+    @Override
     public String toString() {
-        return "Display messagge: " + "\""+ messagge +"\"\n" + super.toString();
+        return "Display message: " + "\"" + message + "\"\n" + super.toString();
     }
 }

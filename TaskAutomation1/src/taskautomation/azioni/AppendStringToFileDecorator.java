@@ -10,9 +10,10 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javafx.scene.control.TextInputDialog;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 /**
  *
@@ -32,23 +33,22 @@ public class AppendStringToFileDecorator extends ActionDecorator implements Seri
     
     //constructor used in application
     public AppendStringToFileDecorator(Action basicAction){
-       super(basicAction);
-       //get string to append
-       this.string = JOptionPane.showInputDialog("Type the string to append.");
-       
-       //get txt file to append string to
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("select file to append string to");
-            
-            //allow the selection of txt files only
-           FileNameExtensionFilter filter = new FileNameExtensionFilter("text files(*.txt)", "txt");
-           fileChooser.setFileFilter(filter);
+        super(basicAction);
+        //get string to append
+        TextInputDialog dialog = new TextInputDialog("Type the string to append.");
+        dialog.setHeaderText(null);
+        dialog.setTitle("Append String to File");
+        dialog.setContentText("Type the string to append:");
+        this.string = dialog.showAndWait().orElse("");
+
+        //get txt file to append string to
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select file to append string to");
+        
+        //allow the selection of txt files only
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("Text files (*.txt)", "*.txt"));
            
-            int res = fileChooser.showOpenDialog(null);
-           if(res == JFileChooser.APPROVE_OPTION){
-               this.file = fileChooser.getSelectedFile();
-              
-           }
+        this.file = fileChooser.showOpenDialog(new Stage());
     }
     
     @Override

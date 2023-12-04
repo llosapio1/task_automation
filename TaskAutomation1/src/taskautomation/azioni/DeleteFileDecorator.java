@@ -6,7 +6,8 @@ package taskautomation.azioni;
 
 import java.io.File;
 import java.io.Serializable;
-import javax.swing.JFileChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -26,21 +27,18 @@ public class DeleteFileDecorator extends ActionDecorator implements Serializable
         super(BasicAction);
         
         //get file to delete
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("select file to delete");
-           
-        int res = fileChooser.showOpenDialog(null);
-           if(res == JFileChooser.APPROVE_OPTION){
-               this.selectedFile = fileChooser.getSelectedFile();
-               
-           }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select file to delete");
+        this.selectedFile = fileChooser.showOpenDialog(new Stage());
     
     }
     
     @Override
     public void executeAction(){
        //delete selected file
-        selectedFile.delete();
+       if (selectedFile != null) {
+            selectedFile.delete();
+        }
     }
      @Override
     public String toString(){

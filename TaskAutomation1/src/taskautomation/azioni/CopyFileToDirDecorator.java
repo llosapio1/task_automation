@@ -12,16 +12,18 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
  * @author Leonardo
  */
 public class CopyFileToDirDecorator extends ActionDecorator implements Serializable{
-   File selectedFile;
    
-   File destinationDir;
+    File selectedFile;
+    File destinationDir;
    
    //constructor used in test class
     public CopyFileToDirDecorator(File selectedFile, File destinationDir, Action basicAction) {
@@ -35,33 +37,22 @@ public class CopyFileToDirDecorator extends ActionDecorator implements Serializa
         super(basicAction);
         
         //get file to copy
-            JFileChooser fileChooser1 = new JFileChooser();
-            fileChooser1.setDialogTitle("choose file to copy");
-            int res1 = fileChooser1.showOpenDialog(null);
+        FileChooser fileChooser1 = new FileChooser();
+        fileChooser1.setTitle("Choose file to copy");
+        this.selectedFile = fileChooser1.showOpenDialog(new Stage());
             
-            //get destination folder to copy the file into
-            JFileChooser fileChooser2 = new JFileChooser();
-            fileChooser2.setDialogTitle("choose destination folder");
-            
-            //allow only the selection of directories
-            fileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            
-            int res2= fileChooser2.showOpenDialog(null);
-            
-           if(res1 == JFileChooser.APPROVE_OPTION && res2 == JFileChooser.APPROVE_OPTION){
-               this.selectedFile = fileChooser1.getSelectedFile();  
-               this.destinationDir = fileChooser2.getSelectedFile();
-               
-           } 
+        //get destination folder to copy the file into
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Choose destination folder");
+        this.destinationDir = directoryChooser.showDialog(new Stage());
     }
     
     @Override
     public void executeAction(){
         //copy selected file to selected destination directory
        try {
-           Files.copy(selectedFile.toPath(),
-                   (new File(destinationDir.toPath() + File.separator+ selectedFile.getName())).toPath(),
-                   StandardCopyOption.REPLACE_EXISTING);
+           Path destinationPath = new File(destinationDir, selectedFile.getName()).toPath();
+           Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
        } catch (IOException ex) {
            Logger.getLogger(CopyFileToDirDecorator.class.getName()).log(Level.SEVERE, null, ex);
        }

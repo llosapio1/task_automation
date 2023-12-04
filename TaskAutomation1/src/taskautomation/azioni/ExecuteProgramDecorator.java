@@ -9,9 +9,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -33,22 +32,19 @@ public class ExecuteProgramDecorator extends ActionDecorator implements Serializ
     public ExecuteProgramDecorator(Action basicAction){
         super(basicAction);
         //get exe file to execute   
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("select program to execute");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select program to execute");
             
-            //allow the selection of exe files only
-           FileNameExtensionFilter filter = new FileNameExtensionFilter("(*.exe)", "exe");
-           fileChooser.setFileFilter(filter);
+        //allow the selection of exe files only
+        FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Executable files (*.exe)", "*.exe");
+        fileChooser.getExtensionFilters().add(filter);
+
+        this.program = fileChooser.showOpenDialog(new Stage());
            
-            int res = fileChooser.showOpenDialog(null);
-           if(res == JFileChooser.APPROVE_OPTION){
-               this.program = fileChooser.getSelectedFile();  
-           }
-           
-           //get arguments to use to execute external program
-            this.arguments = JOptionPane.showInputDialog("Type the arguments to use.");
+        //get arguments to use to execute external program
+        this.arguments = javax.swing.JOptionPane.showInputDialog("Type the arguments to use.");
+        
     }
-    
     
     @Override
     public void executeAction(){

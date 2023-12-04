@@ -8,11 +8,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  *
@@ -39,39 +41,31 @@ public class MoveFileToDirDecorator extends ActionDecorator implements Serializa
         super(basicAction);
         
         //get file to move
-        JFileChooser fileChooser1 = new JFileChooser();
-            fileChooser1.setDialogTitle("choose file to move");
-            int res1 = fileChooser1.showOpenDialog(null);
+        FileChooser fileChooser1 = new FileChooser();
+        fileChooser1.setTitle("Choose file to move");
+        this.selectedFile = fileChooser1.showOpenDialog(new Stage());
             
-            //get destination folder to move selected file into
-            JFileChooser fileChooser2 = new JFileChooser();
-            fileChooser2.setDialogTitle("choose destination folder");
-            
-            //allow the selection of directories only
-            fileChooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            
-            int res2= fileChooser2.showOpenDialog(null);
-            
-           if(res1 == JFileChooser.APPROVE_OPTION && res2 == JFileChooser.APPROVE_OPTION){
-               this.selectedFile = fileChooser1.getSelectedFile();  
-               this.destDir = fileChooser2.getSelectedFile();
-               this.destDirPath = this.destDir.getAbsolutePath();
+        // Get destination folder to move the selected file into
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Choose destination folder");
+        this.destDir = directoryChooser.showDialog(new Stage());
                
-           } 
     }
+    
     @Override
-    public void executeAction(){
-        
-        //if selected file exists, move file into selected destination folder
-        if(selectedFile.exists()){
-       try {
-           Files.move(selectedFile.toPath(),
-                   Paths.get(destDirPath + File.separator+selectedFile.getName()));
-       } catch (IOException ex) {
-           Logger.getLogger(MoveFileToDirDecorator.class.getName()).log(Level.SEVERE, null, ex);
-       }
+    public void executeAction() {
+        // If the selected file and destination directory are not null, move the file
+        if (selectedFile != null && destDir != null) {
+            try {
+                Path destinationPath = destDir.toPath().resolve(selectedFile.getName());
+                Files.move(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex) {
+                Logger.getLogger(MoveFileToDirDecorator.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+        super.executeAction();
     }
+
     @Override
     public String toString(){
         return "Move file: " + "\"" + selectedFile.toString()+ "\"" + " to directory: " + "\"" +destDir.toString()+ "\"" + "\n" + super.toString();
