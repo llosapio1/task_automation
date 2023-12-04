@@ -22,9 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import taskautomation.azioni.Action;
@@ -76,7 +74,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private ObservableList<String> triggerList;
     private ObservableList<String> actionList;
     
-    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay");
+    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileToDir", "CopyFileToDir", "DeleteFile", "ExecuteProgram");
     
     private final TriggerFactory triggerFactory = new TriggerFactory();

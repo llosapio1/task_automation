@@ -5,6 +5,7 @@
 package taskautomation.trigger;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +27,10 @@ public class TriggerFactory implements Factory<Trigger>{
             LocalTime time = getTimeFromDialog();
             decoratedTrigger = new TimeOfDayDecorator(trigger, time);
         }
+        else if ("DayOfWeek".equals(triggerType)) {
+            DayOfWeek dayOfWeek = getDayOfWeekFromDialog();
+            decoratedTrigger = new DayOfWeekDecorator(trigger, dayOfWeek);
+        }
         return decoratedTrigger;
     }
     
@@ -44,6 +49,21 @@ public class TriggerFactory implements Factory<Trigger>{
             return null;
         }
     }
+    
+    private static DayOfWeek getDayOfWeekFromDialog() {
+        FXMLLoader fxmlLoader = new FXMLLoader(TriggerFactory.class.getResource("DayOfWeekInputDialog.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
 
+            DayOfWeekInputDialogController controller = fxmlLoader.getController();
+            controller.setStage(stage);
+
+            return controller.showDialog();
+        } catch (IOException e) {
+            return null;
+        }
+    }
 
 }
