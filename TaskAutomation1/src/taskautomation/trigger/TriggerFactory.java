@@ -31,6 +31,9 @@ public class TriggerFactory implements Factory<Trigger>{
             DayOfWeek dayOfWeek = getDayOfWeekFromDialog();
             decoratedTrigger = new DayOfWeekDecorator(trigger, dayOfWeek);
         }
+        else if ("FileExists".equals(triggerType)){
+            decoratedTrigger = new FileExistsDecorator(trigger);
+        }
         return decoratedTrigger;
     }
     
