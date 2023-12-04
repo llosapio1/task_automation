@@ -116,7 +116,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
         }
         
         else{
-            newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected(), CooldownSelected.isSelected());
+            newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected(), !CooldownSelected.isSelected());
         }
         Stage stage = (Stage) createRuleButton.getScene().getWindow();
         stage.close();
