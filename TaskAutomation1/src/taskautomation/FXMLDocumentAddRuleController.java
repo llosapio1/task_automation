@@ -74,7 +74,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private ObservableList<String> triggerList;
     private ObservableList<String> actionList;
     
-    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek", "DayOfMonth", "FileExists");
+    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek", "DayOfMonth", "FileExists", "FileSizeIsGreater");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileToDir", "CopyFileToDir", "DeleteFile", "ExecuteProgram");
     
     private final TriggerFactory triggerFactory = new TriggerFactory();
