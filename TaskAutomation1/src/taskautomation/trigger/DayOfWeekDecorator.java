@@ -31,9 +31,8 @@ public class DayOfWeekDecorator extends TriggerDecorator implements Serializable
     
     @Override
     public boolean verifyTrigger() {
-        
-        DayOfWeek today = LocalDate.now().getDayOfWeek();;
-        return (today.equals(dayOfWeek)) | super.verifyTrigger();
+        DayOfWeek dayOfWeekToday = LocalDate.now().getDayOfWeek();;
+        return (dayOfWeekToday.equals(dayOfWeek)) | super.verifyTrigger();
     }
     
     @Override

@@ -31,6 +31,10 @@ public class TriggerFactory implements Factory<Trigger>{
             DayOfWeek dayOfWeek = getDayOfWeekFromDialog();
             decoratedTrigger = new DayOfWeekDecorator(trigger, dayOfWeek);
         }
+        else if ("DayOfMonth".equals(triggerType)) {
+            int dayOfMonth = getDayOfMonthFromDialog();
+            decoratedTrigger = new DayOfMonthDecorator(trigger, dayOfMonth);
+        }
         return decoratedTrigger;
     }
     
@@ -63,6 +67,22 @@ public class TriggerFactory implements Factory<Trigger>{
             return controller.showDialog();
         } catch (IOException e) {
             return null;
+        }
+    }
+    
+    private static int getDayOfMonthFromDialog() {
+        FXMLLoader fxmlLoader = new FXMLLoader(TriggerFactory.class.getResource("DayOfMonthInputDialog.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            DayOfMonthInputDialogController controller = fxmlLoader.getController();
+            controller.setStage(stage);
+
+            return controller.showDialog();
+        } catch (IOException e) {
+            return -1;
         }
     }
 
