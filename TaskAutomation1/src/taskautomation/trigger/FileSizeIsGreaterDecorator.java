@@ -39,7 +39,7 @@ public class FileSizeIsGreaterDecorator extends TriggerDecorator implements Seri
     
     @Override
     public boolean verifyTrigger(){
-       long fileSize = file.length()/1024;
+       double fileSize = (double) file.length()/1024;
        
        return fileSize > size; 
         
