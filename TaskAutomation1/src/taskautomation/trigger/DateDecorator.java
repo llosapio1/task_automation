@@ -15,9 +15,27 @@ public class DateDecorator  extends TriggerDecorator implements Serializable{
     
     LocalDate date;
 
-    public DateDecorator(LocalDate date, Trigger decoratedTrigger) {
+    public DateDecorator(Trigger decoratedTrigger, LocalDate date) {
         super(decoratedTrigger);
         this.date = date;
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    @Override
+    public boolean verifyTrigger() {
+        // Controlla se la data odierna è uguale alla data del trigger
+        return LocalDate.now().isEqual(date) | super.verifyTrigger();
+    }
     
+    @Override
+    public String toString() {
+        return "date: " + "\"" + date + "\"\n" + super.toString();
+    }
 }

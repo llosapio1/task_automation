@@ -6,6 +6,7 @@ package taskautomation.trigger;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,6 +35,10 @@ public class TriggerFactory implements Factory<Trigger>{
         else if ("DayOfMonth".equals(triggerType)) {
             int dayOfMonth = getDayOfMonthFromDialog();
             decoratedTrigger = new DayOfMonthDecorator(trigger, dayOfMonth);
+        }
+        else if ("Date".equals(triggerType)){
+            LocalDate date = getDateFromDialog();
+            decoratedTrigger = new DateDecorator(trigger, date);
         }
         else if ("FileExists".equals(triggerType)){
             decoratedTrigger = new FileExistsDecorator(trigger);
@@ -89,6 +94,22 @@ public class TriggerFactory implements Factory<Trigger>{
             return controller.showDialog();
         } catch (IOException e) {
             return -1;
+        }
+    }
+    
+    private static LocalDate getDateFromDialog() {
+        FXMLLoader fxmlLoader = new FXMLLoader(TriggerFactory.class.getResource("DateInputDialog.fxml"));
+        try {
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+            DateInputDialogController controller = fxmlLoader.getController();
+            controller.setStage(stage);
+
+            return controller.showDialog();
+        } catch (IOException e) {
+            return null;
         }
     }
 

@@ -23,8 +23,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class PlayAudioDecorator extends ActionDecorator implements Serializable{
     
-    private Clip clip;
-    
     private File file;
     
     public PlayAudioDecorator(){

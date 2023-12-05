@@ -4,10 +4,13 @@
  */
 package taskautomation.trigger;
 
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,14 +20,14 @@ import javafx.stage.Stage;
  *
  * @author alessandro
  */
-public class DayOfMonthInputDialogController {
+public class DateInputDialogController{
 
     @FXML
     private Label label;
     @FXML
-    private ChoiceBox<Integer> dateBox;
-    @FXML
     private Button okButton;
+    @FXML
+    private DatePicker datePicker;
     
     private Stage stage;
 
@@ -36,17 +39,15 @@ public class DayOfMonthInputDialogController {
         this.stage = stage;
     }
 
-    public int showDialog() {
+    public LocalDate showDialog() {
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Select the day of month");
+        stage.setTitle("Select the date");
         
-        dateBox.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31));
-
         okButton.setOnAction(e -> { stage.close(); });
 
         stage.showAndWait();
         
-        return dateBox.getValue();
-    }
+        return datePicker.getValue();
+    }  
     
 }

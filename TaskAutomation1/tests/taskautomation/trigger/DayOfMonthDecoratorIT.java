@@ -21,9 +21,6 @@ public class DayOfMonthDecoratorIT {
     private DayOfMonthDecorator instance;
     private int day = 15;
     
-    public DayOfMonthDecoratorIT() {
-    }
-    
     @Before
     public void setUp() {
         instance = new DayOfMonthDecorator(new BasicTrigger(), day);
