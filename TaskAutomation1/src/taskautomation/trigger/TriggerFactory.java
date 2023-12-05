@@ -35,6 +35,9 @@ public class TriggerFactory implements Factory<Trigger>{
             int dayOfMonth = getDayOfMonthFromDialog();
             decoratedTrigger = new DayOfMonthDecorator(trigger, dayOfMonth);
         }
+        else if ("FileExists".equals(triggerType)){
+            decoratedTrigger = new FileExistsDecorator(trigger);
+        }
         return decoratedTrigger;
     }
     

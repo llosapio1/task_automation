@@ -74,7 +74,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private ObservableList<String> triggerList;
     private ObservableList<String> actionList;
     
-    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek", "DayOfMonth");
+    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek", "DayOfMonth", "FileExists");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileToDir", "CopyFileToDir", "DeleteFile", "ExecuteProgram");
     
     private final TriggerFactory triggerFactory = new TriggerFactory();
@@ -116,7 +116,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
         }
         
         else{
-            newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected(), CooldownSelected.isSelected());
+            newRule = new Rule(textFieldName.getText(), trigger, action, checkActive.isSelected(), !CooldownSelected.isSelected());
         }
         Stage stage = (Stage) createRuleButton.getScene().getWindow();
         stage.close();
