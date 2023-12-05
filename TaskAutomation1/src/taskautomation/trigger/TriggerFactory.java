@@ -38,6 +38,9 @@ public class TriggerFactory implements Factory<Trigger>{
         else if ("FileExists".equals(triggerType)){
             decoratedTrigger = new FileExistsDecorator(trigger);
         }
+        else if ("FileSizeIsGreater".equals(triggerType)){
+            decoratedTrigger = new FileSizeIsGreaterDecorator(trigger);
+        }
         return decoratedTrigger;
     }
     
