@@ -7,9 +7,6 @@ package taskautomation.rule;
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.time.temporal.TemporalAmount;
-import java.util.Objects;
-import taskautomation.azioni.ActionFactory;
-import taskautomation.trigger.TriggerFactory;
 import taskautomation.trigger.Trigger;
 import taskautomation.azioni.Action;
 

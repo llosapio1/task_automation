@@ -17,14 +17,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import taskautomation.counter.Counter;
+import taskautomation.counter.CounterList;
 import taskautomation.rule.RuleList;
 
 /**
@@ -49,6 +55,25 @@ public class FXMLDocumentController implements Initializable {
     private ObservableList<Rule> ruleListView;
     @FXML
     private Label title;
+    private ListView<Counter> countersList;
+    @FXML
+    private HBox addCounterBox;
+    @FXML
+    private TextField counterName;
+    @FXML
+    private TextField counterValue;
+    @FXML
+    private TableView<Counter> countersTable;
+    @FXML
+    private TableColumn<Counter, String> counterNameColumn;
+    @FXML
+    private TableColumn<Counter, Integer> counterValueColumn;
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private Button addCounterButton;
+    @FXML
+    private Label fillFieldsLabel;
     
     
  
@@ -62,10 +87,18 @@ public class FXMLDocumentController implements Initializable {
         azioneColumn.setCellValueFactory(new PropertyValueFactory("action"));
         statusRuleColumn.setCellValueFactory(new PropertyValueFactory("active"));
         tableView.setItems(ruleListView);
-        // All'avvio dell'applicazione aggiorna la ruleListView
-        aggiornaTableView();
+        counterNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        counterValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         
+        addCounterBox.setManaged(false);
+        anchorPane.setMaxHeight(635);
+        
+        // All'avvio dell'applicazione aggiorna la ruleListView e la countersTableView
+        aggiornaTableView();
+        updateCountersTableView();
+                
     }
+    
     private void aggiornaTableView(){
         ruleListView.setAll(FXCollections.observableArrayList(RuleList.getRuleList().get()));
     }
@@ -108,6 +141,49 @@ public class FXMLDocumentController implements Initializable {
         //Il metodo cambia lo stato della regola al suo complememento
         selecRule.toggleActive();
         aggiornaTableView();
+    }
+    
+    private void updateCountersTableView() {
+        // Collega la lista di contatori alla ListView
+        countersTable.setItems(FXCollections.observableArrayList(CounterList.getCounterList().get()));
+    }
+
+    @FXML
+    private void addCounterAction(ActionEvent event) {
+        
+        addCounterBox.setManaged(true);
+        addCounterBox.setVisible(true);
+        addCounterButton.setVisible(false);
+        fillFieldsLabel.setVisible(true);
+        anchorPane.requestFocus();
+        
+    }
+
+    @FXML
+    private void confirmAddCounterAction(ActionEvent event) {
+        
+        if (counterName.getText().isEmpty() || counterValue.getText().isEmpty()) {
+            // Mostra una finestra di avviso
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Make sure to enter a name and a value for the counter.");
+            alert.showAndWait();
+            return;
+        }
+        
+        Counter c = new Counter (counterName.getText(), Integer.parseInt(counterValue.getText()));
+        
+        // Aggiorna la ListView dei contatori
+        updateCountersTableView();
+        
+        addCounterBox.setManaged(false);
+        addCounterBox.setVisible(false);
+        counterName.clear();
+        counterValue.clear();
+        fillFieldsLabel.setVisible(false);
+        addCounterButton.setVisible(true);
+        
     }
      
 }

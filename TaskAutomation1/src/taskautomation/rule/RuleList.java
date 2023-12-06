@@ -21,7 +21,8 @@ public class RuleList implements Serializable{
     
     private static RuleList instance = null;
     private static LinkedList<Rule> ruleList;
-
+    
+    // è stato applicato il pattern Singleton
     private RuleList() {
         try {
             ruleList = loadRulesFromFile();
