@@ -55,6 +55,18 @@ public class CounterList implements Serializable{
         return countersList;
     }
     
+    public void removeCounter (Counter counter) {
+        countersList.remove(counter); // Rimuovi il vecchio contatore
+        saveCountersToFile();         // Salva la lista aggiornata su file
+    }
+    
+    
+    public void updateCounter (Counter counter, int newValue) {
+        Counter c = countersList.get(countersList.indexOf(counter));    //Ottiene l'oggetto counter
+        c.setValue(newValue);   //Modifica il valore del counter
+        saveCountersToFile();   // Salva la lista aggiornata su file
+    }
+    
     private ArrayList<Counter> loadCountersFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("counters.ser"))) {
             ArrayList<Counter> loadedCounters = (ArrayList<Counter>) ois.readObject();

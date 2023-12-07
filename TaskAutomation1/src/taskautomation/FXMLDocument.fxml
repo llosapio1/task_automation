@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -82,16 +81,19 @@
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                     <content>
-                        <TableView fx:id="countersTable" prefHeight="400.0" prefWidth="672.0">
-                            <columns>
-                                <TableColumn fx:id="counterNameColumn" prefWidth="341.0" text="Nome" />
-                                <TableColumn fx:id="counterValueColumn" prefWidth="330.0" text="Valore" />
-                            </columns>
-                        </TableView>
-                     </content>
-                  </ScrollPane>
+                  <TableView fx:id="countersTable" prefHeight="400.0" prefWidth="672.0">
+                      <columns>
+                          <TableColumn fx:id="counterNameColumn" prefWidth="341.0" text="Nome" />
+                          <TableColumn fx:id="counterValueColumn" prefWidth="330.0" text="Valore" />
+                      </columns>
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" onAction="#updateCounterValue" text="Update counter" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
+                  </TableView>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="addCounterButton" mnemonicParsing="false" onAction="#addCounterAction" text="Add counter" />

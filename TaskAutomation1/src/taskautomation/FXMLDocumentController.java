@@ -7,6 +7,7 @@ package taskautomation;
 import taskautomation.rule.Rule;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -25,6 +26,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -145,7 +147,8 @@ public class FXMLDocumentController implements Initializable {
     
     private void updateCountersTableView() {
         // Collega la lista di contatori alla ListView
-        countersTable.setItems(FXCollections.observableArrayList(CounterList.getCounterList().get()));
+        //countersTable.setItems(FXCollections.observableArrayList(CounterList.getCounterList().get()));
+        countersTable.getItems().setAll(CounterList.getCounterList().get());
     }
 
     @FXML
@@ -184,6 +187,38 @@ public class FXMLDocumentController implements Initializable {
         fillFieldsLabel.setVisible(false);
         addCounterButton.setVisible(true);
         
+    }
+
+    @FXML
+    private void updateCounterValue(ActionEvent event) {
+        
+        //Prende la regola selezionata dall'utente
+        Counter selectedCounter = countersTable.getSelectionModel().getSelectedItem();
+        
+        //Aggiorna il counter e aggiorna la tabella
+        if (selectedCounter != null) {
+            // Apri una finestra di dialogo per inserire il nuovo valore
+            TextInputDialog dialog = new TextInputDialog(String.valueOf(selectedCounter.getValue()));
+            dialog.setTitle("Update Counter");
+            dialog.setHeaderText("Enter the new value for the counter:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(newValue -> {
+                try {
+                    // Aggiorna il valore del contatore
+                    int newCounterValue = Integer.parseInt(newValue);
+                    CounterList.getCounterList().updateCounter(selectedCounter, newCounterValue);
+                    updateCountersTableView();
+                } catch (NumberFormatException e) {
+                    // Mostra un messaggio di errore se l'input non è un numero
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please enter a valid number for the counter value.");
+                    alert.showAndWait();
+                }
+            });
+        }
     }
      
 }
