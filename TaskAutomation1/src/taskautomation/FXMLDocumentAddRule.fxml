@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -15,15 +14,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane alignment="TOP_CENTER" prefHeight="520.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskautomation.FXMLDocumentAddRuleController">
+<StackPane alignment="TOP_CENTER" prefHeight="520.0" prefWidth="730.0" stylesheets="@FXMLDocumentAddRuleCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskautomation.FXMLDocumentAddRuleController">
    <children>
       <VBox fx:id="contentBase" prefHeight="780.0" prefWidth="750.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="9.0" prefWidth="710.0" text="Add a new Rule">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER" prefHeight="10.0" prefWidth="690.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="9.0" prefWidth="710.0" text="Add a new Rule">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
             <HBox alignment="CENTER" prefHeight="42.0" prefWidth="736.0" spacing="10.0">
                <children>
                   <Label />
@@ -45,18 +48,10 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <SplitPane dividerPositions="0.5" prefHeight="384.0" prefWidth="710.0">
+            <SplitPane dividerPositions="0.5">
               <items>
-                  <ScrollPane prefHeight="382.0" prefWidth="335.0">
-                     <content>
-                        <ListView fx:id="triggerView" prefHeight="381.0" prefWidth="351.0" />
-                     </content>
-                  </ScrollPane>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                     <content>
-                        <ListView fx:id="actionView" prefHeight="381.0" prefWidth="351.0" />
-                     </content>
-                  </ScrollPane>
+                  <ListView fx:id="triggerView" prefWidth="351.0" />
+                  <ListView fx:id="actionView" prefWidth="351.0" />
               </items>
             </SplitPane>
             <HBox alignment="CENTER" prefHeight="47.0" prefWidth="726.0" spacing="125.0">

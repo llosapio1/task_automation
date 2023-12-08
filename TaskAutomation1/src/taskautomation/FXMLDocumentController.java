@@ -78,6 +78,8 @@ public class FXMLDocumentController implements Initializable {
     private Label fillFieldsLabel;
     @FXML
     private Button closeButton;
+    @FXML
+    private Button confirmAddCounterButton;
     
     
  

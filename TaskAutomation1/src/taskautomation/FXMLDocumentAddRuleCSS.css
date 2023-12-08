@@ -1,0 +1,82 @@
+#contentBase {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 10;
+}
+
+.label-title {
+    -fx-font-family: "Arial";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.hbox-controls {
+    -fx-spacing: 10;
+}
+
+#textFieldName {
+    -fx-prompt-text-fill: #808080;
+    -fx-font-size: 14;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.checkbox {
+    -fx-text-fill: #333333;
+}
+
+#timeSelector {
+    -fx-spacing: 5;
+}
+
+.spinner-label {
+    -fx-font-size: 14;
+    -fx-text-fill: #333333;
+}
+
+.split-pane {
+    -fx-divider-position: 0.5;
+}
+
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+#triggerSelect, #ActionSelect {
+    -fx-background-color: #f4f4f4;
+    -fx-spacing: 30;
+    -fx-padding: 10;
+}
+
+.choice-box {
+    -fx-pref-width: 150;
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-background-color: #4aa5eb; /* Lighter blue */
+    -fx-border-color: #45a049;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #1e87dc; /* Darker Blue on hover */
+}
+
+.button:disabled {
+    -fx-text-fill: #a0a0a0;
+    -fx-background-color: #e0e0e0;
+    -fx-border-color: #d9d9d9;
+    -fx-cursor: default;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #e0f2f1; /* Light Cyan on hover */
+}

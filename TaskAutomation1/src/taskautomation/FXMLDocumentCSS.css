@@ -1,0 +1,46 @@
+#anchorPane {
+    -fx-background-color: #f4f4f4;
+}
+
+.title {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+#tableView, #countersTable {
+    -fx-background-color: #ffffff;
+}
+
+#tableView  .table-row-cell:hover, #countersTable .table-row-cell:hover{
+    -fx-background-color: #e0f2f1; /* Light Cyan on hover */
+}
+
+#addRuleButton, #addCounterButton, #closeButton, #confirmButton, #updateCounterButton, #confirmAddCounterButton {
+    -fx-background-color: #4aa5eb; /* Lighter blue */
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+#fillFieldsLabel {
+    -fx-font-size: 18;
+    -fx-text-fill: #333333;
+}
+
+#addCounterBox {
+    -fx-spacing: 10;
+}
+
+#counterName, #counterValue {
+    -fx-prompt-text-fill: #a9a9a9;
+    -fx-font-size: 14;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+#addRuleButton:hover, #addCounterButton:hover, #closeButton:hover, #confirmButton:hover, #updateCounterButton:hover, #confirmAddCounterButton:hover {
+    -fx-background-color: #1e87dc; /* Darker Blue on hover */
+}
+
