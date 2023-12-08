@@ -76,6 +76,8 @@ public class FXMLDocumentController implements Initializable {
     private Button addCounterButton;
     @FXML
     private Label fillFieldsLabel;
+    @FXML
+    private Button closeButton;
     
     
  
@@ -93,7 +95,7 @@ public class FXMLDocumentController implements Initializable {
         counterValueColumn.setCellValueFactory(new PropertyValueFactory<>("value"));
         
         addCounterBox.setManaged(false);
-        anchorPane.setMaxHeight(635);
+        anchorPane.setMaxHeight(700);
         
         // All'avvio dell'applicazione aggiorna la ruleListView e la countersTableView
         aggiornaTableView();
@@ -157,6 +159,7 @@ public class FXMLDocumentController implements Initializable {
         addCounterBox.setManaged(true);
         addCounterBox.setVisible(true);
         addCounterButton.setVisible(false);
+        closeButton.setVisible(false);
         fillFieldsLabel.setVisible(true);
         anchorPane.requestFocus();
         
@@ -186,6 +189,7 @@ public class FXMLDocumentController implements Initializable {
         counterValue.clear();
         fillFieldsLabel.setVisible(false);
         addCounterButton.setVisible(true);
+        closeButton.setVisible(true);
         
     }
 

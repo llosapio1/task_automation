@@ -27,7 +27,7 @@
             <HBox alignment="CENTER" prefHeight="42.0" prefWidth="736.0" spacing="10.0">
                <children>
                   <Label />
-                  <TextField fx:id="textFieldName" onInputMethodTextChanged="#controlTriggerAndAction" onMouseReleased="#controlTriggerAndAction" prefHeight="25.0" prefWidth="194.0" promptText="Nome della Regola" />
+                  <TextField fx:id="textFieldName" focusTraversable="false" onInputMethodTextChanged="#controlTriggerAndAction" onMouseReleased="#controlTriggerAndAction" prefHeight="25.0" prefWidth="194.0" promptText="Nome della Regola" />
                   <CheckBox fx:id="checkActive" mnemonicParsing="false" selected="true" text="Attiva regola" />
                   <CheckBox fx:id="CooldownSelected" mnemonicParsing="false" onAction="#changeStatusTimeSelector" text="Sleeping" />
                   <HBox fx:id="timeSelector" alignment="CENTER" disable="true" prefHeight="42.0" prefWidth="303.0" spacing="5.0">
