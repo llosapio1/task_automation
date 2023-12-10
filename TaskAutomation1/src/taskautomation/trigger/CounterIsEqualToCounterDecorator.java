@@ -18,20 +18,25 @@ public class CounterIsEqualToCounterDecorator extends TriggerDecorator implement
     String counterName1;
     String counterName2;
     
+    //constructor used in test class
     public CounterIsEqualToCounterDecorator(String counterName1, String counterName2, Trigger decoratedTrigger){
         super(decoratedTrigger);
         this.counterName1 = counterName1;
         this.counterName2 = counterName2;
     }
     
+    //constructor used in application
     public CounterIsEqualToCounterDecorator(Trigger decoratedTrigger){
         super(decoratedTrigger);
+        
+        //get name of the first counter from user input
         TextInputDialog dialog = new TextInputDialog("type the name of the first counter");
         dialog.setHeaderText(null);
         dialog.setTitle("check if counter is equal to counter");
         dialog.setContentText("name of the first counter");
         this.counterName1 = dialog.showAndWait().orElse("");
         
+        //get name of the second counter from user input
         TextInputDialog dialog2 = new TextInputDialog("type the name of the second counter");
         dialog2.setHeaderText(null);
         dialog2.setTitle("check if counter is equal to counter");
@@ -43,22 +48,32 @@ public class CounterIsEqualToCounterDecorator extends TriggerDecorator implement
     public boolean verifyTrigger(){
         Counter counter1 = null;
         Counter counter2 = null;
+        
          ArrayList<Counter> list = CounterList.getCounterList().get();
+         
+         //use these to tell when both counters have been found
          boolean found1 = false;
          boolean found2 = false;
+         
          for (Counter c : list){
+             //counter1 has been found
              if (c.getName() == this.counterName1){
                  counter1 = c;
                  found1 = true;
              }
+             
+             //counter2 has been found
              if(c.getName() == this.counterName2){
                  counter2 = c;
                  found2 = true;
              }
+             
+             //when both counters have been found, exit for
              if(found1 && found2){
                  break;
              }
          }
+         //check if counter1's value is equal to counter2's value
          return (counter1.getValue() == counter2.getValue());
       
     }
