@@ -186,6 +186,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
     @FXML
     private void addComplexTrigger(ActionEvent event) {
         HBox parametriTriggerComplesso = new HBox(10);
+        parametriTriggerComplesso.setPrefHeight(50);
+        parametriTriggerComplesso.setAlignment(Pos.CENTER);
 
         Label label1 = new Label("Trigger 1: "); 
         label1.setFont(new Font(14));
@@ -231,13 +233,21 @@ public class FXMLDocumentAddRuleController implements Initializable {
             vBoxTriggersCreate.getChildren().add(parametriOperazione);
             
             EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> {
-                aggiungeTrigger(boolean1.getValue(), choiceBox1.getValue(), boolean2.getValue(), choiceBox3.getValue(), choiceBox2.getValue(), choiceBox4.getValue());
+                boolean var = aggiungeTrigger(boolean1.getValue(), choiceBox1.getValue(), boolean2.getValue(), choiceBox3.getValue(), choiceBox2.getValue(), choiceBox4.getValue());
+                if(var){
+                    parametriTriggerComplesso.setStyle("-fx-background-color: lightblue;");
+                    button.setDisable(var);
+                }
             };
             button.setOnAction(buttonClickHandler);
             
         } else {
             EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> {
-                aggiungeTrigger(boolean1.getValue(), choiceBox1.getValue(), boolean2.getValue(), choiceBox3.getValue(), choiceBox2.getValue(), null);
+                boolean var = aggiungeTrigger(boolean1.getValue(), choiceBox1.getValue(), boolean2.getValue(), choiceBox3.getValue(), choiceBox2.getValue(), null);
+                if(var){
+                    parametriTriggerComplesso.setStyle("-fx-background-color: lightblue;");
+                    button.setDisable(var);
+                }
             };
             
             button.setOnAction(buttonClickHandler);
@@ -250,7 +260,9 @@ public class FXMLDocumentAddRuleController implements Initializable {
 
     @FXML
     private void addSimpleTrigger(ActionEvent event) {
-        HBox hbox = new HBox(10);
+        HBox parametriTriggerSimple = new HBox(10);
+        parametriTriggerSimple.setPrefHeight(50);
+        parametriTriggerSimple.setAlignment(Pos.CENTER);
 
         Label label1 = new Label("Trigger:   "); 
         label1.setFont(new Font(16));
@@ -279,13 +291,22 @@ public class FXMLDocumentAddRuleController implements Initializable {
             vBoxTriggersCreate.getChildren().add(parametriOperazione);
             
             EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> { 
-                aggiungeSimpleTrigger(boolean1.getValue(), choiceBox1.getValue(), choiceBox4.getValue());
+                boolean var = aggiungeSimpleTrigger(boolean1.getValue(), choiceBox1.getValue(), choiceBox4.getValue());
+                if(var){
+                    parametriTriggerSimple.setStyle("-fx-background-color: lightblue;");
+                    button.setDisable(var);
+                }
+                
             };
             button.setOnAction(buttonClickHandler);
             
         } else {
             EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> {
-                aggiungeSimpleTrigger(boolean1.getValue(), choiceBox1.getValue(), null);
+                boolean var = aggiungeSimpleTrigger(boolean1.getValue(), choiceBox1.getValue(), null);
+                if(var){
+                    parametriTriggerSimple.setStyle("-fx-background-color: lightblue;");
+                    button.setDisable(var);
+                }
             };
             
             button.setOnAction(buttonClickHandler);
@@ -293,13 +314,13 @@ public class FXMLDocumentAddRuleController implements Initializable {
 
 
         // Agregar ChoiceBoxes al HBox
-        hbox.getChildren().addAll(label1, boolean1, choiceBox1, button);
-        vBoxTriggersCreate.getChildren().add(hbox);
+        parametriTriggerSimple.getChildren().addAll(label1, boolean1, choiceBox1, button);
+        vBoxTriggersCreate.getChildren().add(parametriTriggerSimple);
         triggersCreateList.setContent(vBoxTriggersCreate);
     }
     
 
-    private void aggiungeTrigger(String boleanTrigger1, String typeTrigger1, String boleanTrigger2, String typeTrigger2, String typeOP, String typeOP2) {
+    private boolean aggiungeTrigger(String boleanTrigger1, String typeTrigger1, String boleanTrigger2, String typeTrigger2, String typeOP, String typeOP2) {
         TriggerComposite triggerTemp = (TriggerComposite)triggerFactory.create(typeOP);
            
         Trigger triggerComponent1 = triggerFactory.create(typeTrigger1);
@@ -329,10 +350,12 @@ public class FXMLDocumentAddRuleController implements Initializable {
         }
         else{
            trigger = triggerTemp;
-        }     
+        }
+        
+        return trigger != null;
     }
 
-    private void aggiungeSimpleTrigger(String boleanTrigger, String typeTrigger, String typeOP2){
+    private boolean aggiungeSimpleTrigger(String boleanTrigger, String typeTrigger, String typeOP2){
         Trigger triggerComponent = triggerFactory.create(typeTrigger);
         
         if(boleanTrigger.equalsIgnoreCase("NOT")){
@@ -350,5 +373,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
         else{
             trigger = triggerComponent;
         }
+        
+        return trigger != null;
     }
 }
