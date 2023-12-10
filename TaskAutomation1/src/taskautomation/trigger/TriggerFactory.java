@@ -19,37 +19,50 @@ import taskautomation.Factory;
  * @author alessandro
  */
 
-public class TriggerFactory implements Factory<Trigger>{
+public class TriggerFactory{
 
-    @Override
-    public Trigger create(String triggerType, Trigger trigger) {
-        Trigger decoratedTrigger = new BasicTrigger();
-        if ("TimeOfDay".equals(triggerType)) {
-            LocalTime time = getTimeFromDialog();
-            decoratedTrigger = new TimeOfDayDecorator(trigger, time);
+    public Trigger create(String triggerType) {
+        Trigger trigger = null;
+        if (null != triggerType) switch (triggerType) {
+            case "TimeOfDay":
+                LocalTime time = getTimeFromDialog();
+                trigger = new TimeOfDayTrigger(time);
+                break;
+            case "DayOfWeek":
+                DayOfWeek dayOfWeek = getDayOfWeekFromDialog();
+                trigger =new DayOfWeekTrigger(dayOfWeek);
+                break;
+            case "DayOfMonth":
+                int dayOfMonth = getDayOfMonthFromDialog();
+                trigger = new DayOfMonthTrigger(dayOfMonth);
+                break;
+            case "Date":
+                LocalDate date = getDateFromDialog();
+                trigger = new DateTrigger(date);
+                break;
+            case "FileExists":
+                trigger = new FileExistsTrigger();
+                break;
+            case "FileSizeIsGreater":
+                trigger = new FileSizeIsGreaterTrigger();
+                break;
+            case "ReturnCodeIsEqual":
+                trigger = new ReturnCodeIsEqualTrigger();
+                break;
+            case "OR":
+                trigger = new TriggerCompositeOR();
+                break;
+            case "AND":
+                trigger = new TriggerCompositeAND();
+                break;
+            case "NOT":
+                trigger = new TriggerCompositeNOT();
+                break;
+            default:
+                break;
         }
-        else if ("DayOfWeek".equals(triggerType)) {
-            DayOfWeek dayOfWeek = getDayOfWeekFromDialog();
-            decoratedTrigger = new DayOfWeekDecorator(trigger, dayOfWeek);
-        }
-        else if ("DayOfMonth".equals(triggerType)) {
-            int dayOfMonth = getDayOfMonthFromDialog();
-            decoratedTrigger = new DayOfMonthDecorator(trigger, dayOfMonth);
-        }
-        else if ("Date".equals(triggerType)){
-            LocalDate date = getDateFromDialog();
-            decoratedTrigger = new DateDecorator(trigger, date);
-        }
-        else if ("FileExists".equals(triggerType)){
-            decoratedTrigger = new FileExistsDecorator(trigger);
-        }
-        else if ("FileSizeIsGreater".equals(triggerType)){
-            decoratedTrigger = new FileSizeIsGreaterDecorator(trigger);
-        }
-        else if("ReturnCodeIsEqual".equals(triggerType)){
-            decoratedTrigger = new ReturnCodeIsEqualDecorator(trigger);
-        }
-        return decoratedTrigger;
+
+        return trigger;
     }
     
     private static LocalTime getTimeFromDialog() {

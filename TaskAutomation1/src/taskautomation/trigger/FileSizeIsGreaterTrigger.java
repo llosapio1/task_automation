@@ -14,18 +14,16 @@ import javafx.stage.Stage;
  *
  * @author Leonardo
  */
-public class FileSizeIsGreaterDecorator extends TriggerDecorator implements Serializable{
+public class FileSizeIsGreaterTrigger implements Trigger, Serializable{
     
     File file;
     long size;
     
-    public FileSizeIsGreaterDecorator(File file, long size, Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public FileSizeIsGreaterTrigger(File file, long size){
         this.file = file;
         this.size = size;
     }
-    public FileSizeIsGreaterDecorator(Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public FileSizeIsGreaterTrigger(){
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select file to check size of");
         this.file = chooser.showOpenDialog(new Stage());
@@ -40,7 +38,6 @@ public class FileSizeIsGreaterDecorator extends TriggerDecorator implements Seri
     @Override
     public boolean verifyTrigger(){
        double fileSize = (double) file.length()/1024;
-       
        return fileSize > size; 
         
     }
@@ -48,6 +45,6 @@ public class FileSizeIsGreaterDecorator extends TriggerDecorator implements Seri
     
     @Override
     public String toString(){
-        return "File " + "\"" +file.toString() + "\"" + "size is greater then " +size +"\n"+ super.toString();
+        return "File " + "\"" +file.toString() + "\"" + "size is greater then " +size;
     }
 }

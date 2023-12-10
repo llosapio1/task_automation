@@ -11,12 +11,11 @@ import java.time.LocalDate;
  *
  * @author alessandro
  */
-public class DayOfMonthDecorator extends TriggerDecorator implements Serializable{
+public class DayOfMonthTrigger implements Trigger, Serializable{
     
     private int dayOfMonth;
 
-    public DayOfMonthDecorator(Trigger decoratedTrigger, int dayOfMonth) {
-        super(decoratedTrigger);
+    public DayOfMonthTrigger(int dayOfMonth) {
         this.dayOfMonth = dayOfMonth;
     }
 
@@ -31,12 +30,12 @@ public class DayOfMonthDecorator extends TriggerDecorator implements Serializabl
     @Override
     public boolean verifyTrigger() {
         // Controlla se il gionro della data odierna è uguale al giorno del trigger
-        return LocalDate.now().getDayOfMonth() == dayOfMonth | super.verifyTrigger();
+        return LocalDate.now().getDayOfMonth() == dayOfMonth;
     }
     
     @Override
     public String toString() {
-        return "day of month: " + "\"" + dayOfMonth + "\"\n" + super.toString();
+        return "day of month: " + "\"" + dayOfMonth + "\"";
     }
     
 }

@@ -19,14 +19,13 @@ import javafx.stage.Stage;
  *
  * @author Leonardo
  */
-public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Serializable{
+public class ReturnCodeIsEqualTrigger implements Trigger, Serializable{
     
     File program;
     String arguments;
     int value;
     
-    public ReturnCodeIsEqualDecorator(Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public ReturnCodeIsEqualTrigger(){
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select program to execute");
         this.program = chooser.showOpenDialog(new Stage());
@@ -42,8 +41,7 @@ public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Seri
         this.value = Integer.parseInt(dialog.showAndWait().orElse(""));
         
     }
-    public ReturnCodeIsEqualDecorator(File program, String arguments, int value, Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public ReturnCodeIsEqualTrigger(File program, String arguments, int value){
         this.program = program;
         this.arguments = arguments;
         this.value = value;
@@ -60,10 +58,8 @@ public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Seri
            
             return this.value == exitCode;
             
-        } catch (IOException ex) {
-            Logger.getLogger(ReturnCodeIsEqualDecorator.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ReturnCodeIsEqualDecorator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(ReturnCodeIsEqualTrigger.class.getName()).log(Level.SEVERE, null, ex);
         }
      
        return false; 
@@ -71,7 +67,7 @@ public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Seri
     
     @Override
     public String toString(){
-        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + value +"\n"+ super.toString();
+        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + value;
     }
     
 }

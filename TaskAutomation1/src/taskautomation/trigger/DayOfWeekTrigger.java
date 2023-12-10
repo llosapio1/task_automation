@@ -12,12 +12,11 @@ import java.time.LocalDate;
  *
  * @author alessandro
  */
-public class DayOfWeekDecorator extends TriggerDecorator implements Serializable{
+public class DayOfWeekTrigger implements Trigger, Serializable{
     
     private DayOfWeek dayOfWeek;
 
-    public DayOfWeekDecorator(Trigger decoratedTrigger, DayOfWeek dayOfWeek) {
-        super(decoratedTrigger);
+    public DayOfWeekTrigger(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }
 
@@ -32,12 +31,12 @@ public class DayOfWeekDecorator extends TriggerDecorator implements Serializable
     @Override
     public boolean verifyTrigger() {
         DayOfWeek dayOfWeekToday = LocalDate.now().getDayOfWeek();;
-        return (dayOfWeekToday.equals(dayOfWeek)) | super.verifyTrigger();
+        return (dayOfWeekToday.equals(dayOfWeek));
     }
     
     @Override
     public String toString() {
-        return "day of week: " + "\"" + dayOfWeek + "\"\n" + super.toString();
+        return "day of week: " + "\"" + dayOfWeek + "\"";
     }
     
 }

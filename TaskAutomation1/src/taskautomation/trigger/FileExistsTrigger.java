@@ -16,20 +16,18 @@ import javafx.stage.Stage;
  *
  * @author Leonardo
  */
-public class FileExistsDecorator extends TriggerDecorator implements Serializable{
+public class FileExistsTrigger implements Trigger, Serializable{
     
     String fileName;
     File dir;
     
-    FileExistsDecorator(String fileName, File dir, Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    FileExistsTrigger(String fileName, File dir, Trigger decoratedTrigger){
         this.fileName = fileName;
         this.dir = dir;
     }
     
     
-    FileExistsDecorator(Trigger decoratedTrigger){
-       super(decoratedTrigger); 
+    FileExistsTrigger(){ 
         TextInputDialog dialog = new TextInputDialog("Type the name of the file");
         dialog.setHeaderText(null);
         dialog.setTitle("File exists in directory");
@@ -55,7 +53,7 @@ public class FileExistsDecorator extends TriggerDecorator implements Serializabl
     
     @Override
     public String toString(){
-        return "File " + "\"" +fileName + "\"" + "exists in directory: " +"\""+ dir.toString() + "\"\n" + super.toString();
+        return "File " + "\"" +fileName + "\"" + "exists in directory: " +"\""+ dir.toString() + "\"";
     }
     
 }
