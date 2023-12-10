@@ -340,7 +340,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
             button.setOnAction(buttonClickHandler);
         }
 
-        parametriTriggerSimple.getChildren().addAll(label1, boolean1, choiceBox1, button);
+        parametriTriggerSimple.getChildren().addAll(label1, boolean1, choiceBox1, button, buttonDelete);
         vBoxTriggersCreate.getChildren().add(parametriTriggerSimple);
         triggersCreateList.setContent(vBoxTriggersCreate);
     }
