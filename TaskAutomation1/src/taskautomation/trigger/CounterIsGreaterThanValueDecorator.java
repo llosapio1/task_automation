@@ -42,7 +42,7 @@ public class CounterIsGreaterThanValueDecorator extends TriggerDecorator impleme
         dialog2.setHeaderText(null);
         dialog2.setTitle("check if counter is greater than given value");
         dialog2.setContentText("value to check");
-        this.value = Integer.parseInt(dialog2.showAndWait().orElse(""));
+        this.value = Integer.parseInt(dialog2.showAndWait().orElse("0"));
     }
     
     @Override
