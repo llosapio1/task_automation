@@ -34,7 +34,7 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
         dialog.setHeaderText(null);
         dialog.setTitle("add value to counter");
         dialog.setContentText("Type the value to add (int)");
-        this.value = Integer.parseInt(dialog.showAndWait().orElse(""));
+        this.value = Integer.parseInt(dialog.showAndWait().orElse("0"));
         
     }
     
@@ -59,9 +59,10 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
              }
          }
          
+         if (counter!=null){
          //update counter's value with sum of counter's old value + number chosen by user
          CounterList.getCounterList().updateCounter(counter, counter.getValue()+value);
-         
+         }
      }
      
      @Override
