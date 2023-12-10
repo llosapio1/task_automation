@@ -7,7 +7,6 @@ package taskautomation.rule;
 import java.time.LocalTime;
 import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
-import taskautomation.trigger.BasicTrigger;
 import taskautomation.trigger.Trigger;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -27,13 +26,13 @@ public class RuleIT {
     Trigger trigger;
     Rule instanceActive;
     Rule instanceInactive;
-    Trigger timeOfDay = new TimeOfDayTrigger(LocalTime.now());
+    Trigger timeOfDay;
     Action displayMessage = new DisplayMessageDecorator();
 
     @Before
     public void setUp() {
         action = new BasicAction();
-        trigger = new BasicTrigger();
+        trigger = new TimeOfDayTrigger(LocalTime.now());
         instanceActive = new Rule("Regola1", trigger, action, true, true);
         instanceInactive = new Rule("Regola2", trigger, action, false, false);
     }
@@ -46,7 +45,7 @@ public class RuleIT {
     public void testGetTrigger() {
         Trigger result = instanceActive.getTrigger();
         assertNotNull(result);
-        assertTrue(result instanceof BasicTrigger);
+        assertTrue(result instanceof TimeOfDayTrigger);
     }
 
     /**

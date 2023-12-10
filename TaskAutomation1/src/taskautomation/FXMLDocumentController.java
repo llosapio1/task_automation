@@ -39,7 +39,7 @@ import taskautomation.rule.RuleList;
  *
  * @author Leonardo & Alejandro
  */
-public class FXMLDocumentController implements Initializable {
+public class FXMLDocumentController implements Initializable, CountersTableObserver {
     
     @FXML
     private Button addRuleButton;
@@ -83,10 +83,16 @@ public class FXMLDocumentController implements Initializable {
     
     CounterList cl = CounterList.getCounterList();
     
-    
+    @Override
+    public void onCountersTableUpdate() {
+        countersTable.getItems().setAll(CounterList.getCounterList().get());
+    }
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        // Registra questa istanza come osservatore
+        TaskAutomation.addObserver((CountersTableObserver) this);
         
         ruleListView = FXCollections.observableArrayList();
         
@@ -106,7 +112,7 @@ public class FXMLDocumentController implements Initializable {
         updateCountersTableView();
                 
     }
-    
+
     private void aggiornaTableView(){
         ruleListView.setAll(FXCollections.observableArrayList(RuleList.getRuleList().get()));
     }
@@ -153,7 +159,6 @@ public class FXMLDocumentController implements Initializable {
     
     private void updateCountersTableView() {
         // Collega la lista di contatori alla ListView
-        //countersTable.setItems(FXCollections.observableArrayList(CounterList.getCounterList().get()));
         countersTable.getItems().setAll(CounterList.getCounterList().get());
     }
 

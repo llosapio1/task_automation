@@ -7,6 +7,7 @@ package taskautomation.azioni;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.scene.control.TextInputDialog;
+import taskautomation.TaskAutomation;
 import taskautomation.counter.Counter;
 import taskautomation.counter.CounterList;
 
@@ -79,6 +80,8 @@ public class AddCounterToCounterDecorator extends ActionDecorator implements Ser
          if (counter1!=null && counter2!=null){
          //update counter2's value with sum of counter2's old value + counter1's value
          CounterList.getCounterList().updateCounter(counter2, counter2.getValue()+counter1.getValue());
+         // Aggiorna la tabella nel controller utilizzando l'evento
+        TaskAutomation.updateCountersTable();
          }
      }
      

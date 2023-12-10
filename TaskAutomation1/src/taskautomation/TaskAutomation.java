@@ -4,6 +4,8 @@
  */
 package taskautomation;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +53,23 @@ public class TaskAutomation extends Application {
         // Avvio del thread
         thread.setDaemon(true);
         thread.start();
+    }
+    
+    private static List<CountersTableObserver> countersTableObservers = new ArrayList<>();
+
+    public static void addObserver(CountersTableObserver observer) {
+        countersTableObservers.add(observer);
+    }
+
+    public static void removeObserver(CountersTableObserver observer) {
+        countersTableObservers.remove(observer);
+    }
+
+    // Quando vuoi aggiornare la tabella, itera sugli osservatori e chiamali
+    public static void updateCountersTable() {
+        for (CountersTableObserver observer : countersTableObservers) {
+            observer.onCountersTableUpdate();
+        }
     }
 
     /**

@@ -7,6 +7,8 @@ package taskautomation.azioni;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.scene.control.TextInputDialog;
+import taskautomation.CountersTableObserver;
+import taskautomation.TaskAutomation;
 import taskautomation.counter.Counter;
 import taskautomation.counter.CounterList;
 
@@ -21,7 +23,6 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
    //constructor used in application
     public AddValueToCounterDecorator(Action basicAction){
         super(basicAction);
-        
         //get name of the counter to use through user input
          TextInputDialog dialog = new TextInputDialog("Type the name of the counter.");
         dialog.setHeaderText(null);
@@ -35,7 +36,7 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
         dialog2.setTitle("add value to counter");
         dialog2.setContentText("Type the value to add (int)");
         this.value = Integer.parseInt(dialog2.showAndWait().orElse("0"));
-        
+         
     }
     
     //constructor used in test class
@@ -62,6 +63,8 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
          if (counter!=null){
          //update counter's value with sum of counter's old value + number chosen by user
          CounterList.getCounterList().updateCounter(counter, counter.getValue()+value);
+         // Aggiorna la tabella nel controller utilizzando l'evento
+         TaskAutomation.updateCountersTable();
          }
      }
      

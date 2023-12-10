@@ -39,7 +39,6 @@ public class CounterIsEqualToValueTriggerTest {
         Counter counter = new Counter(counterName, counterValue);
         CounterList.getCounterList().addCounter(counter);
         
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsEqualToValueTrigger instance = new CounterIsEqualToValueTrigger(counterName, value);
         boolean result = instance.verifyTrigger(); //check if counter's value is equal to given value
         boolean exp= false;
@@ -79,7 +78,6 @@ public class CounterIsEqualToValueTriggerTest {
         //use conter name and given value for decorator's constructor
         String counterName = "testCounter";
         int value = 5;
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsEqualToValueTrigger instance = new CounterIsEqualToValueTrigger(counterName, value);
         
         String expResult = "Counter: " + counterName + " 's value is equal to: " + value + "\n";

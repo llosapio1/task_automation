@@ -4,13 +4,14 @@
  */
 package taskautomation.rule;
 
+import java.time.LocalTime;
 import java.util.LinkedList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.BasicAction;
-import taskautomation.trigger.BasicTrigger;
+import taskautomation.trigger.TimeOfDayTrigger;
 import taskautomation.trigger.Trigger;
 
 /**
@@ -27,7 +28,7 @@ public class RuleListIT {
     @BeforeClass
     public static void setUp() {
         action = new BasicAction();
-        trigger = new BasicTrigger();
+        trigger = new TimeOfDayTrigger(LocalTime.of(12, 30));
         validRule = new Rule("Regola", trigger, action, true, false);
         ruleList = RuleList.getRuleList();
     }

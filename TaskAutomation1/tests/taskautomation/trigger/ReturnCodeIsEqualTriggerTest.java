@@ -74,7 +74,6 @@ public class ReturnCodeIsEqualTriggerTest {
         String arguments = "";
         int expValue = 0;
         
-        Trigger decoratedTrigger = new BasicTrigger();
         ReturnCodeIsEqualTrigger instance1= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
        
         String expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue +"\n";

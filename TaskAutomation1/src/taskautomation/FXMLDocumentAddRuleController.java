@@ -329,7 +329,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
         }
         else{
            trigger = triggerTemp;
-        }
+        }     
     }
 
     private void aggiungeSimpleTrigger(String boleanTrigger, String typeTrigger, String typeOP2){
