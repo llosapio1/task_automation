@@ -29,7 +29,6 @@ public class CounterIsEqualToValueDecorator extends TriggerDecorator implements 
     //constructor used in application
     public CounterIsEqualToValueDecorator(Trigger decoratedTrigger){
         super(decoratedTrigger);
-        
         //get name of the counter from user input
         TextInputDialog dialog = new TextInputDialog("type the name of the counter");
         dialog.setHeaderText(null);
@@ -52,14 +51,14 @@ public class CounterIsEqualToValueDecorator extends TriggerDecorator implements 
          
          //look for counter in counter list
          for (Counter c : list){
-             if (c.getName() == this.counterName){
+             if (c.getName().contentEquals(this.counterName)){
                  counter = c;
                  break;
              }
          }
          //check if counter's value is equal to number chosen by user
          if (counter != null){
-         return (counter.getValue() == this.value);
+            return (counter.getValue() == this.value);
          }else return false;
       
     }
