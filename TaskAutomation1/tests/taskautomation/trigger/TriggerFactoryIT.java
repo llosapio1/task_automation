@@ -14,36 +14,23 @@ import org.junit.Test;
 public class TriggerFactoryIT {
     
     private final TriggerFactory tf = new TriggerFactory();
-    private BasicTrigger br = new BasicTrigger();
 
     /**
      * Test of create method, of class TriggerFactory.
      */
     
-    /*
-    @Test
-    public void testCreateWithValidType() {
-        String triggerType = "TimeOfDay";
-        Trigger result = tf.create(triggerType);
-        assertTrue(result instanceof TimeOfDayDecorator);
-    }*/
-    
     @Test
     public void testCreateWithInvalidType() {
-        
         String triggerType = "InvalidType";
-        Trigger result = tf.create(triggerType, br);
-        assertTrue(result instanceof BasicTrigger);
-        
+        Trigger result = tf.create(triggerType);
+        assertTrue(result == null);
     }
     
     @Test
     public void testCreateWithNullType() {
-        
         String triggerType = null;
-        Trigger result = tf.create(triggerType, br);
-        assertTrue(result instanceof BasicTrigger);
-        
+        Trigger result = tf.create(triggerType);
+        assertTrue(result == null);
     }
     
 }

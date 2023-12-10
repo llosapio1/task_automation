@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import taskautomation.counter.CounterList;
 
 /**
  *
@@ -29,6 +30,7 @@ public class RuleList implements Serializable{
             if (ruleList == null)
                 ruleList = new LinkedList<>();
         } catch (IOException | ClassNotFoundException ex) {
+            // Registra l'errore utilizzando un logger
             Logger.getLogger(RuleList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -70,7 +72,7 @@ public class RuleList implements Serializable{
             return loadedRules;
         } catch (FileNotFoundException | InvalidClassException | EOFException e) {
             // Se il file non esiste o è vuoto, restituisci una lista vuota
-            return new LinkedList<Rule>();
+            return new LinkedList<>();
         }
         
     }
@@ -79,7 +81,8 @@ public class RuleList implements Serializable{
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("rules.ser"))) {
             oos.writeObject(ruleList);
         } catch (IOException e) {
-            e.printStackTrace();
+            // Registra l'errore utilizzando un logger
+            Logger.getLogger(CounterList.class.getName()).log(Level.SEVERE, "Errore durante il salvataggio delle regole su file", e);
         }
     }
     

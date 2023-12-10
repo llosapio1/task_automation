@@ -18,12 +18,12 @@ import static org.junit.Assert.*;
  */
 public class DayOfMonthDecoratorIT {
     
-    private DayOfMonthDecorator instance;
+    private DayOfMonthTrigger instance;
     private int day = 15;
     
     @Before
     public void setUp() {
-        instance = new DayOfMonthDecorator(new BasicTrigger(), day);
+        instance = new DayOfMonthTrigger(day);
     }
 
     /**

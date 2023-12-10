@@ -15,21 +15,21 @@ import org.junit.Test;
  *
  * @author alessandro
  */
-public class TimeOfDayDecoratorIT {
+public class TimeOfDayTriggerIT {
     
-    private TimeOfDayDecorator instance;
+    private TimeOfDayTrigger instance;
     
-    public TimeOfDayDecoratorIT() {
+    public TimeOfDayTriggerIT() {
     }
     
     @Before
     public void setUp() {
-        // Crea un'istanza di TimeOfDayDecorator con valori di esempio
-        instance = new TimeOfDayDecorator(new BasicTrigger(), LocalTime.of(12, 30));
+        // Crea un'istanza di TimeOfDayTrigger con valori di esempio
+        instance = new TimeOfDayTrigger(LocalTime.of(12, 30));
     }
 
     /**
-     * Test of getTimeOfDay method, of class TimeOfDayDecorator.
+     * Test of getTimeOfDay method, of class TimeOfDayTrigger.
      */
     @Test
     public void testGetTimeOfDay() {
@@ -39,7 +39,7 @@ public class TimeOfDayDecoratorIT {
     }
 
     /**
-     * Test of setTimeOfDay method, of class TimeOfDayDecorator.
+     * Test of setTimeOfDay method, of class TimeOfDayTrigger.
      */
     @Test
     public void testSetTimeOfDay() {
@@ -49,7 +49,7 @@ public class TimeOfDayDecoratorIT {
     }
 
     /**
-     * Test of verifyTrigger method, of class TimeOfDayDecorator.
+     * Test of verifyTrigger method, of class TimeOfDayTrigger.
      */
     @Test
     public void testVerifyTriggerNow() {
@@ -74,19 +74,16 @@ public class TimeOfDayDecoratorIT {
     
     @Test
     public void testVerifyTrigger() {
-        
-        // Creo un BasicTrigger
-        BasicTrigger basicTrigger = new BasicTrigger();
-        
+
         LocalTime triggerTime = LocalTime.of(20, 59);
         
         // Decoro il BasicTrigger
-        TimeOfDayDecorator instance = new TimeOfDayDecorator(basicTrigger, triggerTime);
+        TimeOfDayTrigger instance2 = new TimeOfDayTrigger(triggerTime);
         
         if (LocalTime.now().equals(triggerTime))
-            assertTrue(instance.verifyTrigger());
+            assertTrue(instance2.verifyTrigger());
         else
-            assertFalse(instance.verifyTrigger());
+            assertFalse(instance2.verifyTrigger());
         
     }
     

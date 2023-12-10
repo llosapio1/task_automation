@@ -15,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -78,9 +77,9 @@ public class FXMLDocumentAddRuleController implements Initializable {
         
     private ObservableList<String> triggerList;
     private ObservableList<String> actionList;
-    
-    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek", "DayOfMonth", "Date", "FileExists", "FileSizeIsGreater");
-    ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileToDir", "CopyFileToDir", "DeleteFile", "ExecuteProgram");
+
+    ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek", "DayOfMonth", "Date", "FileExists", "FileSizeIsGreater", "ReturnCodeIsEqual", "CounterIsEqualToValue", "CounterIsGreaterThanValue", "CounterIsLessThanValue", "CounterIsEqualToCounter", "CounterIsGreaterThanCounter", "CounterIsLessThanCounter");
+    ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileToDir", "CopyFileToDir", "DeleteFile", "ExecuteProgram", "AssignValueToCounter", "AddValueToCounter", "AddCounterToCounter");
     
     private final TriggerFactory triggerFactory = new TriggerFactory();
     private final ActionFactory actionFactory = new ActionFactory();

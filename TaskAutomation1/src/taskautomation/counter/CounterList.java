@@ -46,6 +46,12 @@ public class CounterList implements Serializable{
     }
     
     public boolean addCounter(Counter counter) {
+        // Verifica che il contatore con lo stesso nome non sia già presente nella lista
+        if (countersList.stream().anyMatch(c -> c.getName().equals(counter.getName()))) {
+            return false;  // Il contatore con lo stesso nome è già presente, non aggiungerlo
+        }
+        
+        // Aggiungi il contatore solo se non è già presente nella lista
         boolean result = countersList.add(counter);
         saveCountersToFile();
         return result;
@@ -56,7 +62,7 @@ public class CounterList implements Serializable{
     }
     
     public void removeCounter (Counter counter) {
-        countersList.remove(counter); // Rimuovi il vecchio contatore
+        countersList.remove(counter); // Rimuove il contatore
         saveCountersToFile();         // Salva la lista aggiornata su file
     }
     
@@ -73,7 +79,7 @@ public class CounterList implements Serializable{
             return loadedCounters;
         } catch (FileNotFoundException | InvalidClassException | EOFException e) {
             // Se il file non esiste o è vuoto, restituisci una lista vuota
-            return new ArrayList<Counter>();
+            return new ArrayList<>();
         }
         
     }
@@ -82,7 +88,8 @@ public class CounterList implements Serializable{
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("counters.ser"))) {
             oos.writeObject(countersList);
         } catch (IOException e) {
-            e.printStackTrace();
+            // Registra l'errore utilizzando un logger
+            Logger.getLogger(CounterList.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     

@@ -21,7 +21,7 @@ public class FileExistsTrigger implements Trigger, Serializable{
     String fileName;
     File dir;
     
-    FileExistsTrigger(String fileName, File dir, Trigger decoratedTrigger){
+    FileExistsTrigger(String fileName, File dir){
         this.fileName = fileName;
         this.dir = dir;
     }

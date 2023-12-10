@@ -43,7 +43,14 @@ public class ActionFactory implements Factory<Action> {
             return new DeleteFileDecorator(action);
         } else if (selectedType.equalsIgnoreCase("ExecuteProgram")) {
             return new ExecuteProgramDecorator(action);
-        } else {
+        } else if (selectedType.equalsIgnoreCase("AssignValueToCounter")){
+            return new AssignValueToCounterDecorator(action);
+        }else if (selectedType.equalsIgnoreCase("AddValueToCounter")){
+            return new AddValueToCounterDecorator(action);
+        }else if (selectedType.equalsIgnoreCase("AddCounterToCounter")){
+            return new AddCounterToCounterDecorator(action);
+        }
+        else {
             return action;
         }
     }

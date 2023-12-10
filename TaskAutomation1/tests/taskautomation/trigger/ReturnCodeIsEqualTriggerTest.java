@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author Leonardo
  */
-public class ReturnCodeIsEqualDecoratorTest {
+public class ReturnCodeIsEqualTriggerTest {
     
-    public ReturnCodeIsEqualDecoratorTest() {
+    public ReturnCodeIsEqualTriggerTest() {
     }
     
     @BeforeClass
@@ -30,30 +30,32 @@ public class ReturnCodeIsEqualDecoratorTest {
     @Test
     public void testVerifyTrigger() {
         System.out.println("verifyTrigger");
-        File program = new File("greetings.exe");
-        String arguments = "";
-        int expValue = 0;
         
-        Trigger decoratedTrigger = new BasicTrigger();
-        ReturnCodeIsEqualDecorator instance1= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        //get test application from this project's folder
+        File program = new File("greetings.exe");
+        String arguments = ""; //arguments to execute application with
+        int expValue = 0; //value to check return code against
+        
+        ReturnCodeIsEqualTrigger instance1= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
         
         boolean expResult = true;
-        boolean result = instance1.verifyTrigger();
+        boolean result = instance1.verifyTrigger();  //check if test application's return code is equal to given value
         assertEquals(expResult, result);
         
+        //same as above, test with different arguments
         arguments = "testing";
         expValue = 2;
         
-        ReturnCodeIsEqualDecorator instance2= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        ReturnCodeIsEqualTrigger instance2= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
         
         expResult = true;
         result = instance2.verifyTrigger();
         assertEquals(expResult, result);
         
-        
+        //same as above, test with different value to check against
         expValue = 3;
         
-        ReturnCodeIsEqualDecorator instance3= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        ReturnCodeIsEqualTrigger instance3= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
         
         expResult = false;
         result = instance3.verifyTrigger();
@@ -67,24 +69,25 @@ public class ReturnCodeIsEqualDecoratorTest {
     public void testToString() {
        System.out.println("toString");
        
+       //use external program name, arguments and value for decorator's constructor
         File program = new File("greetings.exe");
         String arguments = "";
         int expValue = 0;
         
         Trigger decoratedTrigger = new BasicTrigger();
-        ReturnCodeIsEqualDecorator instance1= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        ReturnCodeIsEqualTrigger instance1= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
        
-        String expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + expValue +"\n";
+        String expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue +"\n";
         String result = instance1.toString();
         assertEquals(expResult, result);
         
-        
+        //same as above
        program = new File("testing.exe");
        arguments = "test";
        expValue = 1;
-       ReturnCodeIsEqualDecorator instance2= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+       ReturnCodeIsEqualTrigger instance2= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
        
-       expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + expValue +"\n";
+       expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue +"\n";
        result = instance2.toString();
        assertEquals(expResult, result);
        

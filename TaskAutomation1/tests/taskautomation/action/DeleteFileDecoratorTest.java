@@ -7,11 +7,6 @@ package taskautomation.action;
 import java.io.File;
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import taskautomation.azioni.BasicAction;
@@ -22,31 +17,21 @@ import taskautomation.azioni.DeleteFileDecorator;
  * @author Leonardo
  */
 public class DeleteFileDecoratorTest {
-    
-    public DeleteFileDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
 
     @Test
     public void testExecuteAction() throws IOException {
         System.out.println("executeAction");
+        
+        //create new file
         File file = new File ("deleteFileTest.txt");
         file.createNewFile();
        
-       
         BasicAction action = new BasicAction();
         DeleteFileDecorator instance = new DeleteFileDecorator(file, action);
-        instance.executeAction();
+        instance.executeAction(); //delete file
         
+        //check that file doesn't exist anymore
         assertFalse(file.exists());
-        
         
     }
 
@@ -54,20 +39,24 @@ public class DeleteFileDecoratorTest {
     public void testToString() throws IOException {
         System.out.println("toString");
       
+        //create new file to use in decorator's constructor
         File file = new File ("deleteFileTest.txt");
         file.createNewFile();
        
-        String expected =  "Delete file: " + file.toString();
+        String expected =  "Delete file: " + file.toString() +"\n";
         BasicAction action = new BasicAction();
         DeleteFileDecorator instance = new DeleteFileDecorator(file, action);
         String result = instance.toString();
         assertEquals(expected, result);
+        
+        //delete newly created file
         file.delete();
         
+        //same as above
         File file2 = new File ("deleteFileTest2.txt");
         file2.createNewFile();
        
-        expected =  "Delete file: " + file2.toString();
+        expected =  "Delete file: " + file2.toString() +"\n";
         
         DeleteFileDecorator instance2 = new DeleteFileDecorator(file2, action);
         result = instance2.toString();

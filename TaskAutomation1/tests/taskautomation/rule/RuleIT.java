@@ -4,6 +4,7 @@
  */
 package taskautomation.rule;
 
+import java.time.LocalTime;
 import static junit.framework.Assert.assertTrue;
 import org.junit.Test;
 import taskautomation.trigger.BasicTrigger;
@@ -13,7 +14,8 @@ import org.junit.Before;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.BasicAction;
 import taskautomation.azioni.DisplayMessageDecorator;
-import taskautomation.trigger.TimeOfDayDecorator;
+
+import taskautomation.trigger.TimeOfDayTrigger;
 
 /**
  *
@@ -25,7 +27,7 @@ public class RuleIT {
     Trigger trigger;
     Rule instanceActive;
     Rule instanceInactive;
-    Trigger timeOfDay = new TimeOfDayDecorator();
+    Trigger timeOfDay = new TimeOfDayTrigger(LocalTime.now());
     Action displayMessage = new DisplayMessageDecorator();
 
     @Before
