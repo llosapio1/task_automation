@@ -53,7 +53,7 @@ public class FXMLDocumentController implements Initializable, CountersTableObser
     private TableColumn<Rule, String> azioneColumn;
     @FXML
     private TableColumn<Rule, String> statusRuleColumn;
-    
+    @FXML
     private ObservableList<Rule> ruleListView;
     @FXML
     private Label title;
@@ -145,7 +145,6 @@ public class FXMLDocumentController implements Initializable, CountersTableObser
         RuleList.getRuleList().removeRule(selecRule);
         aggiornaTableView();
     }
-
 
     @FXML
     private void changeStatusRule(ActionEvent event) {
