@@ -73,8 +73,10 @@ public class CounterIsEqualToCounterDecorator extends TriggerDecorator implement
                  break;
              }
          }
+         if (counter1!= null && counter2!=null){
          //check if counter1's value is equal to counter2's value
          return (counter1.getValue() == counter2.getValue());
+         } else return false;
       
     }
     
