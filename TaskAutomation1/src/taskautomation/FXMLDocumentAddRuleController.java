@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -187,6 +188,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
     @FXML
     private void addComplexTrigger(ActionEvent event) {
         HBox parametriTriggerComplesso = new HBox(10);
+        HBox parametriOperazione = new HBox(10);
+        
         parametriTriggerComplesso.setPrefHeight(50);
         parametriTriggerComplesso.setAlignment(Pos.CENTER);
 
@@ -218,9 +221,16 @@ public class FXMLDocumentAddRuleController implements Initializable {
         choiceBox3.setMaxWidth(120);
         
         Button button = new Button("Add");
+        Button buttonDelete = new Button("Delete");
+        EventHandler<ActionEvent> buttonDeleteClickHandler = (ActionEvent event1) -> {
+            vBoxTriggersCreate.getChildren().remove(parametriTriggerComplesso);
+            vBoxTriggersCreate.getChildren().remove(parametriOperazione);
+            triggersCreateList.setContent(vBoxTriggersCreate);
+        };
+        buttonDelete.setOnAction(buttonDeleteClickHandler);
+
         
         if(!vBoxTriggersCreate.getChildren().isEmpty()){
-            HBox parametriOperazione = new HBox(10);
             parametriOperazione.setAlignment(Pos.CENTER);
             
             Label label4 = new Label("Operazione tra triggers: ");
@@ -238,8 +248,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerComplesso.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonDelete.setDisable(var);
                     buttonCreateTrigger.setDisable(false);
-                    
                 }
             };
             button.setOnAction(buttonClickHandler);
@@ -250,6 +260,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerComplesso.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonDelete.setDisable(var);
                     buttonCreateTrigger.setDisable(false);
                 }
             };
@@ -257,7 +268,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
             button.setOnAction(buttonClickHandler);
         }
 
-        parametriTriggerComplesso.getChildren().addAll(label1, boolean1, choiceBox1, label2, choiceBox2, label3, boolean2, choiceBox3, button);
+        parametriTriggerComplesso.getChildren().addAll(label1, boolean1, choiceBox1, label2, choiceBox2, label3, boolean2, choiceBox3, button, buttonDelete);
         vBoxTriggersCreate.getChildren().add(parametriTriggerComplesso);
         triggersCreateList.setContent(vBoxTriggersCreate);
     }
@@ -267,6 +278,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
         HBox parametriTriggerSimple = new HBox(10);
         parametriTriggerSimple.setPrefHeight(50);
         parametriTriggerSimple.setAlignment(Pos.CENTER);
+        
+        HBox parametriOperazione = new HBox(10);
 
         Label label1 = new Label("Trigger:   "); 
         label1.setFont(new Font(16));
@@ -279,9 +292,15 @@ public class FXMLDocumentAddRuleController implements Initializable {
         choiceBox1.setMaxWidth(120);
         
         Button button = new Button("Add");
+        Button buttonDelete = new Button("Delete");
+        EventHandler<ActionEvent> buttonDeleteClickHandler = (ActionEvent event1) -> {
+            vBoxTriggersCreate.getChildren().remove(parametriTriggerSimple);
+            vBoxTriggersCreate.getChildren().remove(parametriOperazione);
+            triggersCreateList.setContent(vBoxTriggersCreate);
+        };
+        buttonDelete.setOnAction(buttonDeleteClickHandler);
         
         if(!vBoxTriggersCreate.getChildren().isEmpty()){
-            HBox parametriOperazione = new HBox(10);
             parametriOperazione.setAlignment(Pos.CENTER);
             
             Label label4 = new Label("Operazione tra triggers: ");
@@ -299,7 +318,9 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerSimple.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonDelete.setDisable(var);
                     buttonCreateTrigger.setDisable(false);
+                    
                 }
                 
             };
@@ -311,6 +332,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerSimple.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonDelete.setDisable(var);
                     buttonCreateTrigger.setDisable(false);
                 }
             };
@@ -318,8 +340,6 @@ public class FXMLDocumentAddRuleController implements Initializable {
             button.setOnAction(buttonClickHandler);
         }
 
-
-        // Agregar ChoiceBoxes al HBox
         parametriTriggerSimple.getChildren().addAll(label1, boolean1, choiceBox1, button);
         vBoxTriggersCreate.getChildren().add(parametriTriggerSimple);
         triggersCreateList.setContent(vBoxTriggersCreate);
