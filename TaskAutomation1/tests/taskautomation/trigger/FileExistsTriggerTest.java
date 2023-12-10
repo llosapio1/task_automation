@@ -71,7 +71,7 @@ public class FileExistsTriggerTest {
        String fileName = "test.txt";
        File dir = new File("testDir");
         FileExistsTrigger instance = new FileExistsTrigger(fileName, dir);
-        String expResult = "File " + "\"" +fileName + "\"" + "exists in directory: " +"\""+ dir.toString() + "\"\n";
+        String expResult = "File " + "\"" +fileName + "\"" + "exists in directory: " +"\""+ dir.toString() + "\"";
         String result = instance.toString();
         assertEquals(expResult, result);
         
@@ -79,7 +79,7 @@ public class FileExistsTriggerTest {
         fileName = "test2.txt";
         dir = new File("testDir2");
         FileExistsTrigger instance2 = new FileExistsTrigger(fileName, dir);
-        expResult = "File " + "\"" +fileName + "\"" + "exists in directory: " +"\""+ dir.toString() + "\"\n";
+        expResult = "File " + "\"" +fileName + "\"" + "exists in directory: " +"\""+ dir.toString() + "\"";
         result = instance2.toString();
         assertEquals(expResult, result);
     }
