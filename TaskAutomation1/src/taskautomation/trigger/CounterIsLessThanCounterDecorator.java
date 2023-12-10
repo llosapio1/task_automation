@@ -58,13 +58,13 @@ public class CounterIsLessThanCounterDecorator extends TriggerDecorator implemen
          for (Counter c : list){
              
              //counter1 has been found
-             if (c.getName().contentEquals(this.counterName1)){
+             if (c.getName().equals(this.counterName1)){
                  counter1 = c;
                  found1 = true;
              }
              
              //counter2 has been found
-             if(c.getName().contentEquals(this.counterName2)){
+             if(c.getName().equals(this.counterName2)){
                  counter2 = c;
                  found2 = true;
              }

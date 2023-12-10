@@ -51,14 +51,12 @@ public class CounterIsEqualToValueDecorator extends TriggerDecorator implements 
          
          //look for counter in counter list
          for (Counter c : list){
-             if (c.getName() == null ? this.counterName == null : c.getName().equals(this.counterName)){
-                if (c.getName().contentEquals(this.counterName)){
-                    counter = c;
-                    break;
-                }
-            }
-        }
-        //check if counter's value is equal to number chosen by user
+             if (c.getName().equals(this.counterName)){
+                 counter = c;
+                 break;
+             }
+         }
+         //check if counter's value is equal to number chosen by user
          if (counter != null){
             return (counter.getValue() == this.value);
          }else return false;

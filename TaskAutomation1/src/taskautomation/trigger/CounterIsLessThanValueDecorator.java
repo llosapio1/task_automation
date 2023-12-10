@@ -51,7 +51,7 @@ public class CounterIsLessThanValueDecorator extends TriggerDecorator implements
          
          //look for counter in counter list
          for (Counter c : list){
-             if (c.getName().contentEquals(this.counterName)){
+             if (c.getName().equals(this.counterName)){
                  counter = c;
                  break;
              }

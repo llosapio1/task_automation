@@ -7,6 +7,7 @@ package taskautomation.azioni;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.scene.control.TextInputDialog;
+import taskautomation.TaskAutomation;
 import taskautomation.counter.Counter;
 import taskautomation.counter.CounterList;
 
@@ -62,6 +63,8 @@ public class AssignValueToCounterDecorator extends ActionDecorator implements Se
          if (counter!=null){
          //update counter's value with number chosen by user
          CounterList.getCounterList().updateCounter(counter, value);
+         // Aggiorna la tabella nel controller utilizzando l'evento
+         TaskAutomation.updateCountersTable();
          }
      }
      
