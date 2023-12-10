@@ -60,7 +60,7 @@ public class DeleteFileDecoratorTest {
         File file = new File ("deleteFileTest.txt");
         file.createNewFile();
        
-        String expected =  "Delete file: " + file.toString();
+        String expected =  "Delete file: " + file.toString() +"\n";
         BasicAction action = new BasicAction();
         DeleteFileDecorator instance = new DeleteFileDecorator(file, action);
         String result = instance.toString();
@@ -73,7 +73,7 @@ public class DeleteFileDecoratorTest {
         File file2 = new File ("deleteFileTest2.txt");
         file2.createNewFile();
        
-        expected =  "Delete file: " + file2.toString();
+        expected =  "Delete file: " + file2.toString() +"\n";
         
         DeleteFileDecorator instance2 = new DeleteFileDecorator(file2, action);
         result = instance2.toString();
