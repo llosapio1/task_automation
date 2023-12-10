@@ -41,7 +41,7 @@ public class CounterIsLessThanValueDecorator extends TriggerDecorator implements
         dialog2.setHeaderText(null);
         dialog2.setTitle("check if counter is less than given value");
         dialog2.setContentText("value to check");
-        this.value = Integer.parseInt(dialog2.showAndWait().orElse(""));
+        this.value = Integer.parseInt(dialog2.showAndWait().orElse("0"));
     }
     
     @Override
