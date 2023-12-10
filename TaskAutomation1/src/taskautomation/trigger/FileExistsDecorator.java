@@ -49,6 +49,8 @@ public class FileExistsDecorator extends TriggerDecorator implements Serializabl
     
     @Override
     public boolean verifyTrigger(){
+        
+        //get complete file path from directory's path + file name
         Path filePath = dir.toPath().resolve(fileName);
         
         File file = new File(filePath.toString());
