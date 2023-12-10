@@ -39,6 +39,6 @@ public class TriggerCompositeNOT implements TriggerComposite, Serializable {
     
     @Override
     public String toString() {
-        return notTrigger.toString() + "\n";
+        return "NOT(" + notTrigger.toString() + ")";
     }
 }

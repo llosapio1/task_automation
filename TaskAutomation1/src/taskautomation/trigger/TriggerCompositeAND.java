@@ -45,10 +45,6 @@ public class TriggerCompositeAND implements TriggerComposite, Serializable {
     
     @Override
     public String toString() {
-        String string = "";
-        for (Trigger trigger : triggers){
-            string += trigger.toString();
-        }
-        return string + "\n";
+        return triggers.get(0).toString() +" AND " + triggers.get(1).toString() + "\n";
     }
 }

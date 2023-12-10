@@ -45,10 +45,6 @@ public class TriggerCompositeOR implements TriggerComposite, Serializable {
     
     @Override
     public String toString() {
-        String string = "";
-        for (Trigger trigger : triggers){
-            string += trigger.toString();
-        }
-        return string + "\n";
+        return triggers.get(0).toString() + " OR " + triggers.get(1).toString() + "\n";
     }
 }
