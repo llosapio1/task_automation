@@ -75,7 +75,7 @@ public class AppendStringToFileDecoratorTest {
         File file = new File ("appendStringToStringTest.txt");
         file.createNewFile();
         
-        String expected = "Append string: " + string + " to file: " + file.toString() +" ";
+        String expected = "Append string: " + string + " to file: " + file.toString() + "\n";
         BasicAction action = new BasicAction();
         AppendStringToFileDecorator instance = new AppendStringToFileDecorator(file, string, action);
         
@@ -90,7 +90,7 @@ public class AppendStringToFileDecoratorTest {
         string = "testing 123";
         file = new File ("appendStringToStringTest2.txt");
         file.createNewFile();
-        expected = "Append string: " + string + " to file: " + file.toString() +" ";
+        expected = "Append string: " + string + " to file: " + file.toString() + "\n";
         
         AppendStringToFileDecorator instance2 = new AppendStringToFileDecorator(file, string, action);
         result = instance2.toString();
