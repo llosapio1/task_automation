@@ -18,14 +18,18 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
    String counterName;
    int value;
    
+   //constructor used in application
     public AddValueToCounterDecorator(Action basicAction){
         super(basicAction);
+        
+        //get name of the counter to use through user input
          TextInputDialog dialog = new TextInputDialog("Type the name of the counter.");
         dialog.setHeaderText(null);
         dialog.setTitle("add value to counter");
         dialog.setContentText("Type the counter to use:");
         this.counterName = dialog.showAndWait().orElse("");
         
+        //get value to add to counter through user input
         TextInputDialog dialog2 = new TextInputDialog("Type the value to add (int)");
         dialog.setHeaderText(null);
         dialog.setTitle("add value to counter");
@@ -33,15 +37,21 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
         this.value = Integer.parseInt(dialog.showAndWait().orElse(""));
         
     }
+    
+    //constructor used in test class
     public AddValueToCounterDecorator(String counterName, int value, Action basicAction){
         super(basicAction);
         this.counterName = counterName;
         this.value = value;
     }
+    
+    
      @Override
      public void executeAction(){
          Counter counter = null;
          ArrayList<Counter> list = CounterList.getCounterList().get();
+         
+         //find counter in counter list
          for (Counter c : list){
              if (c.getName() == this.counterName){
                  counter = c;
@@ -49,6 +59,7 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
              }
          }
          
+         //update counter's value with sum of counter's old value + number chosen by user
          CounterList.getCounterList().updateCounter(counter, counter.getValue()+value);
          
      }
