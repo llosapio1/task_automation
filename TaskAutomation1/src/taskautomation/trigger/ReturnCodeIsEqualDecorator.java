@@ -71,7 +71,7 @@ public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Seri
     
     @Override
     public String toString(){
-        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + value +"\n"+ super.toString();
+        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + value +"\n"+ super.toString();
     }
     
 }
