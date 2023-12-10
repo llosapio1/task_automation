@@ -37,9 +37,9 @@ import taskautomation.rule.RuleList;
 
 /**
  *
- * @author Leonardo & Alejandro
+ * @author Leonardo & Alejandro & Alessandro
  */
-public class FXMLDocumentController implements Initializable, CountersTableObserver {
+public class FXMLDocumentController implements Initializable, CountersTableObserver{
     
     @FXML
     private Button addRuleButton;

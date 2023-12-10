@@ -65,7 +65,7 @@ public class TaskAutomation extends Application {
         countersTableObservers.remove(observer);
     }
 
-    // Quando vuoi aggiornare la tabella, itera sugli osservatori e chiamali
+    // Per aggiornare la tabella, itera sugli osservatori e chiamali
     public static void updateCountersTable() {
         for (CountersTableObserver observer : countersTableObservers) {
             observer.onCountersTableUpdate();
