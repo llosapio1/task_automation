@@ -42,7 +42,7 @@ public class AssignValueToCounterDecorator extends ActionDecorator implements Se
         dialog.setHeaderText(null);
         dialog.setTitle("assign value to counter");
         dialog.setContentText("Type the value to assign (int)");
-        this.value = Integer.parseInt(dialog.showAndWait().orElse(""));
+        this.value = Integer.parseInt(dialog.showAndWait().orElse("0"));
      }
      
      @Override
@@ -59,9 +59,10 @@ public class AssignValueToCounterDecorator extends ActionDecorator implements Se
              }
          }
          
+         if (counter!=null){
          //update counter's value with number chosen by user
          CounterList.getCounterList().updateCounter(counter, value);
-         
+         }
      }
      
      @Override
