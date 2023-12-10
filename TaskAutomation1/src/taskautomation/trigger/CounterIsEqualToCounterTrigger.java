@@ -15,8 +15,8 @@ import taskautomation.counter.CounterList;
  * @author Leonardo
  */
 public class CounterIsEqualToCounterTrigger implements Serializable, Trigger{
-    String counterName1;
-    String counterName2;
+    private String counterName1;
+    private String counterName2;
     
     //constructor used in test class
     public CounterIsEqualToCounterTrigger(String counterName1, String counterName2){

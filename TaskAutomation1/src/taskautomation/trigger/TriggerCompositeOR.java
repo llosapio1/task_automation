@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author alessandro
  */
 public class TriggerCompositeOR implements TriggerComposite, Serializable {
-    protected ArrayList<Trigger> triggers;
+    private ArrayList<Trigger> triggers;
 
     public TriggerCompositeOR() {
         this.triggers = new ArrayList<>(2);

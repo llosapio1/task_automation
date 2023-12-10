@@ -22,9 +22,9 @@ import javafx.stage.Stage;
  */
 public class MoveFileToDirDecorator extends ActionDecorator implements Serializable{
     
-    File selectedFile;
-    String destDirPath;
-    File destDir;
+    private File selectedFile;
+    private String destDirPath;
+    private File destDir;
     
     
     //constructor used in test class

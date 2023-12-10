@@ -21,9 +21,9 @@ import javafx.stage.Stage;
  */
 public class ReturnCodeIsEqualTrigger implements Trigger, Serializable{
     
-    File program;
-    String arguments;
-    int value;
+    private File program;
+    private String arguments;
+    private int value;
     
     public ReturnCodeIsEqualTrigger(){
         FileChooser chooser = new FileChooser();
@@ -67,7 +67,7 @@ public class ReturnCodeIsEqualTrigger implements Trigger, Serializable{
     
     @Override
     public String toString(){
-        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + value;
+        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + value;
     }
     
 }

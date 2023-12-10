@@ -76,7 +76,7 @@ public class ReturnCodeIsEqualTriggerTest {
         
         ReturnCodeIsEqualTrigger instance1= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
        
-        String expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue +"\n";
+        String expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue ;
         String result = instance1.toString();
         assertEquals(expResult, result);
         
@@ -86,7 +86,7 @@ public class ReturnCodeIsEqualTriggerTest {
        expValue = 1;
        ReturnCodeIsEqualTrigger instance2= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
        
-       expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue +"\n";
+       expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue ;
        result = instance2.toString();
        assertEquals(expResult, result);
        

@@ -80,7 +80,7 @@ public class CounterIsEqualToValueTriggerTest {
         int value = 5;
         CounterIsEqualToValueTrigger instance = new CounterIsEqualToValueTrigger(counterName, value);
         
-        String expResult = "Counter: " + counterName + " 's value is equal to: " + value + "\n";
+        String expResult = "Counter: " + counterName + " 's value is equal to: " + value;
         String result = instance.toString();
         assertEquals(expResult, result);
         
@@ -90,7 +90,7 @@ public class CounterIsEqualToValueTriggerTest {
         
         CounterIsEqualToValueTrigger instance2 = new CounterIsEqualToValueTrigger(counterName, value);
         
-        expResult = "Counter: " + counterName + " 's value is equal to: " + value + "\n";
+        expResult = "Counter: " + counterName + " 's value is equal to: " + value ;
         result = instance2.toString();
         assertEquals(expResult, result);
     }

@@ -16,8 +16,8 @@ import taskautomation.counter.CounterList;
  * @author Leonardo
  */
 public class AddCounterToCounterDecorator extends ActionDecorator implements Serializable{
-    String counterName1;
-    String counterName2;
+    private String counterName1;
+    private String counterName2;
     
     //constructor used in test class
     public AddCounterToCounterDecorator(String counterName1, String counterName2, Action basicAction){

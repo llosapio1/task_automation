@@ -15,8 +15,8 @@ import taskautomation.counter.CounterList;
  * @author Leonardo
  */
 public class CounterIsGreaterThanValueTrigger implements Trigger, Serializable{
-    String counterName;
-    int value;
+    private String counterName;
+    private int value;
     
     //constructor used in test class
     public CounterIsGreaterThanValueTrigger(String counterName, int value){

@@ -80,7 +80,7 @@ public class CounterIsGreaterThanValueTriggerTest {
         int value = 5;
         CounterIsGreaterThanValueTrigger instance = new CounterIsGreaterThanValueTrigger(counterName, value);
         
-        String expResult = "Counter: " + counterName + " 's value is greater than: " + value + "\n";
+        String expResult = "Counter: " + counterName + " 's value is greater than: " + value ;
         String result = instance.toString();
         assertEquals(expResult, result);
         
@@ -90,7 +90,7 @@ public class CounterIsGreaterThanValueTriggerTest {
         
         CounterIsGreaterThanValueTrigger instance2 = new CounterIsGreaterThanValueTrigger(counterName, value);
         
-        expResult = "Counter: " + counterName + " 's value is greater than: " + value + "\n";
+        expResult = "Counter: " + counterName + " 's value is greater than: " + value;
         result = instance2.toString();
         assertEquals(expResult, result);
     }

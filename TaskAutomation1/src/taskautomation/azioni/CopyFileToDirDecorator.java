@@ -22,8 +22,8 @@ import javafx.stage.Stage;
  */
 public class CopyFileToDirDecorator extends ActionDecorator implements Serializable{
    
-    File selectedFile;
-    File destinationDir;
+    private File selectedFile;
+    private File destinationDir;
    
    //constructor used in test class
     public CopyFileToDirDecorator(File selectedFile, File destinationDir, Action basicAction) {
