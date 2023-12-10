@@ -39,7 +39,6 @@ public class CounterIsGreaterThanValueTriggerTest {
         Counter counter = new Counter(counterName, counterValue);
         CounterList.getCounterList().addCounter(counter);
         
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsGreaterThanValueTrigger instance = new CounterIsGreaterThanValueTrigger(counterName, value);
         boolean result = instance.verifyTrigger(); //check if counter is greater than given value
         boolean exp= false;
@@ -79,7 +78,6 @@ public class CounterIsGreaterThanValueTriggerTest {
         //use counter name and given value for decorator's constructor
         String counterName = "testCounter";
         int value = 5;
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsGreaterThanValueTrigger instance = new CounterIsGreaterThanValueTrigger(counterName, value);
         
         String expResult = "Counter: " + counterName + " 's value is greater than: " + value + "\n";

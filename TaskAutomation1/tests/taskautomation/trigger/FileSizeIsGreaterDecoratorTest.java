@@ -42,7 +42,6 @@ public class FileSizeIsGreaterDecoratorTest {
         f.setLength(expFileSize);
         File file = new File(fileName);
         
-        Trigger decoratedTrigger = new BasicTrigger();
         FileSizeIsGreaterTrigger instance = new FileSizeIsGreaterTrigger(file, expFileSize/1024-10);
         boolean expResult = true;
         boolean result = instance.verifyTrigger(); //check if file size is greater than expFileSize converted to kbytes -10
@@ -66,7 +65,6 @@ public class FileSizeIsGreaterDecoratorTest {
         //use file and size for decorator's constructor
         File file = new File("fileSizeGreater1.txt");
         long size = 10000;
-        Trigger decoratedTrigger = new BasicTrigger();
         FileSizeIsGreaterTrigger instance = new FileSizeIsGreaterTrigger(file, size);
         String expResult = "File " + "\"" +file.toString() + "\"" + "size is greater then " +size +"\n";
         String result = instance.toString();

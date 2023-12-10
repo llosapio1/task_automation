@@ -44,7 +44,6 @@ public class CounterIsEqualToCounterTriggerTest {
         Counter counter2 = new Counter(counterName2, counterValue2);
         CounterList.getCounterList().addCounter(counter2);
         
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsEqualToCounterTrigger instance = new CounterIsEqualToCounterTrigger(counterName1, counterName2);
         boolean result = instance.verifyTrigger(); //check if counters' values are equal
         boolean exp= true;
@@ -95,7 +94,6 @@ public class CounterIsEqualToCounterTriggerTest {
         //use two counters' names for decorator's constructor
         String counterName1 = "test1counter";
         String counterName2 = "test2counter";
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsEqualToCounterTrigger instance = new CounterIsEqualToCounterTrigger(counterName1, counterName2);
         
         String expResult = "Counter: " + counterName1 + " 's value is equal to: " + counterName2 + "\n";

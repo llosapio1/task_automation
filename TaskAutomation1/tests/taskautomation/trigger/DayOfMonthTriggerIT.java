@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  *
  * @author alessandro
  */
-public class DayOfMonthDecoratorIT {
+public class DayOfMonthTriggerIT {
     
     private DayOfMonthTrigger instance;
     private int day = 15;

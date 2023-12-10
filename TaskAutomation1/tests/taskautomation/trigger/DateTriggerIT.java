@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
  *
  * @author alessandro
  */
-public class DateDecoratorIT {
+public class DateTriggerIT {
     
     private DateTrigger instance;
     LocalDate date = LocalDate.of(2023, 12, 2);

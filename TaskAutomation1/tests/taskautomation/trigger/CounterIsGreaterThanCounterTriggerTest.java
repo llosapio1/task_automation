@@ -44,7 +44,6 @@ public class CounterIsGreaterThanCounterTriggerTest {
         Counter counter2 = new Counter(counterName2, counterValue2);
         CounterList.getCounterList().addCounter(counter2);
         
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsGreaterThanCounterTrigger instance = new CounterIsGreaterThanCounterTrigger(counterName1, counterName2);
         boolean result = instance.verifyTrigger(); //check if one counter is greater than the other
         boolean exp= true;
@@ -95,7 +94,6 @@ public class CounterIsGreaterThanCounterTriggerTest {
         //use two counter names for decorator's constructor
         String counterName1 = "test1counter";
         String counterName2 = "test2counter";
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsGreaterThanCounterTrigger instance = new CounterIsGreaterThanCounterTrigger(counterName1, counterName2);
         
         String expResult = "Counter: " + counterName1 + " 's value is greater than: " + counterName2 + "\n";

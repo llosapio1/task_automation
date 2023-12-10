@@ -94,7 +94,6 @@ public class CounterIsLessThanCounterTriggerIT {
         //use two counter names for decorator's constructor
         String counterName1 = "test1counter";
         String counterName2 = "test2counter";
-        BasicTrigger trigger = new BasicTrigger();
         CounterIsLessThanCounterTrigger instance = new CounterIsLessThanCounterTrigger(counterName1, counterName2);
         
         String expResult = "Counter: " + counterName1 + " 's value is less than: " + counterName2 + "\n";

@@ -15,11 +15,11 @@ import static org.junit.Assert.*;
  *
  * @author alessandro
  */
-public class DayOfWeekDecoratorIT {
+public class DayOfWeekTriggerIT {
     
     private DayOfWeekTrigger instance;
     
-    public DayOfWeekDecoratorIT() {
+    public DayOfWeekTriggerIT() {
     }
     
     @Before
