@@ -66,7 +66,7 @@ public class CopyFileToDirDecoratorTest {
         File dir = new File("copyFileTestDir");
         dir.mkdir();
         
-        String expected = "Copy file: " + file.toString() + " to directory: " + dir.toString() + " ";
+        String expected = "Copy file: " + file.toString() + " to directory: " + dir.toString() + "\n";
         BasicAction action = new BasicAction();
         CopyFileToDirDecorator instance = new CopyFileToDirDecorator(file, dir, action);
         String result = instance.toString();
@@ -85,7 +85,7 @@ public class CopyFileToDirDecoratorTest {
         file2.createNewFile();
         dir = new File("copyFileTest2Dir");
         dir.mkdir();
-        expected = "Copy file: " + file2.toString() + " to directory: " + dir.toString() + " ";
+        expected = "Copy file: " + file2.toString() + " to directory: " + dir.toString() + "\n";
         
         CopyFileToDirDecorator instance2 = new CopyFileToDirDecorator(file2, dir, action);
         
@@ -93,7 +93,7 @@ public class CopyFileToDirDecoratorTest {
         assertEquals(expected, result);
         
         File[] files2 = dir.listFiles();
-        for(File f : files){
+        for(File f : files2){
             f.delete();
         }
         dir.delete();
