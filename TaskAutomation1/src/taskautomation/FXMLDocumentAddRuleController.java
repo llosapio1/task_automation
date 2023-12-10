@@ -47,6 +47,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
     @FXML
     private Button createRuleButton;
     @FXML
+    private Button buttonCreateTrigger;
+    @FXML
     private ListView<String> triggerView;
     @FXML
     private ListView<String> actionView;
@@ -60,8 +62,6 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private VBox triggerSelect;
     @FXML
     private VBox ActionSelect;
-    @FXML
-    private ChoiceBox<String> triggerChoiceBox;
     @FXML
     private ChoiceBox<String> actionChoiceBox;
     @FXML
@@ -92,6 +92,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private ScrollPane triggersCreateList;
     @FXML
     private VBox vBoxTriggersCreate;
+    
 
     /**
      * Initializes the controller class.
@@ -237,6 +238,8 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerComplesso.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonCreateTrigger.setDisable(false);
+                    
                 }
             };
             button.setOnAction(buttonClickHandler);
@@ -247,6 +250,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerComplesso.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonCreateTrigger.setDisable(false);
                 }
             };
             
@@ -295,6 +299,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerSimple.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonCreateTrigger.setDisable(false);
                 }
                 
             };
@@ -306,6 +311,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
                 if(var){
                     parametriTriggerSimple.setStyle("-fx-background-color: lightblue;");
                     button.setDisable(var);
+                    buttonCreateTrigger.setDisable(false);
                 }
             };
             

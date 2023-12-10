@@ -119,7 +119,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#addSimpleTrigger" text="Add Simple Trigger" />
                   <Button mnemonicParsing="false" onAction="#addComplexTrigger" text="Add Complex Trigger" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#createTrigger" text="Create Trigger" />
+                  <Button fx:id="buttonCreateTrigger" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#createTrigger" text="Create Trigger" />
                </children>
             </HBox>
          </children>
