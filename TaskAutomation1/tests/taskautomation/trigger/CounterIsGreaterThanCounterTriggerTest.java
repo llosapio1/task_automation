@@ -96,7 +96,7 @@ public class CounterIsGreaterThanCounterTriggerTest {
         String counterName2 = "test2counter";
         CounterIsGreaterThanCounterTrigger instance = new CounterIsGreaterThanCounterTrigger(counterName1, counterName2);
         
-        String expResult = "Counter: " + counterName1 + " 's value is greater than: " + counterName2 + "\n";
+        String expResult = "Counter: " + counterName1 + " 's value is greater than: " + counterName2 ;
         String result = instance.toString();
         assertEquals(expResult, result);
         
@@ -106,7 +106,7 @@ public class CounterIsGreaterThanCounterTriggerTest {
         
         CounterIsGreaterThanCounterTrigger instance2 = new CounterIsGreaterThanCounterTrigger(counterName1, counterName2);
         
-        expResult = "Counter: " + counterName1 + " 's value is greater than: " + counterName2 + "\n";
+        expResult = "Counter: " + counterName1 + " 's value is greater than: " + counterName2 ;
         result = instance2.toString();
         assertEquals(expResult, result);
     }
