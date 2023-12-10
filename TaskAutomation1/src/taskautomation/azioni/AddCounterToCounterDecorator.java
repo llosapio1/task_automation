@@ -76,9 +76,10 @@ public class AddCounterToCounterDecorator extends ActionDecorator implements Ser
                  break;
              }
          }
+         if (counter1!=null && counter2!=null){
          //update counter2's value with sum of counter2's old value + counter1's value
          CounterList.getCounterList().updateCounter(counter2, counter2.getValue()+counter1.getValue());
-         
+         }
      }
      
      @Override
