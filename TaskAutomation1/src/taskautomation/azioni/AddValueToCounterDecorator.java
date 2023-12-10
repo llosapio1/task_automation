@@ -31,10 +31,10 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
         
         //get value to add to counter through user input
         TextInputDialog dialog2 = new TextInputDialog("Type the value to add (int)");
-        dialog.setHeaderText(null);
-        dialog.setTitle("add value to counter");
-        dialog.setContentText("Type the value to add (int)");
-        this.value = Integer.parseInt(dialog.showAndWait().orElse("0"));
+        dialog2.setHeaderText(null);
+        dialog2.setTitle("add value to counter");
+        dialog2.setContentText("Type the value to add (int)");
+        this.value = Integer.parseInt(dialog2.showAndWait().orElse("0"));
         
     }
     
@@ -53,7 +53,7 @@ public class AddValueToCounterDecorator extends ActionDecorator implements Seria
          
          //find counter in counter list
          for (Counter c : list){
-             if (c.getName() == this.counterName){
+             if (c.getName().equals(this.counterName)){
                  counter = c;
                  break;
              }
