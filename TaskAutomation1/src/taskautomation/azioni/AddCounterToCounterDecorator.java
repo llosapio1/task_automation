@@ -40,10 +40,10 @@ public class AddCounterToCounterDecorator extends ActionDecorator implements Ser
         
         //get name of second counter from user input
         TextInputDialog dialog2 = new TextInputDialog("Type the name of the second counter");
-        dialog.setHeaderText(null);
-        dialog.setTitle("add counter to counter");
-        dialog.setContentText("Type the counter to add to");
-        this.counterName2 = dialog.showAndWait().orElse("");
+        dialog2.setHeaderText(null);
+        dialog2.setTitle("add counter to counter");
+        dialog2.setContentText("Type the counter to add to");
+        this.counterName2 = dialog2.showAndWait().orElse("");
         
     }
     
@@ -60,13 +60,13 @@ public class AddCounterToCounterDecorator extends ActionDecorator implements Ser
          for (Counter c : list){
             
              //found counter1
-             if (c.getName() == this.counterName1){
+             if (c.getName().equals(this.counterName1)){
                  counter1 = c;
                  found1= true;
              }  
              
              //found counter2
-             if(c.getName() == this.counterName2){
+             if(c.getName().equals(this.counterName2)){
                  counter2 = c;
                  found2= true;
              }
