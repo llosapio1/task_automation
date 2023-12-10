@@ -34,18 +34,25 @@ public class CopyFileToDirDecoratorTest {
     @Test
     public void testExecuteAction() throws IOException {
         System.out.println("executeAction");
+        
+        //create file and directory
         File selectedFile = new File("copyFileTest.txt");
         selectedFile.createNewFile();
         File dir = new File("copyFileTestDir");
         dir.mkdir();
+        
         BasicAction action = new BasicAction();
         CopyFileToDirDecorator instance = new CopyFileToDirDecorator(selectedFile, dir, action);
-        instance.executeAction();
+        instance.executeAction();  //file is copied to directory
+        
+        //get list of all files in directory, the directory should contain only the one file we just copied
         File[] filesInDir = dir.listFiles();
        
+        //check if directory contains the file to verify that the copy operation succeded
         assertEquals(filesInDir[0].getName(), selectedFile.getName(), filesInDir[0].getName());
-        selectedFile.delete();
         
+        //Delete file and directory used for testing
+        selectedFile.delete();
         dir.delete();
     }
 
@@ -53,6 +60,7 @@ public class CopyFileToDirDecoratorTest {
     public void testToString() throws IOException {
         System.out.println("toString");
         
+        //create file and directory to use in decorator's constructor
         File file = new File ("copyFileTest.txt");
         file.createNewFile();
         File dir = new File("copyFileTestDir");
@@ -63,14 +71,16 @@ public class CopyFileToDirDecoratorTest {
         CopyFileToDirDecorator instance = new CopyFileToDirDecorator(file, dir, action);
         String result = instance.toString();
         assertEquals(expected, result);
-        file.delete();
+        
+        //delete all files in directory (otherwise you can't delete the directory)
         File[] files = dir.listFiles();
         for(File f : files){
             f.delete();
         }
-        dir.delete();
+        dir.delete();  //delete directory
         
         
+        //same as above
         File file2 = new File ("copyFileTest2.txt");
         file2.createNewFile();
         dir = new File("copyFileTest2Dir");
@@ -81,7 +91,7 @@ public class CopyFileToDirDecoratorTest {
         
         result = instance2.toString();
         assertEquals(expected, result);
-        file2.delete();
+        
         File[] files2 = dir.listFiles();
         for(File f : files){
             f.delete();
