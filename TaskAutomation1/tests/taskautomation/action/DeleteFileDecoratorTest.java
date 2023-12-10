@@ -37,14 +37,16 @@ public class DeleteFileDecoratorTest {
     @Test
     public void testExecuteAction() throws IOException {
         System.out.println("executeAction");
+        
+        //create new file
         File file = new File ("deleteFileTest.txt");
         file.createNewFile();
        
-       
         BasicAction action = new BasicAction();
         DeleteFileDecorator instance = new DeleteFileDecorator(file, action);
-        instance.executeAction();
+        instance.executeAction(); //delete file
         
+        //check that file doesn't exist anymore
         assertFalse(file.exists());
         
         
@@ -54,6 +56,7 @@ public class DeleteFileDecoratorTest {
     public void testToString() throws IOException {
         System.out.println("toString");
       
+        //create new file to use in decorator's constructor
         File file = new File ("deleteFileTest.txt");
         file.createNewFile();
        
@@ -62,8 +65,11 @@ public class DeleteFileDecoratorTest {
         DeleteFileDecorator instance = new DeleteFileDecorator(file, action);
         String result = instance.toString();
         assertEquals(expected, result);
+        
+        //delete newly created file
         file.delete();
         
+        //same as above
         File file2 = new File ("deleteFileTest2.txt");
         file2.createNewFile();
        
