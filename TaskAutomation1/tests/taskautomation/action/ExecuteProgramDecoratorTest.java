@@ -37,35 +37,47 @@ public class ExecuteProgramDecoratorTest {
     @Test
     public void testExecuteAction() throws FileNotFoundException, IOException, InterruptedException {
        System.out.println("executeAction");
-       File program = new File ("greeting.exe");
+       
+       //get test application from this project's folder
+       File program = new File ("greetings.exe");
         
         String arguments =  "testing";
+        
         BasicAction action = new BasicAction();
         ExecuteProgramDecorator instance = new ExecuteProgramDecorator(program, arguments, action);
-        instance.executeAction();
+        instance.executeAction();  //execute test application with arguments
+        
+        //this file is created by test application and used to store its output
         File output = new File("filename.txt");
         
         //without sleep the file reader can't find output file in time
         sleep(100);
         
         String expected = "Hello " + arguments +"!";
-        String result= "";
         
+        //read output file created by test application to make sure output is as expected
+        String result= "";
         try(BufferedReader br = new BufferedReader(new FileReader(output))) {
         for(String line; (line = br.readLine()) != null; ) {
         result += line;
     }
         }
+        
+        //if output is as expected, the test application has been executed correctly
         assertEquals(expected, result);
+        
+        //delete test application's output file
        output.delete();
     }
 
     @Test
     public void testToString() throws IOException {
         System.out.println("toString");
-        File program = new File ("greeting.exe");
         
+        //get test application file and arguments
+        File program = new File ("greetings.exe");
         String arguments =  "testing";
+        
         BasicAction action = new BasicAction();
         ExecuteProgramDecorator instance = new ExecuteProgramDecorator(program, arguments, action);
         
