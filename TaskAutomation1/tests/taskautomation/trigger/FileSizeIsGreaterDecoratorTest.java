@@ -66,7 +66,7 @@ public class FileSizeIsGreaterDecoratorTest {
         File file = new File("fileSizeGreater1.txt");
         long size = 10000;
         FileSizeIsGreaterTrigger instance = new FileSizeIsGreaterTrigger(file, size);
-        String expResult = "File " + "\"" +file.toString() + "\"" + "size is greater then " +size +"\n";
+        String expResult = "File " + "\"" +file.toString() + "\"" + "size is greater then " +size ;
         String result = instance.toString();
         assertEquals(expResult, result);
         //delete file
@@ -76,7 +76,7 @@ public class FileSizeIsGreaterDecoratorTest {
         File file2 = new File("fileSizeGreater2.txt");
         size = 100;
         FileSizeIsGreaterTrigger instance2 = new FileSizeIsGreaterTrigger(file2, size);
-        expResult = "File " + "\"" +file2.toString() + "\"" + "size is greater then " +size +"\n";
+        expResult = "File " + "\"" +file2.toString() + "\"" + "size is greater then " +size ;
         
         result = instance2.toString();
         assertEquals(expResult, result);
