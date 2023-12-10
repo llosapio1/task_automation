@@ -60,7 +60,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private VBox triggerSelect;
     @FXML
     private VBox ActionSelect;
-    
+    @FXML
     private ChoiceBox<String> triggerChoiceBox;
     @FXML
     private ChoiceBox<String> actionChoiceBox;
