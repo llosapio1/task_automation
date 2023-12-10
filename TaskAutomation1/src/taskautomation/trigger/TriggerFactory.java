@@ -48,6 +48,18 @@ public class TriggerFactory implements Factory<Trigger>{
         }
         else if("ReturnCodeIsEqual".equals(triggerType)){
             decoratedTrigger = new ReturnCodeIsEqualDecorator(trigger);
+        } else if ("CounterIsEqualToValue".equals(triggerType)){
+            decoratedTrigger = new CounterIsEqualToValueDecorator(trigger);
+        } else if ("CounterIsGreaterThanValue".equals(triggerType)){
+            decoratedTrigger = new CounterIsGreaterThanValueDecorator(trigger);
+        } else if ("CounterIsLessThanValue".equals(triggerType)){
+            decoratedTrigger = new CounterIsLessThanValueDecorator(trigger);
+        } else if ("CounterIsEqualToCounter".equals(triggerType)){
+            decoratedTrigger = new CounterIsEqualToCounterDecorator(trigger);
+        } else if ("CounterIsGreaterThanCounter".equals(triggerType)){
+            decoratedTrigger = new CounterIsGreaterThanCounterDecorator(trigger);
+        } else if ("CounterIsLessThanCounter".equals(triggerType)){
+            decoratedTrigger = new CounterIsLessThanCounterDecorator(trigger);
         }
         return decoratedTrigger;
     }
