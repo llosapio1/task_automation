@@ -19,7 +19,9 @@ import taskautomation.rule.RuleList;
  * @author Leonardo
  */
 public class TaskAutomation extends Application {
+    
     private Thread thread;
+    private static List<CountersTableObserver> countersTableObservers = new ArrayList<>();
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -54,8 +56,6 @@ public class TaskAutomation extends Application {
         thread.setDaemon(true);
         thread.start();
     }
-    
-    private static List<CountersTableObserver> countersTableObservers = new ArrayList<>();
 
     public static void addObserver(CountersTableObserver observer) {
         countersTableObservers.add(observer);
