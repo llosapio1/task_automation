@@ -33,18 +33,24 @@ public class MoveFileToDirDecoratorTest {
     @Test
     public void testExecuteAction() throws IOException {
         System.out.println("executeAction");
+        
+        //create file and directory
         File selectedFile = new File("moveFileTest.txt");
         selectedFile.createNewFile();
         File dir = new File("moveFileTestDir");
         dir.mkdir();
+        
         BasicAction action = new BasicAction();
         MoveFileToDirDecorator instance = new MoveFileToDirDecorator(selectedFile, dir, action);
-        instance.executeAction();
+        instance.executeAction();  //move file to directory
+        
+        //get list of all files in directory, it should contain only the file we just moved
         File[] filesInDir = dir.listFiles();
        
+        //check if directory contains the file
         assertEquals(filesInDir[0].getName(), selectedFile.getName(), filesInDir[0].getName());
-        selectedFile.delete();
         
+      //delete all files in directory, otherwise we can't delete the directory
         for(File f : filesInDir){
         f.delete();
     }
@@ -54,7 +60,7 @@ public class MoveFileToDirDecoratorTest {
     @Test
     public void testToString() throws IOException {
         System.out.println("toString");
-        
+        //create file and directory to use for decorator's constructor
         String string = "testing";
         File file = new File ("moveFileTest.txt");
         file.createNewFile();
@@ -66,8 +72,8 @@ public class MoveFileToDirDecoratorTest {
         MoveFileToDirDecorator instance = new MoveFileToDirDecorator(file, dir, action);
         String result = instance.toString();
         assertEquals(expected, result);
-        file.delete();
         
+        //delete all files in directory before deleting directory
         File[] files = dir.listFiles();
         for(File f : files){
             f.delete();
@@ -75,6 +81,7 @@ public class MoveFileToDirDecoratorTest {
         dir.delete();
         
         
+        //Same as above
         string = "testing 123";
         File file2 = new File ("moveFileTest2.txt");
         file2.createNewFile();
@@ -86,9 +93,9 @@ public class MoveFileToDirDecoratorTest {
         
         result = instance2.toString();
         assertEquals(expected, result);
-        file2.delete();
+        
         File[] files2 = dir.listFiles();
-        for(File f : files){
+        for(File f : files2){
             f.delete();
         }
         dir.delete();
