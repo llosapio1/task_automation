@@ -14,9 +14,9 @@ import static org.junit.Assert.*;
  *
  * @author Leonardo
  */
-public class ReturnCodeIsEqualDecoratorTest {
+public class ReturnCodeIsEqualTriggerTest {
     
-    public ReturnCodeIsEqualDecoratorTest() {
+    public ReturnCodeIsEqualTriggerTest() {
     }
     
     @BeforeClass
@@ -36,8 +36,7 @@ public class ReturnCodeIsEqualDecoratorTest {
         String arguments = ""; //arguments to execute application with
         int expValue = 0; //value to check return code against
         
-        Trigger decoratedTrigger = new BasicTrigger();
-        ReturnCodeIsEqualDecorator instance1= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        ReturnCodeIsEqualTrigger instance1= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
         
         boolean expResult = true;
         boolean result = instance1.verifyTrigger();  //check if test application's return code is equal to given value
@@ -47,7 +46,7 @@ public class ReturnCodeIsEqualDecoratorTest {
         arguments = "testing";
         expValue = 2;
         
-        ReturnCodeIsEqualDecorator instance2= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        ReturnCodeIsEqualTrigger instance2= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
         
         expResult = true;
         result = instance2.verifyTrigger();
@@ -56,7 +55,7 @@ public class ReturnCodeIsEqualDecoratorTest {
         //same as above, test with different value to check against
         expValue = 3;
         
-        ReturnCodeIsEqualDecorator instance3= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        ReturnCodeIsEqualTrigger instance3= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
         
         expResult = false;
         result = instance3.verifyTrigger();
@@ -76,7 +75,7 @@ public class ReturnCodeIsEqualDecoratorTest {
         int expValue = 0;
         
         Trigger decoratedTrigger = new BasicTrigger();
-        ReturnCodeIsEqualDecorator instance1= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+        ReturnCodeIsEqualTrigger instance1= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
        
         String expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue +"\n";
         String result = instance1.toString();
@@ -86,7 +85,7 @@ public class ReturnCodeIsEqualDecoratorTest {
        program = new File("testing.exe");
        arguments = "test";
        expValue = 1;
-       ReturnCodeIsEqualDecorator instance2= new ReturnCodeIsEqualDecorator(program, arguments, expValue, decoratedTrigger);
+       ReturnCodeIsEqualTrigger instance2= new ReturnCodeIsEqualTrigger(program, arguments, expValue);
        
        expResult = "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + expValue +"\n";
        result = instance2.toString();

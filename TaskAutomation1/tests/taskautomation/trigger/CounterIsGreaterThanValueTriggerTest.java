@@ -15,9 +15,9 @@ import taskautomation.counter.CounterList;
  *
  * @author Leonardo
  */
-public class CounterIsLessThanValueDecoratorTest {
+public class CounterIsGreaterThanValueTriggerTest {
     
-    public CounterIsLessThanValueDecoratorTest() {
+    public CounterIsGreaterThanValueTriggerTest() {
     }
     
     @BeforeClass
@@ -32,21 +32,21 @@ public class CounterIsLessThanValueDecoratorTest {
     public void testVerifyTrigger() {
         System.out.println("verifyTrigger");
        
-        //create a counter with name and value, then add it to counter list
+        //create counter with name and value, then add it to counter list
         String counterName = "testing";
         int counterValue = 0;
-        int value = 10; //given value to check against counter's value
+        int value = 10; //given value to check counter's value against
         Counter counter = new Counter(counterName, counterValue);
         CounterList.getCounterList().addCounter(counter);
         
         BasicTrigger trigger = new BasicTrigger();
-        CounterIsLessThanValueDecorator instance = new CounterIsLessThanValueDecorator(counterName, value, trigger);
-        boolean result = instance.verifyTrigger();  //check if counter's value is less than given value
-        boolean exp= true;
+        CounterIsGreaterThanValueTrigger instance = new CounterIsGreaterThanValueTrigger(counterName, value);
+        boolean result = instance.verifyTrigger(); //check if counter is greater than given value
+        boolean exp= false;
         
         assertEquals(exp, result);
         
-        //get counter from counter list, then delete it
+        //get counter from counter list and delete it
         int index = CounterList.getCounterList().get().indexOf(counter); 
         Counter c = CounterList.getCounterList().get().get(index);
         CounterList.getCounterList().removeCounter(c);
@@ -59,9 +59,9 @@ public class CounterIsLessThanValueDecoratorTest {
         counter = new Counter(counterName, counterValue);
         CounterList.getCounterList().addCounter(counter);
         
-        CounterIsLessThanValueDecorator instance2 = new CounterIsLessThanValueDecorator(counterName, value, trigger);
+        CounterIsGreaterThanValueTrigger instance2 = new CounterIsGreaterThanValueTrigger(counterName, value);
         result = instance2.verifyTrigger();
-        exp= false;
+        exp= true;
         
         assertEquals(exp, result);
         
@@ -80,19 +80,19 @@ public class CounterIsLessThanValueDecoratorTest {
         String counterName = "testCounter";
         int value = 5;
         BasicTrigger trigger = new BasicTrigger();
-        CounterIsLessThanValueDecorator instance = new CounterIsLessThanValueDecorator(counterName, value, trigger);
+        CounterIsGreaterThanValueTrigger instance = new CounterIsGreaterThanValueTrigger(counterName, value);
         
-        String expResult = "Counter: " + counterName + " 's value is less than: " + value + "\n";
+        String expResult = "Counter: " + counterName + " 's value is greater than: " + value + "\n";
         String result = instance.toString();
         assertEquals(expResult, result);
         
-        //same as above
+        //Same as above
         counterName = "test123Counter";
         value = 70;
         
-        CounterIsLessThanValueDecorator instance2 = new CounterIsLessThanValueDecorator(counterName, value, trigger);
+        CounterIsGreaterThanValueTrigger instance2 = new CounterIsGreaterThanValueTrigger(counterName, value);
         
-        expResult = "Counter: " + counterName + " 's value is less than: " + value + "\n";
+        expResult = "Counter: " + counterName + " 's value is greater than: " + value + "\n";
         result = instance2.toString();
         assertEquals(expResult, result);
     }

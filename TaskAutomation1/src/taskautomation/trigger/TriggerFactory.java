@@ -21,49 +21,61 @@ import taskautomation.Factory;
  * @author alessandro
  */
 
-public class TriggerFactory implements Factory<Trigger>{
+public class TriggerFactory{
 
-    @Override
-    public Trigger create(String triggerType, Trigger trigger) {
-        Trigger decoratedTrigger = new BasicTrigger();
-        if ("TimeOfDay".equals(triggerType)) {
-            LocalTime time = getTimeFromDialog();
-            decoratedTrigger = new TimeOfDayDecorator(trigger, time);
-        }
-        else if ("DayOfWeek".equals(triggerType)) {
-            DayOfWeek dayOfWeek = getDayOfWeekFromDialog();
-            decoratedTrigger = new DayOfWeekDecorator(trigger, dayOfWeek);
-        }
-        else if ("DayOfMonth".equals(triggerType)) {
-            int dayOfMonth = getDayOfMonthFromDialog();
-            decoratedTrigger = new DayOfMonthDecorator(trigger, dayOfMonth);
-        }
-        else if ("Date".equals(triggerType)){
-            LocalDate date = getDateFromDialog();
-            decoratedTrigger = new DateDecorator(trigger, date);
-        }
-        else if ("FileExists".equals(triggerType)){
-            decoratedTrigger = new FileExistsDecorator(trigger);
-        }
-        else if ("FileSizeIsGreater".equals(triggerType)){
-            decoratedTrigger = new FileSizeIsGreaterDecorator(trigger);
-        }
-        else if("ReturnCodeIsEqual".equals(triggerType)){
-            decoratedTrigger = new ReturnCodeIsEqualDecorator(trigger);
+    public Trigger create(String triggerType) {
+        Trigger trigger = null;
+        if (null != triggerType) switch (triggerType) {
+            case "TimeOfDay":
+                LocalTime time = getTimeFromDialog();
+                trigger = new TimeOfDayTrigger(time);
+                break;
+            case "DayOfWeek":
+                DayOfWeek dayOfWeek = getDayOfWeekFromDialog();
+                trigger =new DayOfWeekTrigger(dayOfWeek);
+                break;
+            case "DayOfMonth":
+                int dayOfMonth = getDayOfMonthFromDialog();
+                trigger = new DayOfMonthTrigger(dayOfMonth);
+                break;
+            case "Date":
+                LocalDate date = getDateFromDialog();
+                trigger = new DateTrigger(date);
+                break;
+            case "FileExists":
+                trigger = new FileExistsTrigger();
+                break;
+            case "FileSizeIsGreater":
+                trigger = new FileSizeIsGreaterTrigger();
+                break;
+            case "ReturnCodeIsEqual":
+                trigger = new ReturnCodeIsEqualTrigger();
+                break;
+            case "OR":
+                trigger = new TriggerCompositeOR();
+                break;
+            case "AND":
+                trigger = new TriggerCompositeAND();
+                break;
+            case "NOT":
+                trigger = new TriggerCompositeNOT();
+                break;
+            default:
+                break;
         } else if ("CounterIsEqualToValue".equals(triggerType)){
-            decoratedTrigger = new CounterIsEqualToValueDecorator(trigger);
+            trigger = new CounterIsEqualToValueTrigger();
         } else if ("CounterIsGreaterThanValue".equals(triggerType)){
-            decoratedTrigger = new CounterIsGreaterThanValueDecorator(trigger);
+            trigger = new CounterIsGreaterThanValueTrigger();
         } else if ("CounterIsLessThanValue".equals(triggerType)){
-            decoratedTrigger = new CounterIsLessThanValueDecorator(trigger);
+            trigger = new CounterIsLessThanValueTrigger();
         } else if ("CounterIsEqualToCounter".equals(triggerType)){
-            decoratedTrigger = new CounterIsEqualToCounterDecorator(trigger);
+            trigger = new CounterIsEqualToCounterTrigger();
         } else if ("CounterIsGreaterThanCounter".equals(triggerType)){
-            decoratedTrigger = new CounterIsGreaterThanCounterDecorator(trigger);
+            trigger = new CounterIsGreaterThanCounterTrigger();
         } else if ("CounterIsLessThanCounter".equals(triggerType)){
-            decoratedTrigger = new CounterIsLessThanCounterDecorator(trigger);
+            trigger = new CounterIsLessThanCounterTrigger();
         }
-        return decoratedTrigger;
+        return trigger;
     }
     
     private static LocalTime getTimeFromDialog() {

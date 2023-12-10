@@ -19,39 +19,29 @@ import javafx.stage.Stage;
  *
  * @author Leonardo
  */
-public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Serializable{
+public class ReturnCodeIsEqualTrigger implements Trigger, Serializable{
     
     File program;
     String arguments;
     int value;
     
-    //constructor used in application
-    public ReturnCodeIsEqualDecorator(Trigger decoratedTrigger){
-        super(decoratedTrigger);
-        //get user to select external program to execute
+    public ReturnCodeIsEqualTrigger(){
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Select program to execute");
         this.program = chooser.showOpenDialog(new Stage());
-        
-        //get arguments to run program with from user input
         TextInputDialog dialog = new TextInputDialog("arguments to execute the program with");
         dialog.setHeaderText(null);
         dialog.setTitle("program is executed with given arguments");
         dialog.setContentText("arguments");
         this.arguments =dialog.showAndWait().orElse("");
-        
-        //get value to compare external program's return code with
         TextInputDialog dialog2 = new TextInputDialog("value to compare return code to");
         dialog.setHeaderText(null);
         dialog.setTitle("return code is equal to given value");
         dialog.setContentText("type the value to check against");
-        this.value = Integer.parseInt(dialog.showAndWait().orElse("0"));
+        this.value = Integer.parseInt(dialog.showAndWait().orElse(""));
         
     }
-    
-    //constructor used in test class
-    public ReturnCodeIsEqualDecorator(File program, String arguments, int value, Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public ReturnCodeIsEqualTrigger(File program, String arguments, int value){
         this.program = program;
         this.arguments = arguments;
         this.value = value;
@@ -60,20 +50,16 @@ public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Seri
     
     @Override
     public boolean verifyTrigger(){
-        
-        //create process to execute external program with arguments
         ProcessBuilder pb = new ProcessBuilder(program.getAbsolutePath(), arguments);
         Process p;  
         try {
-            p = pb.start(); //start external program's execution
-            int exitCode = p.waitFor();  // wait for process to finish execution
+            p = pb.start();
+            int exitCode = p.waitFor();  // wait for process to finish then continue.
            
-            return this.value == exitCode;  //get exit code and compare it to value given by user
+            return this.value == exitCode;
             
-        } catch (IOException ex) {
-            Logger.getLogger(ReturnCodeIsEqualDecorator.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ReturnCodeIsEqualDecorator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(ReturnCodeIsEqualTrigger.class.getName()).log(Level.SEVERE, null, ex);
         }
      
        return false; 
@@ -81,7 +67,7 @@ public class ReturnCodeIsEqualDecorator extends TriggerDecorator implements Seri
     
     @Override
     public String toString(){
-        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + value +"\n"+ super.toString();
+        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + value;
     }
     
 }

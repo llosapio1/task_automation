@@ -12,16 +12,11 @@ import java.time.LocalTime;
  *
  * @author alessandro
  */
-public class TimeOfDayDecorator extends TriggerDecorator implements Serializable{
+public class TimeOfDayTrigger implements Trigger, Serializable{
     
     private LocalTime timeOfDay;
-
     
-    public TimeOfDayDecorator() {
-    }
-    
-    public TimeOfDayDecorator(Trigger decoratedTrigger, LocalTime timeOfDay) {
-        super(decoratedTrigger);
+    public TimeOfDayTrigger(LocalTime timeOfDay) {
         this.timeOfDay = timeOfDay;
     }
 
@@ -40,13 +35,14 @@ public class TimeOfDayDecorator extends TriggerDecorator implements Serializable
     public boolean verifyTrigger() {
         
         LocalTime currentTime = LocalTime.now();
+        System.out.println("Trigger codizione:" + (currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute()));
         // Confronta solo ora e minuti
-        return (currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute()) | super.verifyTrigger();
+        return (currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute());
+
     }
     
     @Override
     public String toString() {
-        return "time Of Day: " + "\"" +timeOfDay + "\"\n" + super.toString();
+        return "time Of Day: " + "\"" +timeOfDay + "\"";
     }
-    
 }

@@ -17,14 +17,14 @@ import static org.junit.Assert.*;
  */
 public class DayOfWeekDecoratorIT {
     
-    private DayOfWeekDecorator instance;
+    private DayOfWeekTrigger instance;
     
     public DayOfWeekDecoratorIT() {
     }
     
     @Before
     public void setUp() {
-        instance = new DayOfWeekDecorator(new BasicTrigger(), DayOfWeek.FRIDAY);
+        instance = new DayOfWeekTrigger(DayOfWeek.FRIDAY);
     }
     
     @After

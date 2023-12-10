@@ -15,12 +15,12 @@ import static org.junit.Assert.*;
  */
 public class DateDecoratorIT {
     
-    private DateDecorator instance;
+    private DateTrigger instance;
     LocalDate date = LocalDate.of(2023, 12, 2);
     
     @Before
     public void setUp() {
-        instance = new DateDecorator(new BasicTrigger(), date);
+        instance = new DateTrigger(date);
     }
     
     /**

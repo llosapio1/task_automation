@@ -11,12 +11,11 @@ import java.time.LocalDate;
  *
  * @author alessandro
  */
-public class DateDecorator  extends TriggerDecorator implements Serializable{
+public class DateTrigger implements Trigger, Serializable{
     
     LocalDate date;
 
-    public DateDecorator(Trigger decoratedTrigger, LocalDate date) {
-        super(decoratedTrigger);
+    public DateTrigger(LocalDate date) {
         this.date = date;
     }
 
@@ -31,11 +30,11 @@ public class DateDecorator  extends TriggerDecorator implements Serializable{
     @Override
     public boolean verifyTrigger() {
         // Controlla se la data odierna è uguale alla data del trigger
-        return LocalDate.now().isEqual(date) | super.verifyTrigger();
+        return LocalDate.now().isEqual(date);
     }
     
     @Override
     public String toString() {
-        return "date: " + "\"" + date + "\"\n" + super.toString();
+        return "date: " + "\"" + date + "\"";
     }
 }

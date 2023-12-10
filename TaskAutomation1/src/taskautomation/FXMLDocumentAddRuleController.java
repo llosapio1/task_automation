@@ -4,7 +4,6 @@ package taskautomation;
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.Duration;
@@ -13,24 +12,29 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.ActionFactory;
 import taskautomation.azioni.BasicAction;
 import taskautomation.rule.Rule;
-import taskautomation.trigger.BasicTrigger;
 import taskautomation.trigger.Trigger;
+import taskautomation.trigger.TriggerComposite;
 import taskautomation.trigger.TriggerFactory;
 
 /**
@@ -56,7 +60,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
     private VBox triggerSelect;
     @FXML
     private VBox ActionSelect;
-    @FXML
+    
     private ChoiceBox<String> triggerChoiceBox;
     @FXML
     private ChoiceBox<String> actionChoiceBox;
@@ -73,17 +77,21 @@ public class FXMLDocumentAddRuleController implements Initializable {
         
     private ObservableList<String> triggerList;
     private ObservableList<String> actionList;
-    
+
     ObservableList<String> triggerListChoiceBox = FXCollections.observableArrayList("TimeOfDay", "DayOfWeek", "DayOfMonth", "Date", "FileExists", "FileSizeIsGreater", "ReturnCodeIsEqual", "CounterIsEqualToValue", "CounterIsGreaterThanValue", "CounterIsLessThanValue", "CounterIsEqualToCounter", "CounterIsGreaterThanCounter", "CounterIsLessThanCounter");
     ObservableList<String> actionListChoiceBox = FXCollections.observableArrayList("DisplayMessage","PlayAudio", "AppendStringToFile", "MoveFileToDir", "CopyFileToDir", "DeleteFile", "ExecuteProgram", "AssignValueToCounter", "AddValueToCounter", "AddCounterToCounter");
     
     private final TriggerFactory triggerFactory = new TriggerFactory();
     private final ActionFactory actionFactory = new ActionFactory();
-    
-    private Trigger trigger = new BasicTrigger();
+   
     private Action action = new BasicAction();
+    private Trigger trigger = null;
     
     private Rule newRule;
+    @FXML
+    private ScrollPane triggersCreateList;
+    @FXML
+    private VBox vBoxTriggersCreate;
 
     /**
      * Initializes the controller class.
@@ -96,7 +104,7 @@ public class FXMLDocumentAddRuleController implements Initializable {
         selectHours.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 0));
         selectMinutes.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
         
-        triggerChoiceBox.setItems(triggerListChoiceBox);
+        //triggerChoiceBox.setItems(triggerListChoiceBox);
         actionChoiceBox.setItems(actionListChoiceBox);
         
         triggerList = FXCollections.observableArrayList();
@@ -124,34 +132,14 @@ public class FXMLDocumentAddRuleController implements Initializable {
             
     } 
 
-    @FXML
-    private void addTrigger(ActionEvent event) throws IOException {
-        changeSceneToFrom(triggerSelect, contentBase);
-        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
-        stage.setHeight(300);
-        stage.setWidth(400);*/
-    }
-
-    @FXML
-    private void addAction(ActionEvent event) {
-        changeSceneToFrom(ActionSelect, contentBase);
-        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
-        stage.setHeight(300);
-        stage.setWidth(400);*/
-    }
-
+    
     @FXML
     private void createTrigger(ActionEvent event) {
-        trigger = triggerFactory.create(triggerChoiceBox.getValue(), trigger);
         triggerList.setAll(trigger.toString().split("\n"));
         triggerView.setItems(triggerList);
         
         changeSceneToFrom(contentBase, triggerSelect);
         controlTriggerAndAction();
-        
-        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
-        stage.setHeight(560);
-        stage.setWidth(750);*/
     }
 
     @FXML
@@ -163,10 +151,6 @@ public class FXMLDocumentAddRuleController implements Initializable {
             
         changeSceneToFrom(contentBase, ActionSelect);
         controlTriggerAndAction();
-        
-        /*Stage stage = (Stage)createRuleButton.getScene().getWindow();
-        stage.setHeight(560);
-        stage.setWidth(750);*/
     }
 
     @FXML
@@ -188,5 +172,183 @@ public class FXMLDocumentAddRuleController implements Initializable {
         from.setVisible(false);
         from.setDisable(true);
     }
+    
+    @FXML
+    private void addTrigger(ActionEvent event) throws IOException {
+        changeSceneToFrom(triggerSelect, contentBase);
+    }
 
+    @FXML
+    private void addAction(ActionEvent event) {
+        changeSceneToFrom(ActionSelect, contentBase);
+    }
+
+    @FXML
+    private void addComplexTrigger(ActionEvent event) {
+        HBox parametriTriggerComplesso = new HBox(10);
+
+        Label label1 = new Label("Trigger 1: "); 
+        label1.setFont(new Font(14));
+        
+        ChoiceBox<String> boolean1 = new ChoiceBox<>();
+        boolean1.getItems().addAll("Defaul", "Not");
+        boolean1.setMaxWidth(70);
+        ChoiceBox<String> choiceBox1 = new ChoiceBox<>();
+        choiceBox1.setItems(triggerListChoiceBox);
+        choiceBox1.setMaxWidth(120);
+        
+        Label label2 = new Label("Operazione: ");
+        label2.setFont(new Font(14));
+        
+        ChoiceBox<String> choiceBox2 = new ChoiceBox<>();
+        choiceBox2.getItems().addAll("OR", "AND");
+        choiceBox2.setMaxWidth(60);
+        
+        Label label3 = new Label("Trigger 2: ");
+        label3.setFont(new Font(14));
+        
+        ChoiceBox<String> boolean2 = new ChoiceBox<>();
+        boolean2.getItems().addAll("Defaul", "Not");
+        boolean2.setMaxWidth(70);
+        ChoiceBox<String> choiceBox3 = new ChoiceBox<>();
+        choiceBox3.setItems(triggerListChoiceBox);
+        choiceBox3.setMaxWidth(120);
+        
+        Button button = new Button("Add");
+        
+        if(!vBoxTriggersCreate.getChildren().isEmpty()){
+            HBox parametriOperazione = new HBox(10);
+            parametriOperazione.setAlignment(Pos.CENTER);
+            
+            Label label4 = new Label("Operazione tra triggers: ");
+            label4.setFont(new Font(14));
+            
+            ChoiceBox<String> choiceBox4 = new ChoiceBox<>();
+            choiceBox4.getItems().addAll("OR", "AND");
+            choiceBox4.setMaxWidth(60);
+            
+            parametriOperazione.getChildren().addAll(label4, choiceBox4);
+            vBoxTriggersCreate.getChildren().add(parametriOperazione);
+            
+            EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> {
+                aggiungeTrigger(boolean1.getValue(), choiceBox1.getValue(), boolean2.getValue(), choiceBox3.getValue(), choiceBox2.getValue(), choiceBox4.getValue());
+            };
+            button.setOnAction(buttonClickHandler);
+            
+        } else {
+            EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> {
+                aggiungeTrigger(boolean1.getValue(), choiceBox1.getValue(), boolean2.getValue(), choiceBox3.getValue(), choiceBox2.getValue(), null);
+            };
+            
+            button.setOnAction(buttonClickHandler);
+        }
+
+        parametriTriggerComplesso.getChildren().addAll(label1, boolean1, choiceBox1, label2, choiceBox2, label3, boolean2, choiceBox3, button);
+        vBoxTriggersCreate.getChildren().add(parametriTriggerComplesso);
+        triggersCreateList.setContent(vBoxTriggersCreate);
+    }
+
+    @FXML
+    private void addSimpleTrigger(ActionEvent event) {
+        HBox hbox = new HBox(10);
+
+        Label label1 = new Label("Trigger:   "); 
+        label1.setFont(new Font(16));
+        
+        ChoiceBox<String> boolean1 = new ChoiceBox<>();
+        boolean1.getItems().addAll("Defaul", "Not");
+        boolean1.setMaxWidth(70);
+        ChoiceBox<String> choiceBox1 = new ChoiceBox<>();
+        choiceBox1.setItems(triggerListChoiceBox);
+        choiceBox1.setMaxWidth(120);
+        
+        Button button = new Button("Add");
+        
+        if(!vBoxTriggersCreate.getChildren().isEmpty()){
+            HBox parametriOperazione = new HBox(10);
+            parametriOperazione.setAlignment(Pos.CENTER);
+            
+            Label label4 = new Label("Operazione tra triggers: ");
+            label4.setFont(new Font(14));
+            
+            ChoiceBox<String> choiceBox4 = new ChoiceBox<>();
+            choiceBox4.getItems().addAll("OR", "AND");
+            choiceBox4.setMaxWidth(60);
+            
+            parametriOperazione.getChildren().addAll(label4, choiceBox4);
+            vBoxTriggersCreate.getChildren().add(parametriOperazione);
+            
+            EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> { 
+                aggiungeSimpleTrigger(boolean1.getValue(), choiceBox1.getValue(), choiceBox4.getValue());
+            };
+            button.setOnAction(buttonClickHandler);
+            
+        } else {
+            EventHandler<ActionEvent> buttonClickHandler = (ActionEvent event1) -> {
+                aggiungeSimpleTrigger(boolean1.getValue(), choiceBox1.getValue(), null);
+            };
+            
+            button.setOnAction(buttonClickHandler);
+        }
+
+
+        // Agregar ChoiceBoxes al HBox
+        hbox.getChildren().addAll(label1, boolean1, choiceBox1, button);
+        vBoxTriggersCreate.getChildren().add(hbox);
+        triggersCreateList.setContent(vBoxTriggersCreate);
+    }
+    
+
+    private void aggiungeTrigger(String boleanTrigger1, String typeTrigger1, String boleanTrigger2, String typeTrigger2, String typeOP, String typeOP2) {
+        TriggerComposite triggerTemp = (TriggerComposite)triggerFactory.create(typeOP);
+           
+        Trigger triggerComponent1 = triggerFactory.create(typeTrigger1);
+        
+        if(boleanTrigger1.equalsIgnoreCase("NOT")){
+            TriggerComposite triggerNOT = (TriggerComposite)triggerFactory.create("NOT");
+            triggerNOT.add(triggerComponent1);
+            triggerComponent1 = triggerNOT;
+        }
+        
+        Trigger triggerComponent2 = triggerFactory.create(typeTrigger2);
+        
+        if(boleanTrigger2.equalsIgnoreCase("NOT")){
+            TriggerComposite triggerNOT = (TriggerComposite)triggerFactory.create("NOT");
+            triggerNOT.add(triggerComponent2);
+            triggerComponent2 = triggerNOT;
+        }
+        
+        triggerTemp.add(triggerComponent1);
+        triggerTemp.add(triggerComponent2);
+        
+        if(typeOP2 != null){
+           TriggerComposite triggerTemp2 = (TriggerComposite)triggerFactory.create(typeOP2);
+           triggerTemp2.add(trigger);
+           triggerTemp2.add(triggerTemp);
+           trigger = triggerTemp2;
+        }
+        else{
+           trigger = triggerTemp;
+        }
+    }
+
+    private void aggiungeSimpleTrigger(String boleanTrigger, String typeTrigger, String typeOP2){
+        Trigger triggerComponent = triggerFactory.create(typeTrigger);
+        
+        if(boleanTrigger.equalsIgnoreCase("NOT")){
+            TriggerComposite triggerNOT = (TriggerComposite)triggerFactory.create("NOT");
+            triggerNOT.add(triggerComponent);
+            triggerComponent = triggerNOT;
+        }
+        
+        if(typeOP2 != null){
+            TriggerComposite triggerTemp = (TriggerComposite)triggerFactory.create(typeOP2);
+            triggerTemp.add(trigger);
+            triggerTemp.add(triggerComponent);
+            trigger = triggerTemp;
+        }
+        else{
+            trigger = triggerComponent;
+        }
+    }
 }

@@ -14,33 +14,30 @@ import taskautomation.counter.CounterList;
  *
  * @author Leonardo
  */
-public class CounterIsLessThanCounterDecorator extends TriggerDecorator implements Serializable{
-    
-   String counterName1;
+public class CounterIsGreaterThanCounterTrigger implements Trigger, Serializable{
+    String counterName1;
     String counterName2;
     
     //constructor used in test class
-    public CounterIsLessThanCounterDecorator(String counterName1, String counterName2, Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public CounterIsGreaterThanCounterTrigger(String counterName1, String counterName2){
         this.counterName1 = counterName1;
         this.counterName2 = counterName2;
     }
     
     //constructor used in application
-    public CounterIsLessThanCounterDecorator(Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public CounterIsGreaterThanCounterTrigger(){
         
-        //get name of the first counter from user input
+        //get the name of the first counter from user input
         TextInputDialog dialog = new TextInputDialog("type the name of the first counter");
         dialog.setHeaderText(null);
-        dialog.setTitle("check if counter is less than counter");
+        dialog.setTitle("check if counter is greater than counter");
         dialog.setContentText("name of the first counter");
         this.counterName1 = dialog.showAndWait().orElse("");
         
-        //get name of the second counter from user input
+        //get the name of the second counter from user input
         TextInputDialog dialog2 = new TextInputDialog("type the name of the second counter");
         dialog2.setHeaderText(null);
-        dialog2.setTitle("check if counter is less than counter");
+        dialog2.setTitle("check if counter is greater than counter");
         dialog2.setContentText("name of the second counter");
         this.counterName2 = dialog2.showAndWait().orElse("");
     }
@@ -51,7 +48,7 @@ public class CounterIsLessThanCounterDecorator extends TriggerDecorator implemen
         Counter counter2 = null;
          ArrayList<Counter> list = CounterList.getCounterList().get();
          
-         //used these to check when both counters have been found
+         //use these to check whether both counters have been found
          boolean found1 = false;
          boolean found2 = false;
          
@@ -74,15 +71,14 @@ public class CounterIsLessThanCounterDecorator extends TriggerDecorator implemen
                  break;
              }
          }
-         
          if (counter1!=null && counter2!=null){
-         //check if counter1's value is less than counter2's value
-         return (counter1.getValue() < counter2.getValue());
+         return (counter1.getValue() > counter2.getValue());
          }else return false;
+      
     }
     
     @Override
     public String toString(){
-        return "Counter: " + this.counterName1 + " 's value is less than: " + this.counterName2 + "\n"+super.toString();
-    } 
+        return "Counter: " + this.counterName1 + " 's value is greater than: " + this.counterName2;
+    }
 }

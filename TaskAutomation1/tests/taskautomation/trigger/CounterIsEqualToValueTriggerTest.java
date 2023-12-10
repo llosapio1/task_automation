@@ -15,9 +15,9 @@ import taskautomation.counter.CounterList;
  *
  * @author Leonardo
  */
-public class CounterIsEqualToValueDecoratorTest {
+public class CounterIsEqualToValueTriggerTest {
     
-    public CounterIsEqualToValueDecoratorTest() {
+    public CounterIsEqualToValueTriggerTest() {
     }
     
     @BeforeClass
@@ -40,7 +40,7 @@ public class CounterIsEqualToValueDecoratorTest {
         CounterList.getCounterList().addCounter(counter);
         
         BasicTrigger trigger = new BasicTrigger();
-        CounterIsEqualToValueDecorator instance = new CounterIsEqualToValueDecorator(counterName, value, trigger);
+        CounterIsEqualToValueTrigger instance = new CounterIsEqualToValueTrigger(counterName, value);
         boolean result = instance.verifyTrigger(); //check if counter's value is equal to given value
         boolean exp= false;
         
@@ -59,7 +59,7 @@ public class CounterIsEqualToValueDecoratorTest {
         counter = new Counter(counterName, counterValue);
         CounterList.getCounterList().addCounter(counter);
         
-        CounterIsEqualToValueDecorator instance2 = new CounterIsEqualToValueDecorator(counterName, value, trigger);
+        CounterIsEqualToValueTrigger instance2 = new CounterIsEqualToValueTrigger(counterName, value);
         result = instance2.verifyTrigger();
         exp= true;
         
@@ -80,7 +80,7 @@ public class CounterIsEqualToValueDecoratorTest {
         String counterName = "testCounter";
         int value = 5;
         BasicTrigger trigger = new BasicTrigger();
-        CounterIsEqualToValueDecorator instance = new CounterIsEqualToValueDecorator(counterName, value, trigger);
+        CounterIsEqualToValueTrigger instance = new CounterIsEqualToValueTrigger(counterName, value);
         
         String expResult = "Counter: " + counterName + " 's value is equal to: " + value + "\n";
         String result = instance.toString();
@@ -90,7 +90,7 @@ public class CounterIsEqualToValueDecoratorTest {
         counterName = "test123Counter";
         value = 70;
         
-        CounterIsEqualToValueDecorator instance2 = new CounterIsEqualToValueDecorator(counterName, value, trigger);
+        CounterIsEqualToValueTrigger instance2 = new CounterIsEqualToValueTrigger(counterName, value);
         
         expResult = "Counter: " + counterName + " 's value is equal to: " + value + "\n";
         result = instance2.toString();

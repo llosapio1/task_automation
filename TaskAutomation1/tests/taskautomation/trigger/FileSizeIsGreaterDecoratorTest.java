@@ -43,12 +43,12 @@ public class FileSizeIsGreaterDecoratorTest {
         File file = new File(fileName);
         
         Trigger decoratedTrigger = new BasicTrigger();
-        FileSizeIsGreaterDecorator instance = new FileSizeIsGreaterDecorator(file, expFileSize/1024-10, decoratedTrigger);
+        FileSizeIsGreaterTrigger instance = new FileSizeIsGreaterTrigger(file, expFileSize/1024-10);
         boolean expResult = true;
         boolean result = instance.verifyTrigger(); //check if file size is greater than expFileSize converted to kbytes -10
         assertEquals(expResult, result);
         
-        FileSizeIsGreaterDecorator instance2 = new FileSizeIsGreaterDecorator(file, expFileSize/1024+10, decoratedTrigger);
+        FileSizeIsGreaterTrigger instance2 = new FileSizeIsGreaterTrigger(file, expFileSize/1024+10);
         expResult = false;
         result = instance2.verifyTrigger(); //check if file size is greater than expFileSize converted to kbytes +10
         assertEquals(expResult, result);
@@ -67,7 +67,7 @@ public class FileSizeIsGreaterDecoratorTest {
         File file = new File("fileSizeGreater1.txt");
         long size = 10000;
         Trigger decoratedTrigger = new BasicTrigger();
-        FileSizeIsGreaterDecorator instance = new FileSizeIsGreaterDecorator(file, size, decoratedTrigger);
+        FileSizeIsGreaterTrigger instance = new FileSizeIsGreaterTrigger(file, size);
         String expResult = "File " + "\"" +file.toString() + "\"" + "size is greater then " +size +"\n";
         String result = instance.toString();
         assertEquals(expResult, result);
@@ -77,7 +77,7 @@ public class FileSizeIsGreaterDecoratorTest {
         //same as above
         File file2 = new File("fileSizeGreater2.txt");
         size = 100;
-        FileSizeIsGreaterDecorator instance2 = new FileSizeIsGreaterDecorator(file2, size, decoratedTrigger);
+        FileSizeIsGreaterTrigger instance2 = new FileSizeIsGreaterTrigger(file2, size);
         expResult = "File " + "\"" +file2.toString() + "\"" + "size is greater then " +size +"\n";
         
         result = instance2.toString();

@@ -14,20 +14,18 @@ import taskautomation.counter.CounterList;
  *
  * @author Leonardo
  */
-public class CounterIsGreaterThanValueDecorator extends TriggerDecorator implements Serializable{
+public class CounterIsGreaterThanValueTrigger implements Trigger, Serializable{
     String counterName;
     int value;
     
     //constructor used in test class
-    public CounterIsGreaterThanValueDecorator(String counterName, int value, Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public CounterIsGreaterThanValueTrigger(String counterName, int value){
         this.counterName = counterName;
         this.value = value;
     }
     
     //constructor used in application
-    public CounterIsGreaterThanValueDecorator(Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public CounterIsGreaterThanValueTrigger(){
         
         //get name of the counter from user input
         TextInputDialog dialog = new TextInputDialog("type the name of the counter");
@@ -67,6 +65,6 @@ public class CounterIsGreaterThanValueDecorator extends TriggerDecorator impleme
     
     @Override
     public String toString(){
-        return "Counter: " + this.counterName + " 's value is greater than: " + this.value + "\n"+super.toString();
+        return "Counter: " + this.counterName + " 's value is greater than: " + this.value;
     }
 }

@@ -14,21 +14,20 @@ import taskautomation.counter.CounterList;
  *
  * @author Leonardo
  */
-public class CounterIsEqualToValueDecorator extends TriggerDecorator implements Serializable{
+public class CounterIsEqualToValueTrigger implements Serializable, Trigger{
     
     String counterName;
     int value;
     
     //constructor used in test class
-    public CounterIsEqualToValueDecorator(String counterName, int value, Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public CounterIsEqualToValueTrigger(String counterName, int value){
         this.counterName = counterName;
         this.value = value;
     }
     
     //constructor used in application
-    public CounterIsEqualToValueDecorator(Trigger decoratedTrigger){
-        super(decoratedTrigger);
+    public CounterIsEqualToValueTrigger(){
+        
         //get name of the counter from user input
         TextInputDialog dialog = new TextInputDialog("type the name of the counter");
         dialog.setHeaderText(null);
@@ -58,13 +57,14 @@ public class CounterIsEqualToValueDecorator extends TriggerDecorator implements 
          }
          //check if counter's value is equal to number chosen by user
          if (counter != null){
-            return (counter.getValue() == this.value);
+         return (counter.getValue() == this.value);
          }else return false;
+      
     }
     
     @Override
     public String toString(){
-        return "Counter: " + this.counterName + " 's value is equal to: " + this.value + "\n"+super.toString();
+        return "Counter: " + this.counterName + " 's value is equal to: " + this.value;
     }
     
 }
