@@ -82,6 +82,6 @@ public class CounterIsEqualToCounterDecorator extends TriggerDecorator implement
     
     @Override
     public String toString(){
-        return "Counter: " + this.counterName1 + "value is equal to: " + this.counterName2 + "\n"+super.toString();
+        return "Counter: " + this.counterName1 + " 's value is equal to: " + this.counterName2 + "\n"+super.toString();
     }
 }
