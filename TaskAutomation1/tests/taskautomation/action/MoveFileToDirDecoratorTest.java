@@ -67,7 +67,7 @@ public class MoveFileToDirDecoratorTest {
         File dir = new File("moveFileTestDir");
         dir.mkdir();
         
-        String expected = "Move file: " + file.toString() + " to directory: " + dir.toString() + " ";
+        String expected = "Move file: " + "\"" + file.toString()+ "\"" + " to directory: " + "\"" +dir.toString()+ "\"" + "\n";
         BasicAction action = new BasicAction();
         MoveFileToDirDecorator instance = new MoveFileToDirDecorator(file, dir, action);
         String result = instance.toString();
@@ -87,12 +87,12 @@ public class MoveFileToDirDecoratorTest {
         file2.createNewFile();
         dir = new File("moveFileTest2Dir");
         dir.mkdir();
-        expected = "Move file: " + file.toString() + " to directory: " + dir.toString() + " ";
+        String expected2 = "Move file: " + "\"" + file2.toString()+ "\"" + " to directory: " + "\"" +dir.toString()+ "\"" + "\n";
         
-        MoveFileToDirDecorator instance2 = new MoveFileToDirDecorator(file, dir, action);
+        MoveFileToDirDecorator instance2 = new MoveFileToDirDecorator(file2, dir, action);
         
-        result = instance2.toString();
-        assertEquals(expected, result);
+        String result2 = instance2.toString();
+        assertEquals(expected2, result2);
         
         File[] files2 = dir.listFiles();
         for(File f : files2){
