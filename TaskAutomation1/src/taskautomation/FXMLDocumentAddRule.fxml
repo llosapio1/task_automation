@@ -17,7 +17,7 @@
 
 <StackPane alignment="TOP_CENTER" prefHeight="520.0" prefWidth="892.0" stylesheets="@FXMLDocumentAddRuleCSS.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="taskautomation.FXMLDocumentAddRuleController">
    <children>
-      <VBox fx:id="contentBase" disable="true" prefHeight="780.0" prefWidth="750.0" visible="false">
+      <VBox fx:id="contentBase" prefHeight="780.0" prefWidth="750.0" spacing="10.0">
          <children>
             <HBox alignment="CENTER" prefHeight="10.0" prefWidth="690.0">
                <children>
@@ -97,7 +97,7 @@
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#createAction" text="Create action" />
          </children>
       </VBox>
-      <VBox fx:id="triggerSelect" alignment="TOP_CENTER" minHeight="95.0" minWidth="210.0" prefHeight="520.0" prefWidth="767.0">
+      <VBox fx:id="triggerSelect" alignment="TOP_CENTER" disable="true" minHeight="95.0" minWidth="210.0" prefHeight="520.0" prefWidth="767.0" visible="false">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="726.0" text="Add a new Trigger">
                <font>
