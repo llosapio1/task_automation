@@ -67,7 +67,7 @@ public class ReturnCodeIsEqualTrigger implements Trigger, Serializable{
     
     @Override
     public String toString(){
-        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code checked against: " + value;
+        return "Program " + "\"" +program.toString() + "\"" + " executed with arguments " + "\"" +arguments+ "\""+ " return code is equal to: " + value;
     }
     
 }
