@@ -33,20 +33,32 @@ public class AddValueToCounterDecoratorTest {
     @Test
     public void testExecuteAction() {
         System.out.println("executeAction");
+        
+        //create new counter with name and value, then add it to counter list
         String counterName = "testing";
-        int initValue = 0;
+        int initValue = 0;  //initial counter's value (before add)
         Counter counter = new Counter(counterName, initValue);
         CounterList.getCounterList().addCounter(counter);
         
+        //value to add to counter
         int value = 10;
+        
         BasicAction action = new BasicAction();
         AddValueToCounterDecorator instance = new AddValueToCounterDecorator(counterName, value, action);
-        instance.executeAction();
+        instance.executeAction(); //value is added to counter
+        
+        //get counter from counter list
         int index = CounterList.getCounterList().get().indexOf(counter); 
         Counter c = CounterList.getCounterList().get().get(index);
+        
+        //assert
         assertEquals(initValue+value, c.getValue());
+        
+        //remove newly added counter
         CounterList.getCounterList().removeCounter(c);
         
+        
+        //Same as above
         counterName = "test2";
         initValue = 5;
         counter = new Counter(counterName, initValue);
@@ -66,6 +78,8 @@ public class AddValueToCounterDecoratorTest {
     @Test
     public void testToString() {
         System.out.println("toString");
+        
+        //use counter name and value for decorator's constructor
         String counterName = "testCounter";
         int value = 5;
         BasicAction action = new BasicAction();
@@ -75,6 +89,7 @@ public class AddValueToCounterDecoratorTest {
         String result = instance.toString();
         assertEquals(expResult, result);
         
+        //Same as above
         counterName = "test123Counter";
         value = 70;
         
