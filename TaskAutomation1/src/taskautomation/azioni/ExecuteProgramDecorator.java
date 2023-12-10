@@ -20,8 +20,8 @@ import javafx.stage.Stage;
  */
 public class ExecuteProgramDecorator extends ActionDecorator implements Serializable{
     
-    File program;
-    String arguments;
+    private File program;
+    private String arguments;
     
     //constructor used in test class
     public ExecuteProgramDecorator (File program, String arguments, Action basicAction){

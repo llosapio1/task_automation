@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @author Leonardo
  */
 public class DeleteFileDecorator extends ActionDecorator implements Serializable{
-    File selectedFile;
+    private File selectedFile;
     
     //constructor used in test class
     public DeleteFileDecorator(File selectedFile, Action basicAction) {

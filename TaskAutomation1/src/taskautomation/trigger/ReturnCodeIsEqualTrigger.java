@@ -21,9 +21,9 @@ import javafx.stage.Stage;
  */
 public class ReturnCodeIsEqualTrigger implements Trigger, Serializable{
     
-    File program;
-    String arguments;
-    int value;
+    private File program;
+    private String arguments;
+    private int value;
     
     public ReturnCodeIsEqualTrigger(){
         FileChooser chooser = new FileChooser();

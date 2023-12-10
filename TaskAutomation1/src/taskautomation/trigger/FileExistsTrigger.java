@@ -18,8 +18,8 @@ import javafx.stage.Stage;
  */
 public class FileExistsTrigger implements Trigger, Serializable{
     
-    String fileName;
-    File dir;
+    private String fileName;
+    private File dir;
     
     FileExistsTrigger(String fileName, File dir){
         this.fileName = fileName;
