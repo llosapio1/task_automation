@@ -16,8 +16,8 @@ import javafx.stage.Stage;
  */
 public class FileSizeIsGreaterTrigger implements Trigger, Serializable{
     
-    File file;
-    long size;
+    private File file;
+    private long size;
     
     public FileSizeIsGreaterTrigger(File file, long size){
         this.file = file;

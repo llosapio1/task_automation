@@ -16,8 +16,8 @@ import taskautomation.counter.CounterList;
  */
 public class CounterIsLessThanCounterTrigger implements Trigger, Serializable{
     
-    String counterName1;
-    String counterName2;
+    private String counterName1;
+    private String counterName2;
     
     //constructor used in test class
     public CounterIsLessThanCounterTrigger(String counterName1, String counterName2){

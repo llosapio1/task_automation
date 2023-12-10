@@ -7,7 +7,6 @@ package taskautomation.azioni;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javafx.scene.control.TextInputDialog;
-import taskautomation.CountersTableObserver;
 import taskautomation.TaskAutomation;
 import taskautomation.counter.Counter;
 import taskautomation.counter.CounterList;
@@ -17,8 +16,8 @@ import taskautomation.counter.CounterList;
  * @author Leonardo
  */
 public class AddValueToCounterDecorator extends ActionDecorator implements Serializable{
-   String counterName;
-   int value;
+   private String counterName;
+   private int value;
    
    //constructor used in application
     public AddValueToCounterDecorator(Action basicAction){

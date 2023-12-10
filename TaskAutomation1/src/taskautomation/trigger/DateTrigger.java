@@ -13,7 +13,7 @@ import java.time.LocalDate;
  */
 public class DateTrigger implements Trigger, Serializable{
     
-    LocalDate date;
+    private LocalDate date;
 
     public DateTrigger(LocalDate date) {
         this.date = date;

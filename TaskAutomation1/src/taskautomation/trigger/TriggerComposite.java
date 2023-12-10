@@ -4,9 +4,6 @@
  */
 package taskautomation.trigger;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
 /**
  *
  * @author Alejandro
