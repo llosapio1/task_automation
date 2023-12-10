@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -76,7 +78,10 @@ public class TriggerFactory implements Factory<Trigger>{
 
             return controller.showDialog();
         } catch (IOException e) {
-            return null;
+            // Registra l'errore utilizzando un logger
+            Logger.getLogger(TriggerFactory.class.getName()).log(Level.SEVERE, "Error during the loading of the dialog", e);
+            // Lancia un'eccezione per indicare l'errore
+            throw new TimeDialogException("Unable to load the dialog for time selection", e);
         }
     }
     
@@ -92,7 +97,10 @@ public class TriggerFactory implements Factory<Trigger>{
 
             return controller.showDialog();
         } catch (IOException e) {
-            return null;
+            // Registra l'errore utilizzando un logger
+            Logger.getLogger(TriggerFactory.class.getName()).log(Level.SEVERE, "Error during the loading of the dialog", e);
+            // Lancia un'eccezione per indicare l'errore
+            throw new TimeDialogException("Unable to load the dialog for day of the week selection", e);
         }
     }
     
@@ -108,7 +116,10 @@ public class TriggerFactory implements Factory<Trigger>{
 
             return controller.showDialog();
         } catch (IOException e) {
-            return -1;
+            // Registra l'errore utilizzando un logger
+            Logger.getLogger(TriggerFactory.class.getName()).log(Level.SEVERE, "Error during the loading of the dialog", e);
+            // Lancia un'eccezione per indicare l'errore
+            throw new TimeDialogException("Unable to load the dialog for day of month selection", e);
         }
     }
     
@@ -124,7 +135,10 @@ public class TriggerFactory implements Factory<Trigger>{
 
             return controller.showDialog();
         } catch (IOException e) {
-            return null;
+            // Registra l'errore utilizzando un logger
+            Logger.getLogger(TriggerFactory.class.getName()).log(Level.SEVERE, "Error during the loading of the dialog", e);
+            // Lancia un'eccezione per indicare l'errore
+            throw new TimeDialogException("Unable to load the dialog for date selection", e);
         }
     }
 

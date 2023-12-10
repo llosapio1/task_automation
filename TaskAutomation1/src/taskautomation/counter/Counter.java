@@ -5,8 +5,6 @@
 package taskautomation.counter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -32,11 +30,6 @@ public class Counter implements Serializable{
 
     public void setValue(int value) {
         this.value = value;
-    }
-
-    @Override
-    public String toString() {
-        return "Counter name: " + name + "; value: " + value;
     }
     
 }

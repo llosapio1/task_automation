@@ -79,7 +79,7 @@ public class CounterList implements Serializable{
             return loadedCounters;
         } catch (FileNotFoundException | InvalidClassException | EOFException e) {
             // Se il file non esiste o è vuoto, restituisci una lista vuota
-            return new ArrayList<Counter>();
+            return new ArrayList<>();
         }
         
     }
@@ -88,7 +88,8 @@ public class CounterList implements Serializable{
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("counters.ser"))) {
             oos.writeObject(countersList);
         } catch (IOException e) {
-            e.printStackTrace();
+            // Registra l'errore utilizzando un logger
+            Logger.getLogger(CounterList.class.getName()).log(Level.SEVERE, null, e);
         }
     }
     

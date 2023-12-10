@@ -30,7 +30,7 @@ public class DayOfMonthDecorator extends TriggerDecorator implements Serializabl
     
     @Override
     public boolean verifyTrigger() {
-        // Controlla se il gionro della data odierna è uguale al giorno del trigger
+        // Controlla se il giorno della data odierna è uguale al giorno del trigger
         return LocalDate.now().getDayOfMonth() == dayOfMonth | super.verifyTrigger();
     }
     
