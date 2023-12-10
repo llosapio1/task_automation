@@ -39,10 +39,10 @@ public class AssignValueToCounterDecorator extends ActionDecorator implements Se
         
         //get value to assign to counter through user input
         TextInputDialog dialog2 = new TextInputDialog("Type the value to assign (int)");
-        dialog.setHeaderText(null);
-        dialog.setTitle("assign value to counter");
-        dialog.setContentText("Type the value to assign (int)");
-        this.value = Integer.parseInt(dialog.showAndWait().orElse("0"));
+        dialog2.setHeaderText(null);
+        dialog2.setTitle("assign value to counter");
+        dialog2.setContentText("Type the value to assign (int)");
+        this.value = Integer.parseInt(dialog2.showAndWait().orElse("0"));
      }
      
      @Override
@@ -53,7 +53,7 @@ public class AssignValueToCounterDecorator extends ActionDecorator implements Se
          
          //find counter in counter list
          for (Counter c : list){
-             if (c.getName() == this.counterName){
+             if (c.getName().equals(this.counterName)){
                  counter = c;
                  break;
              }
