@@ -32,6 +32,7 @@ public class CounterIsEqualToCounterDecoratorTest {
     public void testVerifyTrigger() {
         System.out.println("verifyTrigger");
        
+        //create two counters with names and values then add them to counter list
         String counterName1 = "testing";
         int counterValue1 = 0;
         String counterName2 = "testing2";
@@ -45,11 +46,12 @@ public class CounterIsEqualToCounterDecoratorTest {
         
         BasicTrigger trigger = new BasicTrigger();
         CounterIsEqualToCounterDecorator instance = new CounterIsEqualToCounterDecorator(counterName1, counterName2, trigger);
-        boolean result = instance.verifyTrigger();
+        boolean result = instance.verifyTrigger(); //check if counters' values are equal
         boolean exp= true;
         
         assertEquals(exp, result);
         
+        //get counters from counter list and remove them
         int index1 = CounterList.getCounterList().get().indexOf(counter1); 
         Counter c1 = CounterList.getCounterList().get().get(index1);
         CounterList.getCounterList().removeCounter(c1);
@@ -58,7 +60,7 @@ public class CounterIsEqualToCounterDecoratorTest {
         CounterList.getCounterList().removeCounter(c2);
         
         
-        
+        //Same as above
         counterName1 = "abc";
         counterValue1 = 5;
         counterName2 = "cdf";
@@ -90,6 +92,7 @@ public class CounterIsEqualToCounterDecoratorTest {
     public void testToString() {
         System.out.println("toString");
  
+        //use two counters' names for decorator's constructor
         String counterName1 = "test1counter";
         String counterName2 = "test2counter";
         BasicTrigger trigger = new BasicTrigger();
@@ -99,7 +102,7 @@ public class CounterIsEqualToCounterDecoratorTest {
         String result = instance.toString();
         assertEquals(expResult, result);
         
-        
+        //same as above
         counterName1 = "hello";
         counterName2 = "world";
         
