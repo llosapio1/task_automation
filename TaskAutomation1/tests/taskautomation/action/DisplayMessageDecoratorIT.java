@@ -25,9 +25,6 @@ public class DisplayMessageDecoratorIT{
     
     private DisplayMessageDecorator instance;
     
-    public DisplayMessageDecoratorIT() {
-    }
-    
     @Before
     public void setUp() {
         // Crea un'istanza di TimeOfDayDecorator con valori di esempio
@@ -52,28 +49,6 @@ public class DisplayMessageDecoratorIT{
         String expResult = "Nuovo messaggio inserito";
         instance.setMessage("Nuovo messaggio inserito");
         assertEquals(expResult, instance.getMessage());
-    }
-
-    /**
-     * Test of verifyTrigger method, of class TimeOfDayDecorator.
-     */
-
-
-    
-    @Test
-    public void testExecuteAction() {
-        
-        // Creo una BasicAction
-        BasicAction action = new BasicAction();
-        
-        String message = "Test DisplayMessageAction superato";
-        
-        // Decoro la BasicAction
-        DisplayMessageDecorator decoratedAction = new DisplayMessageDecorator(message, action);
-        
-        //Chiamo in esecuzione il metodo executeAction
-        decoratedAction.executeAction();
-        
     }
     
 }

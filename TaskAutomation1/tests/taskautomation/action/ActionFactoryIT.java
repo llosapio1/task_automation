@@ -9,7 +9,6 @@ import org.junit.Test;
 import taskautomation.azioni.ActionFactory;
 import taskautomation.azioni.Action;
 import taskautomation.azioni.BasicAction;
-import taskautomation.azioni.DisplayMessageDecorator;
 
 
 /**
@@ -25,18 +24,6 @@ public class ActionFactoryIT{
 
     }
     
-    /**
-     * Test of create method, of class TriggerFactory.
-     */
-    /* Test JavaFX
-    @Test
-    public void testCreateWithValidType() {  
-        String actionType = "DisplayMessage";
-        Action result = af.create(actionType, ba);
-        assertTrue(result instanceof DisplayMessageDecorator);
-        
-    }*/
-    
     @Test
     public void testCreateWithInvalidType() {
         String ActionType = "InvalidType";
@@ -44,8 +31,5 @@ public class ActionFactoryIT{
         assertTrue(result instanceof BasicAction);
         
     }
-    
-    
-    
     
 }

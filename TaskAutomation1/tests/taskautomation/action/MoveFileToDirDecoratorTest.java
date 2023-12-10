@@ -6,8 +6,6 @@ package taskautomation.action;
 
 import java.io.File;
 import java.io.IOException;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import taskautomation.azioni.BasicAction;
@@ -18,17 +16,6 @@ import taskautomation.azioni.MoveFileToDirDecorator;
  * @author Leonardo
  */
 public class MoveFileToDirDecoratorTest {
-    
-    public MoveFileToDirDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
 
     @Test
     public void testExecuteAction() throws IOException {

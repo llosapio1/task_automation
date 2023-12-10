@@ -10,8 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import static java.lang.Thread.sleep;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import taskautomation.azioni.BasicAction;
@@ -22,17 +20,6 @@ import taskautomation.azioni.ExecuteProgramDecorator;
  * @author Leonardo
  */
 public class ExecuteProgramDecoratorTest {
-    
-    public ExecuteProgramDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
 
     @Test
     public void testExecuteAction() throws FileNotFoundException, IOException, InterruptedException {

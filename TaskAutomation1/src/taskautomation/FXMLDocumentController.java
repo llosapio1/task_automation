@@ -81,6 +81,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button confirmAddCounterButton;
     
+    CounterList cl = CounterList.getCounterList();
+    
     
  
     @Override
@@ -181,6 +183,16 @@ public class FXMLDocumentController implements Initializable {
         }
         
         Counter c = new Counter (counterName.getText(), Integer.parseInt(counterValue.getText()));
+        
+        if (!cl.addCounter(c)){
+            // Mostra una finestra di avviso
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("A counter with this name already exists");
+            alert.showAndWait();
+            return;
+        }
         
         // Aggiorna la ListView dei contatori
         updateCountersTableView();

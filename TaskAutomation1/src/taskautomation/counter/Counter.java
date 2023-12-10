@@ -20,7 +20,6 @@ public class Counter implements Serializable{
     public Counter(String name, int value) {
         this.name = name;
         this.value = value;
-        CounterList.getCounterList().addCounter(this);
     }
 
     public String getName() {
@@ -33,6 +32,11 @@ public class Counter implements Serializable{
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    @Override
+    public String toString() {
+        return "Counter name: " + name + "; value: " + value;
     }
     
 }

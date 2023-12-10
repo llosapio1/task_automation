@@ -18,17 +18,6 @@ import taskautomation.counter.CounterList;
  * @author Leonardo
  */
 public class AddValueToCounterDecoratorTest {
-    
-    public AddValueToCounterDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
 
     @Test
     public void testExecuteAction() {

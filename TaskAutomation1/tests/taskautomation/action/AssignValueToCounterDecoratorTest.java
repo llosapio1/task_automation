@@ -4,8 +4,6 @@
  */
 package taskautomation.action;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import taskautomation.azioni.AssignValueToCounterDecorator;
@@ -18,17 +16,6 @@ import taskautomation.counter.CounterList;
  * @author Leonardo
  */
 public class AssignValueToCounterDecoratorTest {
-    
-    public AssignValueToCounterDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
 
     @Test
     public void testExecuteAction() {

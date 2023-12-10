@@ -6,16 +6,11 @@ package taskautomation.action;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
-import taskautomation.azioni.Action;
 import taskautomation.azioni.AppendStringToFileDecorator;
 import taskautomation.azioni.BasicAction;
 
@@ -24,19 +19,6 @@ import taskautomation.azioni.BasicAction;
  * @author Leonardo
  */
 public class AppendStringToFileDecoratorTest {
-    
-    public AppendStringToFileDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-        
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
    
     @Test
     public void testExecuteAction() throws FileNotFoundException, IOException {
@@ -62,7 +44,6 @@ public class AppendStringToFileDecoratorTest {
         
         //delete file used for testing
         selectedFile.delete();
-        
    
 }
         
@@ -85,7 +66,6 @@ public class AppendStringToFileDecoratorTest {
         //delete file used for testing
         file.delete();
         
-        
         //Same as above
         string = "testing 123";
         file = new File ("appendStringToStringTest2.txt");
@@ -96,7 +76,6 @@ public class AppendStringToFileDecoratorTest {
         result = instance2.toString();
         assertEquals(expected, result);
         file.delete();
-        
         
     }
     

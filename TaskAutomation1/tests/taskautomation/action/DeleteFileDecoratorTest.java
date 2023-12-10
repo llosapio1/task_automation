@@ -7,11 +7,6 @@ package taskautomation.action;
 import java.io.File;
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import taskautomation.azioni.BasicAction;
@@ -22,17 +17,6 @@ import taskautomation.azioni.DeleteFileDecorator;
  * @author Leonardo
  */
 public class DeleteFileDecoratorTest {
-    
-    public DeleteFileDecoratorTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
 
     @Test
     public void testExecuteAction() throws IOException {
@@ -48,7 +32,6 @@ public class DeleteFileDecoratorTest {
         
         //check that file doesn't exist anymore
         assertFalse(file.exists());
-        
         
     }
 

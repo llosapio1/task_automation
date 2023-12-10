@@ -46,6 +46,12 @@ public class CounterList implements Serializable{
     }
     
     public boolean addCounter(Counter counter) {
+        // Verifica che il contatore con lo stesso nome non sia già presente nella lista
+        if (countersList.stream().anyMatch(c -> c.getName().equals(counter.getName()))) {
+            return false;  // Il contatore con lo stesso nome è già presente, non aggiungerlo
+        }
+        
+        // Aggiungi il contatore solo se non è già presente nella lista
         boolean result = countersList.add(counter);
         saveCountersToFile();
         return result;
@@ -56,7 +62,7 @@ public class CounterList implements Serializable{
     }
     
     public void removeCounter (Counter counter) {
-        countersList.remove(counter); // Rimuovi il vecchio contatore
+        countersList.remove(counter); // Rimuove il contatore
         saveCountersToFile();         // Salva la lista aggiornata su file
     }
     
