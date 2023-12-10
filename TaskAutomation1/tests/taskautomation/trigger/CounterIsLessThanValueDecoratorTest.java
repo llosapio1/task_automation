@@ -82,7 +82,7 @@ public class CounterIsLessThanValueDecoratorTest {
         BasicTrigger trigger = new BasicTrigger();
         CounterIsLessThanValueDecorator instance = new CounterIsLessThanValueDecorator(counterName, value, trigger);
         
-        String expResult = "Counter: " + counterName + "value is less than: " + value + "\n";
+        String expResult = "Counter: " + counterName + " 's value is less than: " + value + "\n";
         String result = instance.toString();
         assertEquals(expResult, result);
         
@@ -92,7 +92,7 @@ public class CounterIsLessThanValueDecoratorTest {
         
         CounterIsLessThanValueDecorator instance2 = new CounterIsLessThanValueDecorator(counterName, value, trigger);
         
-        expResult = "Counter: " + counterName + "value is less than: " + value + "\n";
+        expResult = "Counter: " + counterName + " 's value is less than: " + value + "\n";
         result = instance2.toString();
         assertEquals(expResult, result);
     }

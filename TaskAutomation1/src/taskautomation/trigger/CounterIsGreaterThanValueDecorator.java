@@ -67,6 +67,6 @@ public class CounterIsGreaterThanValueDecorator extends TriggerDecorator impleme
     
     @Override
     public String toString(){
-        return "Counter: " + this.counterName + "value is greater than: " + this.value + "\n"+super.toString();
+        return "Counter: " + this.counterName + " 's value is greater than: " + this.value + "\n"+super.toString();
     }
 }

@@ -98,7 +98,7 @@ public class CounterIsEqualToCounterDecoratorTest {
         BasicTrigger trigger = new BasicTrigger();
         CounterIsEqualToCounterDecorator instance = new CounterIsEqualToCounterDecorator(counterName1, counterName2, trigger);
         
-        String expResult = "Counter: " + counterName1 + "value is equal to: " + counterName2 + "\n";
+        String expResult = "Counter: " + counterName1 + " 's value is equal to: " + counterName2 + "\n";
         String result = instance.toString();
         assertEquals(expResult, result);
         
@@ -108,7 +108,7 @@ public class CounterIsEqualToCounterDecoratorTest {
         
         CounterIsEqualToCounterDecorator instance2 = new CounterIsEqualToCounterDecorator(counterName1, counterName2, trigger);
         
-        expResult = "Counter: " + counterName1 + "value is equal to: " + counterName2 + "\n";
+        expResult = "Counter: " + counterName1 + " 's value is equal to: " + counterName2 + "\n";
         result = instance2.toString();
         assertEquals(expResult, result);
     }
