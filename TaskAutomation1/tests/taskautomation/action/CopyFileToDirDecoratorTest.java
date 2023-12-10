@@ -78,6 +78,7 @@ public class CopyFileToDirDecoratorTest {
             f.delete();
         }
         dir.delete();  //delete directory
+        file.delete();
         
         
         //same as above
@@ -97,7 +98,7 @@ public class CopyFileToDirDecoratorTest {
             f.delete();
         }
         dir.delete();
-        
+        file2.delete();
     }
    
 }
