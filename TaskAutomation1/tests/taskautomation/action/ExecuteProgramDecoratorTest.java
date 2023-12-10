@@ -50,8 +50,8 @@ public class ExecuteProgramDecoratorTest {
         //this file is created by test application and used to store its output
         File output = new File("filename.txt");
         
-        //without sleep the file reader can't find output file in time
-        sleep(100);
+        //sleep to wait for test application to complete its execution
+        sleep(500);
         
         String expected = "Hello " + arguments +"!";
         
