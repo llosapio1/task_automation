@@ -35,7 +35,6 @@ public class TimeOfDayTrigger implements Trigger, Serializable{
     public boolean verifyTrigger() {
         
         LocalTime currentTime = LocalTime.now();
-        System.out.println("Trigger codizione:" + (currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute()));
         // Confronta solo ora e minuti
         return (currentTime.getHour() == timeOfDay.getHour() && currentTime.getMinute() == timeOfDay.getMinute());
 

@@ -59,21 +59,28 @@ public class TriggerFactory{
             case "NOT":
                 trigger = new TriggerCompositeNOT();
                 break;
+            case "CounterIsEqualToValue":
+                trigger = new CounterIsEqualToValueTrigger();
+                break;
+            case "CounterIsGreaterThanValue":
+                trigger = new CounterIsGreaterThanValueTrigger();
+                break;
+            case "CounterIsLessThanValue":
+                trigger = new CounterIsLessThanValueTrigger();
+                break;
+            case "CounterIsEqualToCounter":
+                trigger = new CounterIsEqualToCounterTrigger();
+                break;
+            case "CounterIsGreaterThanCounter":
+                trigger = new CounterIsGreaterThanCounterTrigger();
+                break;
+            case "CounterIsLessThanCounter":
+                trigger = new CounterIsLessThanCounterTrigger();
+                break;
             default:
                 break;
-        } else if ("CounterIsEqualToValue".equals(triggerType)){
-            trigger = new CounterIsEqualToValueTrigger();
-        } else if ("CounterIsGreaterThanValue".equals(triggerType)){
-            trigger = new CounterIsGreaterThanValueTrigger();
-        } else if ("CounterIsLessThanValue".equals(triggerType)){
-            trigger = new CounterIsLessThanValueTrigger();
-        } else if ("CounterIsEqualToCounter".equals(triggerType)){
-            trigger = new CounterIsEqualToCounterTrigger();
-        } else if ("CounterIsGreaterThanCounter".equals(triggerType)){
-            trigger = new CounterIsGreaterThanCounterTrigger();
-        } else if ("CounterIsLessThanCounter".equals(triggerType)){
-            trigger = new CounterIsLessThanCounterTrigger();
         }
+
         return trigger;
     }
     
